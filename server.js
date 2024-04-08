@@ -1,23 +1,23 @@
 import 'dotenv/config';
 import express from 'express';
-import cors from 'cors';
 import { log } from './logs/index.js';
 import { connectDB } from './startup/connectDB.js';
+import { startMiddleware } from './startup/startMiddleware.js';
 
 const app = express();
 
+// Call database initialization
 connectDB();
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-// app.use(express.static('public'));
-app.use(cors());
+// Call middleware starters
+startMiddleware(app);
 
+// ROUTES
 // app.use('/api/v1/users', authRouter);
 // app.use('/api/v1/tours', usersRouter);
 
+// Start the server
 const PORT = process.env.PORT || 8001;
-
 app.listen(PORT, () => {
   log.server(`Server is running on port ${PORT}`);
 });
