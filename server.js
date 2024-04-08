@@ -3,6 +3,8 @@ import express from 'express';
 import { log } from './logs/index.js';
 import { connectDB } from './startup/connectDB.js';
 import { startMiddleware } from './startup/startMiddleware.js';
+import { toursRouter } from './routes/toursRouter.js';
+// import { startRoutes } from './startup/startRoutes.js';
 
 const app = express();
 
@@ -13,8 +15,8 @@ connectDB();
 startMiddleware(app);
 
 // ROUTES
-// app.use('/api/v1/users', authRouter);
-// app.use('/api/v1/tours', usersRouter);
+app.use('/api/v1/tours', toursRouter);
+// startRoutes();
 
 // Start the server
 const PORT = process.env.PORT || 8001;
