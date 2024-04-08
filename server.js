@@ -1,9 +1,15 @@
 import 'dotenv/config';
 import express from 'express';
+import mongoose from 'mongoose';
 import cors from 'cors';
 import { logs } from './logs/index.js';
 
 const app = express();
+
+mongoose
+  .connect(process.env.COMPASS_URI + process.env.DB_NAME)
+  .then(() => logs.db('MongoDB connected!'))
+  .catch(err => console.log(err));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
