@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "DEBUG= && node server.js",
-    "dev": "DEBUG=dev:* && nodemon server.js"
+    "dev": "DEBUG= && nodemon server.js"
   },
   "author": "",
   "license": "MIT",
