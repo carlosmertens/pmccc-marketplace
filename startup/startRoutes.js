@@ -1,8 +1,10 @@
-import { testRouter } from '../routes/testRouter.js';
-import  { bookRouter } from '../routes/bookRouter.js';
+import {testRouter} from '../routes/testRouter.js';
+import {toursRouter} from '../routes/toursRouter.js';
+import {errorHandler} from '../middleware/errorHandler.js';
 
 export function startRoutes(app) {
   app.use('/api/v1/test', testRouter);
   //TODO: Everyone creates their own routes
-  app.use('/api/books', bookRouter);//claudia workspace
+  app.use('/api/v1/tours', toursRouter);
+  app.use(errorHandler);
 }
