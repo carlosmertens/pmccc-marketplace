@@ -11,4 +11,15 @@ async function getAllVideoGames(req, res, next) {
     }
 };
 
-export const controllers = {getAllVideoGames};
+async function postOneVideoGame(req, res, next){
+    try{
+        const videoGame = await
+        VideoGamesModel.create(req.body);
+        res.status(201).send({status:
+        "success", data: videoGame});
+    }catch(error){
+        log.error(error);
+    }
+};
+
+export const controllers = {getAllVideoGames, postOneVideoGame};
