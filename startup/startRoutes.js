@@ -9,7 +9,6 @@ export function startRoutes(app) {
   //TODO: Everyone creates their own routes
   app.use('/api/v1/tours', toursRouter);
   app.use('/api/v1/books', bookRouter);
-
-  app.use(errorHandler);
   app.use('/api/v1/parts', pcPartRoutes.js);
+  app.use(errorHandler);
 }
