@@ -1,4 +1,4 @@
-import { Mongoose } from "mongoose";
+import mongoose from 'mongoose';
 
 const pcPartSchema = new mongoose.Schema({
   name: { type: String, required: true },
@@ -8,4 +8,4 @@ const pcPartSchema = new mongoose.Schema({
   inStock: { type: Boolean, default: true },
 });
 
-export default mongoose.model('PCPart', pcPartSchema);
+export const PcPart = mongoose.model('pcPart', pcPartSchema);
