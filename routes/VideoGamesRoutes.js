@@ -11,10 +11,10 @@ videoGameRouter.route("/")
 
 videoGameRouter.route("/:id")
 .get(controllers.getOneVideoGameId)
-.put(controllers.putOneVideoGameId);
-// .put(controllers.updateOneVideoGameId);
+.put(controllers.putOneVideoGameId)
+// .put(controllers.updateOneVideoGameId)
 // .patch(controllers.patchOneVideoGame)
-// .delete(controllers.deleteOneVideoGame);
+.delete(controllers.deleteOneVideoGameId);
 
 
 export default videoGameRouter;
