@@ -11,5 +11,4 @@ export function startRoutes(app) {
   app.use(errorHandler);
   app.use('/api/v1/books', bookRouter);
   app.use("/api/v1/video-games", videoGameRouter);
-
 }

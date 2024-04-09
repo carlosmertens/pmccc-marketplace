@@ -22,4 +22,28 @@ async function postOneVideoGame(req, res, next){
     }
 };
 
-export const controllers = {getAllVideoGames, postOneVideoGame};
+async function getOneVideoGameId(req, res, next){
+    try{
+        const videoGame = await
+        VideoGamesModel.findById(req.params.id);
+        res.status(201).send({status:
+        "success", data: videoGame});
+    }catch(error){
+        log.error(error);
+    }
+};
+
+async function putOneVideoGameId(req, res, next){
+    try{
+        const videoGame = await
+        VideoGamesModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        res.status(201).send({status:
+        "success", data: videoGame});
+    }catch(error){
+        log.error(error);
+    }
+};
+
+
+
+export const controllers = {getAllVideoGames, postOneVideoGame, putOneVideoGameId, getOneVideoGameId};
