@@ -1,7 +1,7 @@
 //TODO
 //claudia should start working here
 import { Router } from 'express';
-import { controllers } from '../controllers/bookControllers.js';
+import { controllers } from '../controllers/booksControllers.js';
 
 export const bookRouter = Router();
 
