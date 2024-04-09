@@ -11,5 +11,5 @@ export function startRoutes(app) {
   app.use('/api/v1/books', bookRouter);
 
   app.use(errorHandler);
-  app.use('/api/v1/parts', pcPartRoutes);
+  app.use('/api/v1/parts', pcPartRoutes.js);
 }
