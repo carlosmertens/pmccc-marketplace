@@ -13,5 +13,4 @@ userRouter
   .route('/:id')
   .get(asyncWrapper(ctrlrs.getUserByIdCtrlr))
   .put(asyncWrapper(ctrlrs.updateUserByIdCtrlr))
-  // .patch(asyncWrapper())
   .delete(asyncWrapper(ctrlrs.deleteUserByIdCtrlr));
