@@ -4,9 +4,15 @@ import hashPassword from '../utils/hashPassword.js';
 /** Returns a list of all users to an Admin*/
 export const getUsersCtrlr = async (req, res) => {
   const {email} = req.body;
+  const queryType = req.query.sort;
   const user = await User.findOne({email});
+  let result;
   if (user.isAdmin === true) {
-    const result = await User.find().sort({lastName: 1});
+    result =
+      queryType === 'date'
+        ? await User.find().sort({date: -1})
+        : await User.find().sort({lastName: 1});
+
     if (result.length === 0)
       return res.status(404).send({status: 'fail', message: 'No users found'});
     res.status(200).send(result);
@@ -33,7 +39,11 @@ export const addUsersCtrlr = async (req, res) => {
 /** Finds and returns a user by id when a valid id is provided*/
 export const getUserByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
-  const user = await User.findById(idForSearch);
+  const user = await User.findById(idForSearch).select({
+    firstName: 1,
+    lastName: 1,
+    email: 1,
+  });
   // If id is incorrect, handled by error handling
   res.status(200).json(user);
 };
