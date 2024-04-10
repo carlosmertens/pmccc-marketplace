@@ -2,6 +2,7 @@ import {testRouter} from '../routes/testRouter.js';
 import {toursRouter} from '../routes/toursRouter.js';
 import {errorHandler} from '../middleware/errorHandler.js';
 import {bookRouter} from '../routes/bookRouter.js';
+
 import videoGameRouter from "../routes/VideoGamesRoutes.js";
 
 export function startRoutes(app) {
