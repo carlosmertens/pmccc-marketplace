@@ -1,7 +1,7 @@
-import { PcPart } from '../models/PcPart.js';
+import { PcPart } from '../models/pcPart.js';
 import { log } from '../logs/index.js';
 
-export const getAllParts = async (req, res) => {
+const getAllParts = async (req, res) => {
   try {
     const parts = await PcPart.find();
     res.status(200).send({ status: 'success', data: parts });
@@ -10,7 +10,7 @@ export const getAllParts = async (req, res) => {
   }
 };
 
-export const getPartById = async (req, res) => {
+const getPartById = async (req, res) => {
   try {
     const part = await PcPart.findById(req.params.id);
     if (!part) {
@@ -22,7 +22,7 @@ export const getPartById = async (req, res) => {
   }
 };
 
-export const createPart = async (req, res) => {
+const createPart = async (req, res) => {
   try {
     const part = await PcPart.create(req.body);
     res.status(201).send({ status: 'success', data: part });
@@ -31,7 +31,7 @@ export const createPart = async (req, res) => {
   }
 };
 
-export const updatePart = async (req, res) => {
+const updatePart = async (req, res) => {
   try {
     const part = await PcPart.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
     if (!part) {
@@ -43,7 +43,7 @@ export const updatePart = async (req, res) => {
   }
 };
 
-export const patchPart = async (req, res) => {
+const patchPart = async (req, res) => {
   try {
     const part = await PcPart.findByIdAndUpdate(req.params.id, req.body, { new: true });
     if (!part) {
@@ -55,7 +55,7 @@ export const patchPart = async (req, res) => {
   }
 };
 
-export const deletePart = async (req, res) => {
+const deletePart = async (req, res) => {
   try {
     const part = await PcPart.findByIdAndDelete(req.params.id);
     if (!part) {
