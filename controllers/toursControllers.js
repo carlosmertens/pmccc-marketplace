@@ -1,4 +1,5 @@
 import {TourModel} from '../models/TourModel.js';
+import {log} from '../logs/index.js';
 
 /**
  * Returns a list of all tours in the database.
@@ -9,14 +10,16 @@ import {TourModel} from '../models/TourModel.js';
 async function getAllTours(req, res) {
   // Simple filtering
   const queryObj = {...req.query};
-  const excludedField = ['page', 'sort', 'limit', 'fields'];
-  excludedField.forEach(field => delete queryObj[field]);
+  log.http('req.query:', req.query);
+  const excludedQueries = ['page', 'sort', 'limit', 'fields'];
+  excludedQueries.forEach(field => delete queryObj[field]);
 
   // Advance filtering
+  // Implement gte, gt, lt, lte operators
   let queryStr = JSON.stringify(queryObj);
   queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
 
-  // Find filtered query
+  // Create mongoose query request object
   let query = TourModel.find(JSON.parse(queryStr));
 
   // Sorting query
@@ -26,6 +29,7 @@ async function getAllTours(req, res) {
     else query = query.sort('-createdAt');
   }
 
+  // Execute query request to database
   const tours = await query;
 
   res.status(200).send({
