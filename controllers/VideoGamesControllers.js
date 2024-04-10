@@ -47,7 +47,7 @@ async function putOneVideoGameId(req, res, next){
 async function deleteOneVideoGameId(req, res, next){
     try{
         const videoGame = await
-        VideoGamesModel.findByIdAndUpdate(req.params.id, req.body, {new: true});
+        VideoGamesModel.findByIdAndDelete(req.params.id, req.body);
         res.status(201).send({status:
         "success", data: videoGame});
     }catch(error){
