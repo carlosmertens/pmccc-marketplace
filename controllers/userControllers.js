@@ -1,12 +1,20 @@
 import User from '../models/UserModel.js';
 import hashPassword from '../utils/hashPassword.js';
 
-/** Returns a list of all users*/
+/** Returns a list of all users to an Admin*/
 export const getUsersCtrlr = async (req, res) => {
-  const result = await User.find();
-  if (result.length === 0)
-    return res.status(404).send({status: 'fail', message: 'No users found'});
-  res.status(200).send(result);
+  const {email} = req.body;
+  const user = await User.findOne({email});
+  if (user.isAdmin === true) {
+    const result = await User.find();
+    if (result.length === 0)
+      return res.status(404).send({status: 'fail', message: 'No users found'});
+    res.status(200).send(result);
+  } else {
+    return res
+      .status(403)
+      .send({status: 'fail', message: 'You are not an Admin'});
+  }
 };
 
 /** Adds user with hashed password*/
@@ -34,7 +42,6 @@ export const getUserByIdCtrlr = async (req, res) => {
 export const updateUserByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
   const user = await User.findByIdAndUpdate(idForSearch, req.body);
-  // If id is incorrect, handled by error handling
   res.status(201).send({status: 'success', message: 'User updated'});
 };
 
@@ -42,7 +49,6 @@ export const updateUserByIdCtrlr = async (req, res) => {
 export const deleteUserByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
   const user = await User.findByIdAndDelete(idForSearch);
-  // If id is incorrect, handled by error handling
   res.send({status: 'success', message: 'User deleted'});
 };
 

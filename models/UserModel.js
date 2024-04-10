@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   isAdmin: {type: Boolean, default: false},
   age: {type: Number, min: [18, 'You have to be least 18'], required: true},
   date: {type: Date, default: Date.now},
+  email: {type: String, required: true},
 
   gender: {
     type: String,

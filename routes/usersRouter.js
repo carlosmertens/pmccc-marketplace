@@ -1,12 +1,13 @@
 import {Router} from 'express';
 import {ctrlrs} from '../controllers/userControllers.js';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
+import auth from '../middleware/auth.js';
 
 export const userRouter = Router();
 
 userRouter
   .route('/')
-  .get(asyncWrapper(ctrlrs.getUsersCtrlr))
+  .get(auth, asyncWrapper(ctrlrs.getUsersCtrlr))
   .post(asyncWrapper(ctrlrs.addUsersCtrlr));
 
 userRouter
