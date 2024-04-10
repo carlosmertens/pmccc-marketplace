@@ -11,6 +11,6 @@ export function startRoutes(app) {
   app.use('/api/v1/tours', toursRouter);
   app.use('/api/v1/books', bookRouter);
   app.use('/api/v1/parts', pcPartrouter);
-  app.use(errorHandler);
   app.use("/api/v1/video-games", videoGameRouter);
+  app.use(errorHandler);
 }
