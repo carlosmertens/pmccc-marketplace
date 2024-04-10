@@ -6,7 +6,7 @@ export const getUsersCtrlr = async (req, res) => {
   const {email} = req.body;
   const user = await User.findOne({email});
   if (user.isAdmin === true) {
-    const result = await User.find();
+    const result = await User.find().sort({lastName: 1});
     if (result.length === 0)
       return res.status(404).send({status: 'fail', message: 'No users found'});
     res.status(200).send(result);
@@ -30,7 +30,7 @@ export const addUsersCtrlr = async (req, res) => {
   res.status(201).send({status: 'success', message: 'User added'});
 };
 
-/** Finds and returns a user by id*/
+/** Finds and returns a user by id when a valid id is provided*/
 export const getUserByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
   const user = await User.findById(idForSearch);
@@ -38,17 +38,24 @@ export const getUserByIdCtrlr = async (req, res) => {
   res.status(200).json(user);
 };
 
-/** Finds and updates a user by id*/
+/** Finds and updates a user by id when a valid id is provided*/
 export const updateUserByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
-  const user = await User.findByIdAndUpdate(idForSearch, req.body);
+  const updatedUser = await User.findById(idForSearch);
+  const hashedPass = await hashPassword(updatedUser.password);
+  if (!hashedPass)
+    return res
+      .status(404)
+      .send({status: 'fail', message: 'Could not add user. Try again'});
+  updatedUser.password = hashedPass;
+  await User.findByIdAndUpdate(idForSearch, updatedUser);
   res.status(201).send({status: 'success', message: 'User updated'});
 };
 
-/** Deletes a user by id*/
+/** Deletes a user by id when a valid id is provided*/
 export const deleteUserByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
-  const user = await User.findByIdAndDelete(idForSearch);
+  await User.findByIdAndDelete(idForSearch);
   res.send({status: 'success', message: 'User deleted'});
 };
 

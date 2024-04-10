@@ -1,12 +1,36 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-  firstName: {type: String, minLenght: 2, maxLenght: 30, required: true},
-  lastName: {type: String, minLenght: 2, maxLenght: 30, required: true},
+  firstName: {
+    type: String,
+    minLenght: 2,
+    maxLenght: 30,
+    required: true,
+    trim: true,
+    lowercase: true
+  },
+  lastName: {
+    type: String,
+    minLenght: 2,
+    maxLenght: 30,
+    required: true,
+    trim: true,
+    lowercase: true
+  },
   isAdmin: {type: Boolean, default: false},
-  age: {type: Number, min: [18, 'You have to be least 18'], required: true},
+  age: {
+    type: Number,
+    min: [18, 'You have to be at least 18 to register'],
+    required: true,
+  },
   date: {type: Date, default: Date.now},
-  email: {type: String, required: true},
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+  },
 
   gender: {
     type: String,
