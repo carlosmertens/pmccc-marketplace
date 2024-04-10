@@ -24,6 +24,8 @@ api/v1/tours/?duration[gte | gt | lte | lt]=[number of hours]
 
 api/v1/tours/sort=[property key]
 
+api/v1/users/?sort=date
+
 ## DEPENDENCIES
 
 ```json
@@ -34,7 +36,8 @@ api/v1/tours/sort=[property key]
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongoose": "^8.3.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "bcrypt": "^5.1.1"
   }
 }
 ```
