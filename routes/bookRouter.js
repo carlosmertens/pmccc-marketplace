@@ -7,14 +7,13 @@ export const bookRouter = Router();
 
 // Ruta para crear un nuevo libro
 bookRouter
-.route('/books')
+.route('/')
 .get(controllers.getAllBooks)
-.post(controllers.createNewBook);
+.post(controllers.createNewBook)
 
 bookRouter
-.route('/:id')
-.get(controllers.getBookWithId)
-.put(controllers.updateBookWithId)
-.patch(controllers.patchBookWithId)
-.delete(controllers.deleteBookWithId);
-
+  .route('/:id')
+  .get(controllers.getBookWithId)
+  .put(controllers.updateBookWithId)
+  .patch(controllers.patchBookWithId)
+  .delete(controllers.deleteBookWithId);
