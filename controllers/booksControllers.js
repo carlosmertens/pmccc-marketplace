@@ -23,7 +23,7 @@ async function createNewBook(req, res) {
     res.status(201).send({status: 'success', data: book});
   } catch (error) {
     log.error(error);
-
+// 401, 403, 400
     res.status(500).send({status: 'error', message: error.message});
   }
 }
@@ -37,9 +37,10 @@ async function getBookWithId(req, res) {
     } catch (error) {
       console.log(error);
   
-      res.status(500).send({ status: 'error', message: error.message });
+      res.status(404).send({ status: 'error', message: error.message });
     }
   }
+
 
 //to Update new data to a book by the ID PUT
  async function updateBookWithId(req, res) {

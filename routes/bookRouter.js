@@ -9,7 +9,7 @@ export const bookRouter = Router();
 bookRouter
 .route('/')
 .get(controllers.getAllBooks)
-.post(controllers.createNewBook);
+.post(controllers.createNewBook)
 
 bookRouter
   .route('/:id')
