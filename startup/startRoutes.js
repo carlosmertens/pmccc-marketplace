@@ -4,6 +4,8 @@ import {errorHandler} from '../middleware/errorHandler.js';
 import {bookRouter} from '../routes/bookRouter.js';
 import {pcPartrouter} from '../routes/pcPartRouter.js';
 import videoGameRouter from "../routes/VideoGamesRoutes.js";
+import { userRouter } from '../routes/usersRouter.js';
+import { orderRouter } from '../routes/orderRouter.js';
 
 export function startRoutes(app) {
   app.use('/api/v1/test', testRouter);
@@ -12,5 +14,7 @@ export function startRoutes(app) {
   app.use('/api/v1/books', bookRouter);
   app.use('/api/v1/parts', pcPartrouter);
   app.use("/api/v1/video-games", videoGameRouter);
+  app.use('/api/v1/users', userRouter);
+  app.use('/api/v1/orders', orderRouter);
   app.use(errorHandler);
 }

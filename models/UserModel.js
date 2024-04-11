@@ -1,0 +1,52 @@
+import mongoose from 'mongoose';
+
+const userSchema = new mongoose.Schema({
+  firstName: {
+    type: String,
+    minLenght: 2,
+    maxLenght: 30,
+    required: true,
+    trim: true,
+    lowercase: true
+  },
+  lastName: {
+    type: String,
+    minLenght: 2,
+    maxLenght: 30,
+    required: true,
+    trim: true,
+    lowercase: true
+  },
+  isAdmin: {type: Boolean, default: false},
+  age: {
+    type: Number,
+    min: [18, 'You have to be at least 18 to register'],
+    required: true,
+  },
+  createdOn: {type: Date, default: Date.now},
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    trim: true,
+    lowercase: true,
+  },
+
+  gender: {
+    type: String,
+    enum: {
+      values: ['male', 'female', 'other'],
+      message: 'Please select male, female or other',
+    },
+    required: false,
+  },
+
+  password: {
+    type: String,
+    minLenght: [5, 'Password must be minimum 5 characters'],
+    required: true,
+  },
+});
+
+const UserModel = mongoose.model('users', userSchema);
+export default UserModel;
