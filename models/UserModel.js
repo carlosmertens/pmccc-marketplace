@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     min: [18, 'You have to be at least 18 to register'],
     required: true,
   },
-  date: {type: Date, default: Date.now},
+  createdOn: {type: Date, default: Date.now},
   email: {
     type: String,
     required: true,

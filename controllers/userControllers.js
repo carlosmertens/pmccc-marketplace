@@ -51,14 +51,14 @@ export const getUserByIdCtrlr = async (req, res) => {
 /** Finds and updates a user by id when a valid id is provided*/
 export const updateUserByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
-  const updatedUser = await User.findById(idForSearch);
-  const hashedPass = await hashPassword(updatedUser.password);
+  const newUser = req.body;
+  const hashedPass = await hashPassword(newUser.password);
   if (!hashedPass)
     return res
       .status(404)
       .send({status: 'fail', message: 'Could not add user. Try again'});
-  updatedUser.password = hashedPass;
-  await User.findByIdAndUpdate(idForSearch, updatedUser);
+  newUser.password = hashedPass;
+  await User.findByIdAndUpdate(idForSearch, newUser);
   res.status(201).send({status: 'success', message: 'User updated'});
 };
 

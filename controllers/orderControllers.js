@@ -23,7 +23,7 @@ export const getOrderByIdCtrlr = async (req, res) => {
   const idForSearch = req.params.id;
   const order = await Order.findById(idForSearch).populate(
     'user',
-    '-__v -password -email -age -date -isAdmin'
+    '-__v -password -email -age -createdOn -isAdmin'
   );
   res.status(200).json(order);
 };
