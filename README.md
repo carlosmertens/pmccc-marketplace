@@ -1,5 +1,7 @@
 # MPCCC MARKETPLACE API
 
+API connecting MPCCC MongoDB database with website
+
 ## ROUTES
 
 /api/v1/tests
