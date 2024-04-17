@@ -1,19 +1,17 @@
-//TODO
-//claudia should start working here
-import { Router } from 'express';
-import { controllers } from '../controllers/booksControllers.js';
+import {Router} from 'express';
+import {asyncWrapper} from '../middleware/asyncWrapper.js';
+import {controllers} from '../controllers/booksControllers.js';
 
 export const bookRouter = Router();
 
-// Ruta para crear un nuevo libro
 bookRouter
-.route('/')
-.get(controllers.getAllBooks)
-.post(controllers.createNewBook)
+  .route('/')
+  .get(asyncWrapper(controllers.getAllBooks))
+  .post(asyncWrapper(controllers.createNewBook));
 
 bookRouter
   .route('/:id')
-  .get(controllers.getBookWithId)
-  .put(controllers.updateBookWithId)
-  .patch(controllers.patchBookWithId)
-  .delete(controllers.deleteBookWithId);
+  .get(asyncWrapper(controllers.getBook))
+  .put(asyncWrapper(controllers.updateBook))
+  .patch(asyncWrapper(controllers.patchBook))
+  .delete(asyncWrapper(controllers.deleteBook));

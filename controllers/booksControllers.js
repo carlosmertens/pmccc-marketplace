@@ -1,104 +1,166 @@
-//TODO
-//claudia should start working here
-//import mongoose from "mongoose";
 import {BookModel} from '../models/BookModel.js';
 import {log} from '../logs/index.js';
 
-//to GET all books
+/**
+ * Get (GET REQUEST) all books from the database
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ */
 async function getAllBooks(req, res) {
-  try {
-    const books = await BookModel.find();
+  const books = await BookModel.find();
 
-    res.status(200).send({
-      status: 'success',
-      result: books.length,
-      data: books,
-      message: 'One GET to rule them all!',
-    });
-  } catch (error) {
-    log.error(error);
-  }
+  /**
+   * Send a successful response with all books data
+   */
+  res.status(200).send({
+    status: 'success',
+    result: books.length,
+    data: books,
+    message: 'GET request to get all books',
+  });
 }
 
-//to CREATE a new book
+/**
+ * Creates (POST REQUEST) a new book in the database
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ */
 async function createNewBook(req, res) {
-  try {
-    const book = await BookModel.create(req.body);
+  const book = await BookModel.create(req.body);
 
-    res.status(201).send({status: 'success', data: book});
-  } catch (error) {
-    log.error(error);
-    // 401, 403, 400
-    res.status(500).send({status: 'error', message: error.message});
-  }
+  /**
+   * Send a successful response with the new book data
+   */
+  res.status(201).send({
+    status: 'success',
+    data: book,
+    message: 'POST request to create a new book was successful',
+  });
 }
 
-//to GET a book by the ID
-async function getBookWithId(req, res) {
-  try {
-    const book = await BookModel.findById(req.params.id);
+/**
+ * Get (GET REQUEST) a book from the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ */
+async function getBook(req, res) {
+  const book = await BookModel.findById(req.params.id);
 
-    res.status(200).send({status: 'success', data: book});
-  } catch (error) {
-    console.log(error);
-
-    res.status(404).send({status: 'error', message: error.message});
-  }
-}
-
-//to Update new data to a book by the ID PUT
-async function updateBookWithId(req, res) {
-  try {
-    const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
-      runValidators: true,
+  /**
+   * Check if the book exists
+   */
+  if (!book) {
+    return res.status(404).send({
+      status: 'fail',
+      message: 'Book not found',
     });
-
-    res.status(200).send({status: 'success', data: book});
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).send({status: 'error', message: error.message});
   }
+
+  /**
+   * Send a successful response with the book data
+   */
+  res.status(200).send({
+    status: 'success',
+    data: book,
+    message: 'GET request for one book by id',
+  });
 }
 
-//PATCH change parcially the data of the book
-async function patchBookWithId(req, res) {
-  try {
-    const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
-      new: true,
+/**
+ * Update (PUT REQUEST) a book in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ */
+async function updateBook(req, res) {
+  const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  });
+
+  /**
+   * Check if the book exists
+   */
+  if (!book) {
+    return res.status(404).send({
+      status: 'fail',
+      message: 'Book not found',
     });
-
-    res.status(200).send({status: 'success', data: book});
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).send({status: 'error', message: error.message});
   }
+
+  /**
+   * Send a successful response with the updated book data
+   */
+  res.status(200).send({
+    status: 'success',
+    data: book,
+    message: 'PUT request to update a book by id',
+  });
 }
 
-async function deleteBookWithId(req, res) {
-  try {
-    const book = await BookModel.findByIdAndDelete(req.params.id);
+/**
+ * Modify (PATCH REQUEST) a book in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ */
+async function patchBook(req, res) {
+  const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
 
-    res.status(200).send({
-      status: 'success',
-      data: book,
-      message: `Id: ${req.params.id} has been deleted`,
+  /**
+   * Check if the book exists
+   */
+  if (!book) {
+    return res.status(404).send({
+      status: 'fail',
+      message: 'Book not found',
     });
-  } catch (error) {
-    console.log(error);
-
-    res.status(500).send({status: 'error', message: error.message});
   }
+
+  /**
+   * Send a successful response with the updated book data
+   */
+  res.status(200).send({
+    status: 'success',
+    data: book,
+    message: 'PATCH request to modify book successfully',
+  });
+}
+
+/**
+ * Delete (DELETE REQUEST) a book in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ */
+async function deleteBook(req, res) {
+  const book = await BookModel.findByIdAndDelete(req.params.id);
+
+  /**
+   * Check if the book exists
+   */
+  if (!book) {
+    return res.status(404).send({
+      status: 'fail',
+      message: 'Book not found',
+    });
+  }
+
+  /**
+   * Send a successful response with the book data
+   */
+  res.status(200).send({
+    status: 'success',
+    data: book,
+    message: `DELETE request for id: ${req.params.id} has been successfully`,
+  });
 }
 
 //export the function
 export const controllers = {
   getAllBooks,
   createNewBook,
-  getBookWithId,
-  updateBookWithId,
-  patchBookWithId,
-  deleteBookWithId,
+  getBook,
+  updateBook,
+  patchBook,
+  deleteBook,
 };

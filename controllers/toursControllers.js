@@ -2,10 +2,9 @@ import {TourModel} from '../models/TourModel.js';
 import {log} from '../logs/index.js';
 
 /**
- * Returns a list of all tours in the database.
- *
- * @param req The request object.
- * @param res The response object.
+ * Get all tours from the database.
+ * @param {Request} req - The request object.
+ * @param {Response} res - The response object.
  */
 async function getAllTours(req, res) {
   // Simple filtering
