@@ -1,4 +1,4 @@
-import {PcPartModel} from '../models/pcPart.js';
+import {PcPartModel} from '../models/PcPartModel.js';
 import {log} from '../logs/index.js';
 
 const getAllParts = async (req, res) => {
