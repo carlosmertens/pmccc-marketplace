@@ -2,14 +2,14 @@ import {Router} from 'express';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {controllers} from '../controllers/booksControllers.js';
 
-export const bookRouter = Router();
+export const booksRouter = Router();
 
-bookRouter
+booksRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllBooks))
   .post(asyncWrapper(controllers.createNewBook));
 
-bookRouter
+booksRouter
   .route('/:id')
   .get(asyncWrapper(controllers.getBook))
   .put(asyncWrapper(controllers.updateBook))

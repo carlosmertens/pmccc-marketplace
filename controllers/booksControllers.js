@@ -20,7 +20,7 @@ async function getAllBooks(req, res) {
 }
 
 /**
- * Creates (POST REQUEST) a new book in the database
+ * Create (POST REQUEST) a new book in the database
  * @param {Request} req - The request object
  * @param {Response} res - The response object
  */

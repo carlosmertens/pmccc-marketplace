@@ -2,14 +2,14 @@ import {Router} from 'express';
 import {ctrlrs} from '../controllers/orderControllers.js';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 
-export const orderRouter = Router();
+export const ordersRouter = Router();
 
-orderRouter
+ordersRouter
   .route('/')
   .get(asyncWrapper(ctrlrs.getOrdersCtrlr))
   .post(asyncWrapper(ctrlrs.addOrderCtrlr));
 
-orderRouter
+ordersRouter
   .route('/:id')
   .get(asyncWrapper(ctrlrs.getOrderByIdCtrlr))
   .delete(asyncWrapper(ctrlrs.deleteOrderByIdCtrlr));

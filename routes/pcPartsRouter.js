@@ -2,14 +2,14 @@ import {Router} from 'express';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {controllers} from '../controllers/pcPartsController.js';
 
-export const pcPartRouter = Router();
+export const pcPartsRouter = Router();
 
-pcPartRouter
+pcPartsRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllPcParts))
   .post(asyncWrapper(controllers.createNewPcPart));
 
-pcPartRouter
+pcPartsRouter
   .route('/:id')
   .get(asyncWrapper(controllers.getPcPart))
   .put(asyncWrapper(controllers.updatePcPart))
