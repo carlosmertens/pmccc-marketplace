@@ -1,5 +1,4 @@
 import {BookModel} from '../models/BookModel.js';
-import {log} from '../logs/index.js';
 
 /**
  * Get (GET REQUEST) all books from the database
@@ -16,7 +15,7 @@ async function getAllBooks(req, res) {
     status: 'success',
     result: books.length,
     data: books,
-    message: 'GET request to get all books',
+    message: 'GET request to get all books was successful',
   });
 }
 

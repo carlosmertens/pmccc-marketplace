@@ -1,11 +1,17 @@
-import { Router } from 'express';
-import { controllers } from '../controllers/pcPartController.js';
+import {Router} from 'express';
+import {asyncWrapper} from '../middleware/asyncWrapper.js';
+import {controllers} from '../controllers/pcPartsController.js';
 
-export const pcPartrouter = Router();
+export const pcPartRouter = Router();
 
+pcPartRouter
+  .route('/')
+  .get(asyncWrapper(controllers.getAllPcParts))
+  .post(asyncWrapper(controllers.createNewPcPart));
 
-pcPartrouter.get('/', controllers.getAllParts);
-pcPartrouter.get('/:id', controllers.getPartById);
-pcPartrouter.post('/', controllers.createPart);
-pcPartrouter.patch('/:id', controllers.updatePart);
-pcPartrouter.delete('/:id', controllers.deletePart);
+pcPartRouter
+  .route('/:id')
+  .get(asyncWrapper(controllers.getPcPart))
+  .put(asyncWrapper(controllers.updatePcPart))
+  .patch(asyncWrapper(controllers.patchPcPart))
+  .delete(asyncWrapper(controllers.deletePcPart));
