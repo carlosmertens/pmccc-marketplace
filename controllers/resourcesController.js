@@ -1,5 +1,5 @@
 import {BookModel} from '../models/BookModel.js';
-import {VideoGameModel} from '../models/VideoGamesModel.js';
+import {VideoGameModel} from '../models/VideoGameModel.js';
 import {PcPartModel} from '../models/PcPartModel.js';
 import {TourModel} from '../models/TourModel.js';
 

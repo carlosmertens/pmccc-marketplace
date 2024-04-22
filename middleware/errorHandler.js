@@ -5,12 +5,12 @@ export const errorHandler = (err, req, res, next) => {
   if (err.name === 'CastError') {
     return res.status(400).send({
       status: 'error',
-      message: `Invalid ${err.path}: ${err.value}`,
+      message: `Resources Error: Invalid ${err.path}: ${err.value}`,
     });
   } else {
     res.status(500).send({
       status: 'error',
-      message: 'Error Handler: Something went wrong',
+      message: 'Server Error: Something went wrong!',
     });
   }
 };

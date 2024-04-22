@@ -1,4 +1,4 @@
-import {VideoGameModel} from '../models/VideoGamesModel.js';
+import {VideoGameModel} from '../models/VideoGameModel.js';
 
 /**
  * Get (GET REQUEST) all video games from the database
