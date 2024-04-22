@@ -1,3 +1,5 @@
+// GET localhost:8000/api/v1/tours/
+
 export const toursData = {
   status: 'success',
   result: 7,

@@ -1,4 +1,4 @@
-// localhost:8000/api/v1/video-games/
+// GET localhost:8000/api/v1/video-games/
 
 export const videoGamesData = {
   status: 'success',

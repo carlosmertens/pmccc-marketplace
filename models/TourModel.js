@@ -1,6 +1,11 @@
 import mongoose from 'mongoose';
 
 const tourSchema = new mongoose.Schema({
+  serviceType: {
+    type: String,
+    enum: {values: ['TOURS'], message: 'Creating a TOURS type!'},
+    default: 'TOURS',
+  },
   name: {type: String, trim: true, minlength: 1, maxlength: 50, required: true},
   price: {type: Number, min: 100, max: 9999, required: true},
   priceDiscount: {type: Number, default: 0},

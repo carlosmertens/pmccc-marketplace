@@ -1,4 +1,4 @@
-// localhost:8000/api/v1/books/
+// GET localhost:8000/api/v1/books/
 
 export const booksData = {
   status: 'success',

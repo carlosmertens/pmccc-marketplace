@@ -1,4 +1,4 @@
-// localhost:8000/api/v1/pc-parts
+// GET localhost:8000/api/v1/pc-parts
 
 export const pcPartsData = {
   status: 'success',
