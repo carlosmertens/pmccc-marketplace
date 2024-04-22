@@ -13,7 +13,7 @@ import {TourModel} from '../models/TourModel.js';
 async function getResourcesList(req, res) {
   const booksArray = await BookModel.find().select({
     productType: 1,
-    title: 1,
+    name: 1,
     genre: 1,
   });
 

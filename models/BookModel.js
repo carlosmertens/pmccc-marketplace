@@ -7,7 +7,7 @@ const BookSchema = new mongoose.Schema(
       enum: {values: ['BOOK'], message: 'Creating a BOOK type!'},
       default: 'BOOK',
     },
-    title: {type: String, minlength: 1, maxlength: 50, required: true},
+    name: {type: String, minlength: 1, maxlength: 50, required: true},
     author: {type: String, minlength: 1, maxlength: 50, required: true},
     genre: {type: String, minlength: 1, maxlength: 50, required: true},
     price: {type: Number, minlength: 1, required: true},

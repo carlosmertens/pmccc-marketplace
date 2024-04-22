@@ -7,7 +7,7 @@ export const booksData = {
     {
       _id: '661e8d455dd934429a34456b',
       productType: 'BOOK',
-      title: 'The Hobbit',
+      name: 'The Hobbit',
       author: 'J.R.R. Talkien',
       genre: 'Adventure',
       price: 10,
@@ -23,7 +23,7 @@ export const booksData = {
     {
       _id: '661e8d805dd934429a34456d',
       productType: 'BOOK',
-      title: 'The Lord of The Ring',
+      name: 'The Lord of The Ring',
       author: 'J.R.R. Talkien',
       genre: 'Fantasy',
       price: 30,
@@ -40,7 +40,7 @@ export const booksData = {
     {
       _id: '661e8dc25dd934429a34456f',
       productType: 'BOOK',
-      title: 'Shadowmarch',
+      name: 'Shadowmarch',
       author: 'Tad Williams',
       genre: 'Fantasy',
       price: 15,
@@ -57,7 +57,7 @@ export const booksData = {
     {
       _id: '661e8de25dd934429a344571',
       productType: 'BOOK',
-      title: 'ShadowPlay',
+      name: 'ShadowPlay',
       author: 'Tad Williams',
       genre: 'Fantasy',
       price: 15,
@@ -74,7 +74,7 @@ export const booksData = {
     {
       _id: '661e8e305dd934429a344573',
       productType: 'BOOK',
-      title: 'ShadowPlay',
+      name: 'ShadowPlay',
       author: 'Isaac Asimov',
       genre: 'Futuristic',
       price: 15,
@@ -91,7 +91,7 @@ export const booksData = {
     {
       _id: '661e8e625dd934429a344575',
       productType: 'BOOK',
-      title: 'Barack Obama - A Promise Land',
+      name: 'Barack Obama - A Promise Land',
       author: 'Jonathan Alter',
       genre: 'Politics',
       price: 15,
@@ -108,7 +108,7 @@ export const booksData = {
     {
       _id: '661e8e905dd934429a344577',
       productType: 'BOOK',
-      title: 'Originals',
+      name: 'Originals',
       author: 'Adam Grant',
       genre: 'Self-Help',
       price: 15,
