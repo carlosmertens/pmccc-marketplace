@@ -1,10 +1,11 @@
 import {TourModel} from '../models/TourModel.js';
 import {log} from '../logs/index.js';
+import {AppError} from '../utils/appError.js';
 
 /**
- * Get all tours from the database.
- * @param {Request} req - The request object.
- * @param {Response} res - The response object.
+ * Get (GET REQUEST) all tours from the database
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
  */
 async function getAllTours(req, res) {
   // Simple filtering
@@ -31,6 +32,9 @@ async function getAllTours(req, res) {
   // Execute query request to database
   const tours = await query;
 
+  /**
+   * Send a successful response with the tours data
+   */
   res.status(200).send({
     status: 'success',
     result: tours.length,
@@ -40,14 +44,16 @@ async function getAllTours(req, res) {
 }
 
 /**
- * Creates a new tour in the database.
- *
- * @param req - The request object.
- * @param res - The response object.
+ * Create (POST REQUEST) a new tour in the database
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
  */
 async function createNewTour(req, res) {
   const tour = await TourModel.create(req.body);
 
+  /**
+   * Send a successful response with the new tour data
+   */
   res.status(201).send({
     status: 'success',
     data: tour,
@@ -56,17 +62,22 @@ async function createNewTour(req, res) {
 }
 
 /**
- * Returns a tour document when a valid tour ID is provided.
- *
- * @param req - The request object.
- * @param res - The response object.
+ * Get (GET REQUEST) a tour from the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function getTour(req, res) {
+async function getTour(req, res, next) {
   const tour = await TourModel.findById(req.params.id);
 
-  if (!tour)
-    return res.status(404).send({status: 'fail', message: 'Tour not found'});
+  /**
+   * Check if the tour exists
+   */
+  if (!tour) return next(new AppError('Given id not found', 404));
 
+  /**
+   * Send a successful response with the tour data
+   */
   res.status(200).send({
     status: 'success',
     data: tour,
@@ -75,19 +86,24 @@ async function getTour(req, res) {
 }
 
 /**
- * Updates a tour in the database.
- *
- * @param req - The request object.
- * @param res - The response object.
+ * Update (PUT REQUEST) a tour in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function updateTour(req, res) {
+async function updateTour(req, res, next) {
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
 
-  if (!tour)
-    return res.status(404).send({status: 'fail', message: 'Tour not found'});
+  /**
+   * Check if the tour exists
+   */
+  if (!tour) return next(new AppError('Given id not found', 404));
 
+  /**
+   * Send a successful response with the tour modified data
+   */
   res.status(200).send({
     status: 'success',
     data: tour,
@@ -96,19 +112,24 @@ async function updateTour(req, res) {
 }
 
 /**
- * Updates a tour in the database.
- *
- * @param req - The request object.
- * @param res - The response object.
+ * Modify (PATCH REQUEST) a book in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function patchTour(req, res) {
+async function patchTour(req, res, next) {
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
 
-  if (!tour)
-    return res.status(404).send({status: 'fail', message: 'Tour not found'});
+  /**
+   * Check if the tour exists
+   */
+  if (!tour) return next(new AppError('Given id not found', 404));
 
+  /**
+   * Send a successful response with the tour patched data
+   */
   res.status(200).send({
     status: 'success',
     data: tour,
@@ -117,17 +138,22 @@ async function patchTour(req, res) {
 }
 
 /**
- * Deletes a tour from the database.
- *
- * @param req - The request object.
- * @param res - The response object.
+ * Delete (DELETE REQUEST) a book in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function deleteTour(req, res) {
+async function deleteTour(req, res, next) {
   const tour = await TourModel.findByIdAndDelete(req.params.id);
 
-  if (!tour)
-    return res.status(404).send({status: 'fail', message: 'Tour not found'});
+  /**
+   * Check if the tour exists
+   */
+  if (!tour) return next(new AppError('Given id not found', 404));
 
+  /**
+   * Send a successful response with the tour deleted data
+   */
   res.status(200).send({
     status: 'success',
     data: tour,

@@ -1,4 +1,5 @@
 import {BookModel} from '../models/BookModel.js';
+import {AppError} from '../utils/appError.js';
 
 /**
  * Get (GET REQUEST) all books from the database
@@ -41,19 +42,22 @@ async function createNewBook(req, res) {
  * Get (GET REQUEST) a book from the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function getBook(req, res) {
+async function getBook(req, res, next) {
   const book = await BookModel.findById(req.params.id);
 
   /**
    * Check if the book exists
    */
-  if (!book) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Book not found',
-    });
-  }
+  // Refactored below //
+  // if (!book) {
+  //   return res.status(404).send({
+  //     status: 'fail',
+  //     message: 'Book not found',
+  //   });
+  // }
+  if (!book) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the book data
@@ -69,8 +73,9 @@ async function getBook(req, res) {
  * Update (PUT REQUEST) a book in the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function updateBook(req, res) {
+async function updateBook(req, res, next) {
   const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
@@ -79,12 +84,7 @@ async function updateBook(req, res) {
   /**
    * Check if the book exists
    */
-  if (!book) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Book not found',
-    });
-  }
+  if (!book) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated book data
@@ -100,8 +100,9 @@ async function updateBook(req, res) {
  * Modify (PATCH REQUEST) a book in the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function patchBook(req, res) {
+async function patchBook(req, res, next) {
   const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -109,12 +110,7 @@ async function patchBook(req, res) {
   /**
    * Check if the book exists
    */
-  if (!book) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Book not found',
-    });
-  }
+  if (!book) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated book data
@@ -130,19 +126,15 @@ async function patchBook(req, res) {
  * Delete (DELETE REQUEST) a book in the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function deleteBook(req, res) {
+async function deleteBook(req, res, next) {
   const book = await BookModel.findByIdAndDelete(req.params.id);
 
   /**
    * Check if the book exists
    */
-  if (!book) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Book not found',
-    });
-  }
+  if (!book) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the book data

@@ -1,4 +1,5 @@
 import {VideoGameModel} from '../models/VideoGameModel.js';
+import {AppError} from '../utils/appError.js';
 
 /**
  * Get (GET REQUEST) all video games from the database
@@ -41,19 +42,15 @@ async function createNewVideoGame(req, res) {
  * Get (GET REQUEST) a video game from the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function getVideoGame(req, res) {
+async function getVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findById(req.params.id);
 
   /**
    * Check if the video game exists
    */
-  if (!videoGame) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Video game not found',
-    });
-  }
+  if (!videoGame) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the video game data
@@ -69,8 +66,9 @@ async function getVideoGame(req, res) {
  * Update (PUT REQUEST) a video game in the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function updateVideoGame(req, res) {
+async function updateVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -83,12 +81,7 @@ async function updateVideoGame(req, res) {
   /**
    * Check if the video game exists
    */
-  if (!videoGame) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Video game not found',
-    });
-  }
+  if (!videoGame) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated video game data
@@ -104,8 +97,9 @@ async function updateVideoGame(req, res) {
  * Modify (PATCH REQUEST) a video game in the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function patchVideoGame(req, res) {
+async function patchVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findByIdAndUpdate(
     req.params.id,
     req.body,
@@ -117,12 +111,7 @@ async function patchVideoGame(req, res) {
   /**
    * Check if the video game exists
    */
-  if (!videoGame) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Video game not found',
-    });
-  }
+  if (!videoGame) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated video game data
@@ -138,19 +127,15 @@ async function patchVideoGame(req, res) {
  * Delete (DELETE REQUEST) a video game in the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
-async function deleteVideoGame(req, res) {
+async function deleteVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findByIdAndDelete(req.params.id);
 
   /**
    * Check if the video game exists
    */
-  if (!videoGame) {
-    return res.status(404).send({
-      status: 'fail',
-      message: 'Video game not found',
-    });
-  }
+  if (!videoGame) return next(new AppError('Given id not found', 404));
 
   /**
    * Send a successful response with the video game data

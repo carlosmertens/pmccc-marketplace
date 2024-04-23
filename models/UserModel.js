@@ -7,7 +7,7 @@ const userSchema = new mongoose.Schema({
     maxLenght: 30,
     required: true,
     trim: true,
-    lowercase: true
+    lowercase: true,
   },
   lastName: {
     type: String,
@@ -15,8 +15,9 @@ const userSchema = new mongoose.Schema({
     maxLenght: 30,
     required: true,
     trim: true,
-    lowercase: true
+    lowercase: true,
   },
+  // TODO: Admin should be read only
   isAdmin: {type: Boolean, default: false},
   age: {
     type: Number,
