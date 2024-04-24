@@ -1,6 +1,6 @@
 import {TourModel} from '../models/TourModel.js';
 import {log} from '../logs/index.js';
-import {AppError} from '../utils/appError.js';
+import {CreateAppError} from '../utils/createAppError.js';
 
 /**
  * Get (GET REQUEST) all tours from the database
@@ -73,7 +73,7 @@ async function getTour(req, res, next) {
   /**
    * Check if the tour exists
    */
-  if (!tour) return next(new AppError('Given id not found', 404));
+  if (!tour) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the tour data
@@ -99,7 +99,7 @@ async function updateTour(req, res, next) {
   /**
    * Check if the tour exists
    */
-  if (!tour) return next(new AppError('Given id not found', 404));
+  if (!tour) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the tour modified data
@@ -125,7 +125,7 @@ async function patchTour(req, res, next) {
   /**
    * Check if the tour exists
    */
-  if (!tour) return next(new AppError('Given id not found', 404));
+  if (!tour) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the tour patched data
@@ -149,7 +149,7 @@ async function deleteTour(req, res, next) {
   /**
    * Check if the tour exists
    */
-  if (!tour) return next(new AppError('Given id not found', 404));
+  if (!tour) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the tour deleted data

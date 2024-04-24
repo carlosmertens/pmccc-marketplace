@@ -1,13 +1,13 @@
 import {testRouter} from '../routes/testRouter.js';
 import {toursRouter} from '../routes/toursRouter.js';
-import {errorHandler} from '../middleware/errorHandler.js';
 import {booksRouter} from '../routes/booksRouter.js';
 import {pcPartsRouter} from '../routes/pcPartsRouter.js';
 import {videoGamesRouter} from '../routes/VideoGamesRouter.js';
 import {userRouter} from '../routes/usersRouter.js';
 import {ordersRouter} from '../routes/ordersRouter.js';
 import {resourcesRouter} from '../routes/resourcesRouter.js';
-import {notFoundHandler} from '../middleware/notFoundHandler.js';
+import {routeNotFoundHandler} from '../middleware/routeNotFoundHandler.js';
+import {errorHandler} from '../middleware/errorHandler.js';
 
 /**
  * Starts the routes for the Express application.
@@ -29,7 +29,7 @@ export function startRoutes(app) {
   /**
    * Handles routes not supported or defined in routes.
    */
-  app.use('*', notFoundHandler);
+  app.use('*', routeNotFoundHandler);
 
   /**
    * Handles errors globally.

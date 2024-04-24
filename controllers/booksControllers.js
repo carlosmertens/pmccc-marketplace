@@ -1,5 +1,5 @@
 import {BookModel} from '../models/BookModel.js';
-import {AppError} from '../utils/appError.js';
+import {CreateAppError} from '../utils/createAppError.js';
 
 /**
  * Get (GET REQUEST) all books from the database
@@ -57,7 +57,7 @@ async function getBook(req, res, next) {
   //     message: 'Book not found',
   //   });
   // }
-  if (!book) return next(new AppError('Given id not found', 404));
+  if (!book) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the book data
@@ -84,7 +84,7 @@ async function updateBook(req, res, next) {
   /**
    * Check if the book exists
    */
-  if (!book) return next(new AppError('Given id not found', 404));
+  if (!book) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated book data
@@ -110,7 +110,7 @@ async function patchBook(req, res, next) {
   /**
    * Check if the book exists
    */
-  if (!book) return next(new AppError('Given id not found', 404));
+  if (!book) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated book data
@@ -134,7 +134,7 @@ async function deleteBook(req, res, next) {
   /**
    * Check if the book exists
    */
-  if (!book) return next(new AppError('Given id not found', 404));
+  if (!book) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the book data

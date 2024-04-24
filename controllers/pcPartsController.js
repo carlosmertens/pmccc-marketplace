@@ -1,5 +1,5 @@
 import {PcPartModel} from '../models/PcPartModel.js';
-import {AppError} from '../utils/appError.js';
+import {CreateAppError} from '../utils/createAppError.js';
 
 /**
  * Get (GET REQUEST) all pc parts from the database
@@ -50,7 +50,7 @@ async function getPcPart(req, res, next) {
   /**
    * Check if the pc part exists
    */
-  if (!pcPart) return next(new AppError('Given id not found', 404));
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the pc part data
@@ -77,7 +77,7 @@ async function updatePcPart(req, res, next) {
   /**
    * Check if the pc part exists
    */
-  if (!pcPart) return next(new AppError('Given id not found', 404));
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated pc part data
@@ -103,7 +103,7 @@ async function patchPcPart(req, res, next) {
   /**
    * Check if the pc part exists
    */
-  if (!pcPart) return next(new AppError('Given id not found', 404));
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated pc part data
@@ -127,7 +127,7 @@ async function deletePcPart(req, res, next) {
   /**
    * Check if the pc part exists
    */
-  if (!pcPart) return next(new AppError('Given id not found', 404));
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the pc part data

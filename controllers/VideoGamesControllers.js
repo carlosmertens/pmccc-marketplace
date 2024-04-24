@@ -1,5 +1,5 @@
 import {VideoGameModel} from '../models/VideoGameModel.js';
-import {AppError} from '../utils/appError.js';
+import {CreateAppError} from '../utils/createAppError.js';
 
 /**
  * Get (GET REQUEST) all video games from the database
@@ -50,7 +50,7 @@ async function getVideoGame(req, res, next) {
   /**
    * Check if the video game exists
    */
-  if (!videoGame) return next(new AppError('Given id not found', 404));
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the video game data
@@ -81,7 +81,7 @@ async function updateVideoGame(req, res, next) {
   /**
    * Check if the video game exists
    */
-  if (!videoGame) return next(new AppError('Given id not found', 404));
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated video game data
@@ -111,7 +111,7 @@ async function patchVideoGame(req, res, next) {
   /**
    * Check if the video game exists
    */
-  if (!videoGame) return next(new AppError('Given id not found', 404));
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the updated video game data
@@ -135,7 +135,7 @@ async function deleteVideoGame(req, res, next) {
   /**
    * Check if the video game exists
    */
-  if (!videoGame) return next(new AppError('Given id not found', 404));
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
   /**
    * Send a successful response with the video game data
