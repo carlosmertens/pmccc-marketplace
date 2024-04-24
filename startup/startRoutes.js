@@ -1,4 +1,3 @@
-import {testRouter} from '../routes/testRouter.js';
 import {toursRouter} from '../routes/toursRouter.js';
 import {booksRouter} from '../routes/booksRouter.js';
 import {pcPartsRouter} from '../routes/pcPartsRouter.js';
@@ -17,7 +16,7 @@ export function startRoutes(app) {
   /**
    * Initialize the defined routes
    */
-  app.use('/api/v1/test', testRouter);
+
   app.use('/api/v1/tours', toursRouter);
   app.use('/api/v1/books', booksRouter);
   app.use('/api/v1/pc-parts', pcPartsRouter);
