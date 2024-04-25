@@ -9,8 +9,7 @@ import {startRoutes} from './startup/startRoutes.js';
  * Handle Rejections and Exceptions
  */
 process.on('unhandledRejection', err => {
-  console.log('UNHANDLED REJECTION => ' + err.name);
-  console.log('UNHANDLED REJECTION => ' + err.message);
+  console.log('UNHANDLED REJECTION => ' + err);
   console.log('Server shutting down 💥');
 
   close(() => process.exit(1));
