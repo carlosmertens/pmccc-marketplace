@@ -51,7 +51,8 @@ const tourSchema = new mongoose.Schema(
       maxlength: 1000,
       default: 'Contact us for more information!',
     },
-    startDates: [Date],
+    startDates: {type: [Date], select: false},
+    // startDates: [Date],
   },
   {timestamps: true}
 );

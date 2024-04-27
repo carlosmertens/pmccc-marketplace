@@ -1,5 +1,6 @@
 import {BookModel} from '../models/BookModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
+import {processQuery} from '../utils/processQuery.js';
 
 /**
  * Get (GET REQUEST) all books from the database
@@ -7,11 +8,13 @@ import {CreateAppError} from '../utils/createAppError.js';
  * @param {Response} res - The response object
  */
 async function getAllBooks(req, res) {
-  const books = await BookModel.find();
+  /** Call util function to process query request */
+  const query = processQuery(req.query, BookModel);
 
-  /**
-   * Send a successful response with all books data
-   */
+  /** Execute query request to database */
+  const books = await query;
+
+  /** Send a successful response with all books data */
   res.status(200).send({
     status: 'success',
     result: books.length,
@@ -28,9 +31,7 @@ async function getAllBooks(req, res) {
 async function createNewBook(req, res) {
   const book = await BookModel.create(req.body);
 
-  /**
-   * Send a successful response with the new book data
-   */
+  /** Send a successful response with the new book data */
   res.status(201).send({
     status: 'success',
     data: book,
@@ -47,21 +48,10 @@ async function createNewBook(req, res) {
 async function getBook(req, res, next) {
   const book = await BookModel.findById(req.params.id);
 
-  /**
-   * Check if the book exists
-   */
-  // Refactored below //
-  // if (!book) {
-  //   return res.status(404).send({
-  //     status: 'fail',
-  //     message: 'Book not found',
-  //   });
-  // }
+  /** Check if the book exists */
   if (!book) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the book data
-   */
+  /** Send a successful response with the book data */
   res.status(200).send({
     status: 'success',
     data: book,
@@ -81,14 +71,10 @@ async function updateBook(req, res, next) {
     runValidators: true,
   });
 
-  /**
-   * Check if the book exists
-   */
+  /** Check if the book exists */
   if (!book) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the updated book data
-   */
+  /** Send a successful response with the updated book data */
   res.status(200).send({
     status: 'success',
     data: book,
@@ -107,14 +93,10 @@ async function patchBook(req, res, next) {
     new: true,
   });
 
-  /**
-   * Check if the book exists
-   */
+  /** Check if the book exists */
   if (!book) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the updated book data
-   */
+  /** Send a successful response with the updated book data */
   res.status(200).send({
     status: 'success',
     data: book,
@@ -131,14 +113,10 @@ async function patchBook(req, res, next) {
 async function deleteBook(req, res, next) {
   const book = await BookModel.findByIdAndDelete(req.params.id);
 
-  /**
-   * Check if the book exists
-   */
+  /** Check if the book exists */
   if (!book) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the book data
-   */
+  /** Send a successful response with the book data */
   res.status(200).send({
     status: 'success',
     data: book,
@@ -146,7 +124,6 @@ async function deleteBook(req, res, next) {
   });
 }
 
-//export the function
 export const controllers = {
   getAllBooks,
   createNewBook,

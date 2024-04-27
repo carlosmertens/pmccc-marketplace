@@ -1,6 +1,6 @@
 import {TourModel} from '../models/TourModel.js';
-import {log} from '../logs/index.js';
 import {CreateAppError} from '../utils/createAppError.js';
+import {processQuery} from '../utils/processQuery.js';
 
 /**
  * Get (GET REQUEST) all tours from the database
@@ -8,33 +8,13 @@ import {CreateAppError} from '../utils/createAppError.js';
  * @param {Response} res - The response object
  */
 async function getAllTours(req, res) {
-  // Simple filtering
-  const queryObj = {...req.query};
-  log.http('req.query:', req.query);
-  const excludedQueries = ['page', 'sort', 'limit', 'fields'];
-  excludedQueries.forEach(field => delete queryObj[field]);
+  /** Call util function to process query request */
+  const query = processQuery(req.query, TourModel);
 
-  // Advance filtering
-  // Implement gte, gt, lt, lte operators
-  let queryStr = JSON.stringify(queryObj);
-  queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, match => `$${match}`);
-
-  // Create mongoose query request object
-  let query = TourModel.find(JSON.parse(queryStr));
-
-  // Sorting query
-  if (req.query.sort) {
-    const sort = req.query.sort;
-    if (typeof sort === 'string') query = query.sort(sort.split(',').join(' '));
-    else query = query.sort('-createdAt');
-  }
-
-  // Execute query request to database
+  /** Execute query request to database */
   const tours = await query;
 
-  /**
-   * Send a successful response with the tours data
-   */
+  /** Send a successful response with the tours data */
   res.status(200).send({
     status: 'success',
     result: tours.length,
@@ -51,9 +31,7 @@ async function getAllTours(req, res) {
 async function createNewTour(req, res) {
   const tour = await TourModel.create(req.body);
 
-  /**
-   * Send a successful response with the new tour data
-   */
+  /** Send a successful response with the new tour data */
   res.status(201).send({
     status: 'success',
     data: tour,
@@ -70,14 +48,10 @@ async function createNewTour(req, res) {
 async function getTour(req, res, next) {
   const tour = await TourModel.findById(req.params.id);
 
-  /**
-   * Check if the tour exists
-   */
+  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the tour data
-   */
+  /** Send a successful response with the tour data */
   res.status(200).send({
     status: 'success',
     data: tour,
@@ -96,14 +70,10 @@ async function updateTour(req, res, next) {
     new: true,
   });
 
-  /**
-   * Check if the tour exists
-   */
+  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the tour modified data
-   */
+  /** Send a successful response with the tour modified data */
   res.status(200).send({
     status: 'success',
     data: tour,
@@ -122,14 +92,10 @@ async function patchTour(req, res, next) {
     new: true,
   });
 
-  /**
-   * Check if the tour exists
-   */
+  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the tour patched data
-   */
+  /** Send a successful response with the tour patched data */
   res.status(200).send({
     status: 'success',
     data: tour,
@@ -146,14 +112,10 @@ async function patchTour(req, res, next) {
 async function deleteTour(req, res, next) {
   const tour = await TourModel.findByIdAndDelete(req.params.id);
 
-  /**
-   * Check if the tour exists
-   */
+  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the tour deleted data
-   */
+  /** Send a successful response with the tour deleted data */
   res.status(200).send({
     status: 'success',
     data: tour,

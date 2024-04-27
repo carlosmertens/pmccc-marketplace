@@ -1,5 +1,6 @@
 import {VideoGameModel} from '../models/VideoGameModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
+import {processQuery} from '../utils/processQuery.js';
 
 /**
  * Get (GET REQUEST) all video games from the database
@@ -7,11 +8,13 @@ import {CreateAppError} from '../utils/createAppError.js';
  * @param {Response} res - The response object
  */
 async function getAllVideoGames(req, res) {
-  const videoGames = await VideoGameModel.find();
+  /** Call util function to process query request */
+  const query = processQuery(req.query, VideoGameModel);
 
-  /**
-   * Send a successful response with all video games data
-   */
+  /** Execute query request to database */
+  const videoGames = await query;
+
+  /** Send a successful response with all video games data */
   res.status(200).send({
     status: 'success',
     result: videoGames.length,
@@ -28,9 +31,7 @@ async function getAllVideoGames(req, res) {
 async function createNewVideoGame(req, res) {
   const videoGame = await VideoGameModel.create(req.body);
 
-  /**
-   * Send a successful response with the new video game data
-   */
+  /** Send a successful response with the new video game data */
   res.status(201).send({
     status: 'success',
     data: videoGame,
@@ -47,14 +48,10 @@ async function createNewVideoGame(req, res) {
 async function getVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findById(req.params.id);
 
-  /**
-   * Check if the video game exists
-   */
+  /** Check if the video game exists */
   if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the video game data
-   */
+  /** Send a successful response with the video game data */
   res.status(200).send({
     status: 'success',
     data: videoGame,
@@ -78,14 +75,10 @@ async function updateVideoGame(req, res, next) {
     }
   );
 
-  /**
-   * Check if the video game exists
-   */
+  /** Check if the video game exists */
   if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the updated video game data
-   */
+  /** Send a successful response with the updated video game data */
   res.status(200).send({
     status: 'success',
     data: videoGame,
@@ -108,14 +101,10 @@ async function patchVideoGame(req, res, next) {
     }
   );
 
-  /**
-   * Check if the video game exists
-   */
+  /** Check if the video game exists */
   if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the updated video game data
-   */
+  /** Send a successful response with the updated video game data */
   res.status(200).send({
     status: 'success',
     data: videoGame,
@@ -132,14 +121,10 @@ async function patchVideoGame(req, res, next) {
 async function deleteVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findByIdAndDelete(req.params.id);
 
-  /**
-   * Check if the video game exists
-   */
+  /** Check if the video game exists */
   if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the video game data
-   */
+  /** Send a successful response with the video game data */
   res.status(200).send({
     status: 'success',
     data: videoGame,
@@ -147,7 +132,6 @@ async function deleteVideoGame(req, res, next) {
   });
 }
 
-//export the function
 export const controllers = {
   getAllVideoGames,
   createNewVideoGame,

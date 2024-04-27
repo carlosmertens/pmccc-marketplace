@@ -1,5 +1,6 @@
 import {PcPartModel} from '../models/PcPartModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
+import {processQuery} from '../utils/processQuery.js';
 
 /**
  * Get (GET REQUEST) all pc parts from the database
@@ -7,11 +8,13 @@ import {CreateAppError} from '../utils/createAppError.js';
  * @param {Response} res - The response object
  */
 async function getAllPcParts(req, res) {
-  const pcParts = await PcPartModel.find();
+  /** Call util function to process query request */
+  const query = processQuery(req.query, PcPartModel);
 
-  /**
-   * Send a successful response with all pc parts data
-   */
+  /** Execute query request to database */
+  const pcParts = await query;
+
+  /** Send a successful response with all pc parts data */
   res.status(200).send({
     status: 'success',
     result: pcParts.length,
@@ -28,9 +31,7 @@ async function getAllPcParts(req, res) {
 async function createNewPcPart(req, res) {
   const pcPart = await PcPartModel.create(req.body);
 
-  /**
-   * Send a successful response with the new pc part data
-   */
+  /** Send a successful response with the new pc part data */
   res.status(201).send({
     status: 'success',
     data: pcPart,
@@ -47,14 +48,10 @@ async function createNewPcPart(req, res) {
 async function getPcPart(req, res, next) {
   const pcPart = await PcPartModel.findById(req.params.id);
 
-  /**
-   * Check if the pc part exists
-   */
+  /** Check if the pc part exists */
   if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the pc part data
-   */
+  /** Send a successful response with the pc part data */
   res.status(200).send({
     status: 'success',
     data: pcPart,
@@ -74,14 +71,10 @@ async function updatePcPart(req, res, next) {
     runValidators: true,
   });
 
-  /**
-   * Check if the pc part exists
-   */
+  /** Check if the pc part exists */
   if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the updated pc part data
-   */
+  /** Send a successful response with the updated pc part data */
   res.status(200).send({
     status: 'success',
     data: pcPart,
@@ -100,14 +93,10 @@ async function patchPcPart(req, res, next) {
     new: true,
   });
 
-  /**
-   * Check if the pc part exists
-   */
+  /** Check if the pc part exists */
   if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the updated pc part data
-   */
+  /** Send a successful response with the updated pc part data */
   res.status(200).send({
     status: 'success',
     data: pcPart,
@@ -124,14 +113,10 @@ async function patchPcPart(req, res, next) {
 async function deletePcPart(req, res, next) {
   const pcPart = await PcPartModel.findByIdAndDelete(req.params.id);
 
-  /**
-   * Check if the pc part exists
-   */
+  /** Check if the pc part exists */
   if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
-  /**
-   * Send a successful response with the pc part data
-   */
+  /** Send a successful response with the pc part data */
   res.status(200).send({
     status: 'success',
     data: pcPart,
@@ -139,7 +124,6 @@ async function deletePcPart(req, res, next) {
   });
 }
 
-//export the function
 export const controllers = {
   getAllPcParts,
   createNewPcPart,
