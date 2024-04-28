@@ -17,9 +17,9 @@ async function getAllVideoGames(req, res) {
   /** Send a successful response with all video games data */
   res.status(200).send({
     status: 'success',
+    message: 'GET request to get all video games was successful',
     result: videoGames.length,
     data: videoGames,
-    message: 'GET request to get all video games was successful',
   });
 }
 
@@ -34,8 +34,8 @@ async function createNewVideoGame(req, res) {
   /** Send a successful response with the new video game data */
   res.status(201).send({
     status: 'success',
-    data: videoGame,
     message: 'POST request to create a new video game was successful',
+    data: videoGame,
   });
 }
 
@@ -54,8 +54,8 @@ async function getVideoGame(req, res, next) {
   /** Send a successful response with the video game data */
   res.status(200).send({
     status: 'success',
-    data: videoGame,
     message: 'GET request for one video game by id',
+    data: videoGame,
   });
 }
 
@@ -81,8 +81,8 @@ async function updateVideoGame(req, res, next) {
   /** Send a successful response with the updated video game data */
   res.status(200).send({
     status: 'success',
-    data: videoGame,
     message: 'PUT request to update a video game by id',
+    data: videoGame,
   });
 }
 
@@ -107,8 +107,8 @@ async function patchVideoGame(req, res, next) {
   /** Send a successful response with the updated video game data */
   res.status(200).send({
     status: 'success',
-    data: videoGame,
     message: 'PATCH request to modify video game successfully',
+    data: videoGame,
   });
 }
 
@@ -127,8 +127,8 @@ async function deleteVideoGame(req, res, next) {
   /** Send a successful response with the video game data */
   res.status(200).send({
     status: 'success',
-    data: videoGame,
     message: `DELETE request for id: ${req.params.id} has been successfully`,
+    data: videoGame,
   });
 }
 

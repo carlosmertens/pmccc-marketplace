@@ -44,10 +44,9 @@ async function getResourcesList(req, res) {
 
   res.status(200).send({
     status: 'success',
+    message: 'GET request to get all resources in the database sussccesful',
     result: resources.length,
     data: resources,
-    message:
-      'GET request to get all types, names or titles of all resources (products, services) in the database',
   });
 }
 

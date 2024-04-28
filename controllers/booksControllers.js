@@ -17,9 +17,9 @@ async function getAllBooks(req, res) {
   /** Send a successful response with all books data */
   res.status(200).send({
     status: 'success',
+    message: 'GET request to get all books was successful',
     result: books.length,
     data: books,
-    message: 'GET request to get all books was successful',
   });
 }
 
@@ -34,8 +34,8 @@ async function createNewBook(req, res) {
   /** Send a successful response with the new book data */
   res.status(201).send({
     status: 'success',
-    data: book,
     message: 'POST request to create a new book was successful',
+    data: book,
   });
 }
 
@@ -54,8 +54,8 @@ async function getBook(req, res, next) {
   /** Send a successful response with the book data */
   res.status(200).send({
     status: 'success',
-    data: book,
     message: 'GET request for one book by id',
+    data: book,
   });
 }
 
@@ -77,8 +77,8 @@ async function updateBook(req, res, next) {
   /** Send a successful response with the updated book data */
   res.status(200).send({
     status: 'success',
-    data: book,
     message: 'PUT request to update a book by id',
+    data: book,
   });
 }
 
@@ -99,8 +99,8 @@ async function patchBook(req, res, next) {
   /** Send a successful response with the updated book data */
   res.status(200).send({
     status: 'success',
-    data: book,
     message: 'PATCH request to modify book successfully',
+    data: book,
   });
 }
 
@@ -119,8 +119,8 @@ async function deleteBook(req, res, next) {
   /** Send a successful response with the book data */
   res.status(200).send({
     status: 'success',
-    data: book,
     message: `DELETE request for id: ${req.params.id} has been successfully`,
+    data: book,
   });
 }
 

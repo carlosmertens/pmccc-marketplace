@@ -17,9 +17,9 @@ async function getAllTours(req, res) {
   /** Send a successful response with the tours data */
   res.status(200).send({
     status: 'success',
+    message: 'All tours were requested',
     result: tours.length,
     data: tours,
-    message: 'All tours were requested',
   });
 }
 
@@ -34,8 +34,8 @@ async function createNewTour(req, res) {
   /** Send a successful response with the new tour data */
   res.status(201).send({
     status: 'success',
-    data: tour,
     message: 'New tour has been created',
+    data: tour,
   });
 }
 
@@ -54,8 +54,8 @@ async function getTour(req, res, next) {
   /** Send a successful response with the tour data */
   res.status(200).send({
     status: 'success',
-    data: tour,
     message: 'GET request for one tour with id',
+    data: tour,
   });
 }
 
@@ -76,8 +76,8 @@ async function updateTour(req, res, next) {
   /** Send a successful response with the tour modified data */
   res.status(200).send({
     status: 'success',
-    data: tour,
     message: 'PUT request to update a tour',
+    data: tour,
   });
 }
 
@@ -98,8 +98,8 @@ async function patchTour(req, res, next) {
   /** Send a successful response with the tour patched data */
   res.status(200).send({
     status: 'success',
-    data: tour,
     message: 'PATCH request to modify a property of a tour',
+    data: tour,
   });
 }
 
@@ -118,8 +118,8 @@ async function deleteTour(req, res, next) {
   /** Send a successful response with the tour deleted data */
   res.status(200).send({
     status: 'success',
-    data: tour,
     message: `Tour ${req.params.id} has been deleted`,
+    data: tour,
   });
 }
 

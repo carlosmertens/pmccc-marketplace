@@ -17,9 +17,9 @@ async function getAllPcParts(req, res) {
   /** Send a successful response with all pc parts data */
   res.status(200).send({
     status: 'success',
+    message: 'GET request to get all pc parts was successful',
     result: pcParts.length,
     data: pcParts,
-    message: 'GET request to get all pc parts was successful',
   });
 }
 
@@ -34,8 +34,8 @@ async function createNewPcPart(req, res) {
   /** Send a successful response with the new pc part data */
   res.status(201).send({
     status: 'success',
-    data: pcPart,
     message: 'POST request to create a new pc part was successful',
+    data: pcPart,
   });
 }
 
@@ -54,8 +54,8 @@ async function getPcPart(req, res, next) {
   /** Send a successful response with the pc part data */
   res.status(200).send({
     status: 'success',
-    data: pcPart,
     message: 'GET request for one pc part by id',
+    data: pcPart,
   });
 }
 
@@ -77,8 +77,8 @@ async function updatePcPart(req, res, next) {
   /** Send a successful response with the updated pc part data */
   res.status(200).send({
     status: 'success',
-    data: pcPart,
     message: 'PUT request to update a pcPart by id',
+    data: pcPart,
   });
 }
 
@@ -99,8 +99,8 @@ async function patchPcPart(req, res, next) {
   /** Send a successful response with the updated pc part data */
   res.status(200).send({
     status: 'success',
-    data: pcPart,
     message: 'PATCH request to modify pc part successfully',
+    data: pcPart,
   });
 }
 
@@ -119,8 +119,8 @@ async function deletePcPart(req, res, next) {
   /** Send a successful response with the pc part data */
   res.status(200).send({
     status: 'success',
-    data: pcPart,
     message: `DELETE request for id: ${req.params.id} has been successfully`,
+    data: pcPart,
   });
 }
 
