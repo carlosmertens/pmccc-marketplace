@@ -17,16 +17,9 @@ const BookSchema = new mongoose.Schema(
       maxlength: 20,
       default: 10,
     },
-    // priceDiscounted: {
-    //   type: Number,
-    //   get: function () {
-    //     const discount = (this.discount / 100) * this.price;
-    //     return this.price - discount;
-    //   },
-    // },
     pages: {type: Number, required: true},
-    description: {type: String, minlength: 15, maxlength: 500, required: true},
-    imgSrc: {type: String, minlength: 1, maxlength: 500, required: true},
+    description: {type: String, minlength: 15, maxlength: 1000, required: true},
+    imgSrc: {type: String, minlength: 1, maxlength: 500, default: 'book.jpg'},
   },
   {timestamps: true}
 );

@@ -1,6 +1,6 @@
 import {Router} from 'express';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
-import {controllers} from '../controllers/VideoGamesControllers.js';
+import {controllers} from '../controllers/videoGamesControllers.js';
 
 export const videoGamesRouter = Router();
 
