@@ -13,15 +13,15 @@ const tourSchema = new mongoose.Schema(
     name: {
       type: String,
       trim: true,
-      minlength: 1,
-      maxlength: 50,
+      minLength: 1,
+      maxLength: 50,
       required: true,
     },
     price: {type: Number, min: 100, max: 9999, required: true},
     discountPercentage: {
       type: Number,
-      minlength: 1,
-      maxlength: 20,
+      minLength: 1,
+      maxLength: 20,
       default: 10,
     },
     duration: {type: Number, required: true},
@@ -37,7 +37,7 @@ const tourSchema = new mongoose.Schema(
     description: {
       type: String,
       trim: true,
-      maxlength: 1000,
+      maxLength: 1000,
       default: 'Contact us for more information!',
     },
     startDates: {type: [Date], select: false},

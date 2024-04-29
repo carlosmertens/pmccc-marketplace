@@ -3,16 +3,16 @@ import mongoose from 'mongoose';
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
-    minLenght: 2,
-    maxLenght: 30,
+    minLength: 2,
+    maxLength: 30,
     required: true,
     trim: true,
     lowercase: true,
   },
   lastName: {
     type: String,
-    minLenght: 2,
-    maxLenght: 30,
+    minLength: 2,
+    maxLength: 30,
     required: true,
     trim: true,
     lowercase: true,
@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
 
   password: {
     type: String,
-    minLenght: [5, 'Password must be minimum 5 characters'],
+    minLength: [5, 'Password must be minimum 5 characters'],
     required: true,
     select: false,
   },
