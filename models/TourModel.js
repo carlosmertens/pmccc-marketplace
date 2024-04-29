@@ -2,7 +2,7 @@ import mongoose from 'mongoose';
 
 const tourSchema = new mongoose.Schema(
   {
-    serviceType: {
+    toursType: {
       type: String,
       enum: {
         values: ['HIKING', 'MUSEUM', 'SIGHTSEEING'],
@@ -34,17 +34,6 @@ const tourSchema = new mongoose.Schema(
       },
       required: true,
     },
-    ratings: {
-      average: {type: Number, min: 0, max: 10, default: 0},
-      count: {type: Number, min: 0, max: 10, default: 0},
-    },
-    summary: {
-      type: String,
-      trim: true,
-      minlength: 10,
-      maxlength: 250,
-      required: true,
-    },
     description: {
       type: String,
       trim: true,
@@ -52,7 +41,6 @@ const tourSchema = new mongoose.Schema(
       default: 'Contact us for more information!',
     },
     startDates: {type: [Date], select: false},
-    // startDates: [Date],
   },
   {timestamps: true}
 );
