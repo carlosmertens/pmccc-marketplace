@@ -1,7 +1,7 @@
 import {toursRouter} from '../routes/toursRouter.js';
 import {booksRouter} from '../routes/booksRouter.js';
 import {pcPartsRouter} from '../routes/pcPartsRouter.js';
-import {videoGamesRouter} from '../routes/VideoGamesRouter.js';
+import {videoGamesRouter} from '../routes/videoGamesRouter.js';
 import {userRouter} from '../routes/usersRouter.js';
 import {ordersRouter} from '../routes/ordersRouter.js';
 import {resourcesRouter} from '../routes/resourcesRouter.js';
@@ -16,7 +16,6 @@ export function startRoutes(app) {
   /**
    * Initialize the defined routes
    */
-
   app.use('/api/v1/tours', toursRouter);
   app.use('/api/v1/books', booksRouter);
   app.use('/api/v1/pc-parts', pcPartsRouter);
