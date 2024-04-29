@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import {logger} from '../middleware/logger.js';
+
 export function startMiddleware(app) {
   app.use(express.urlencoded({extended: true}));
   app.use(express.json());

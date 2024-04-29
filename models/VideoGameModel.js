@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 
-const videoGamesSchema = new mongoose.Schema(
+const videoGameSchema = new mongoose.Schema(
   {
     productType: {
       type: String,
@@ -29,4 +29,4 @@ const videoGamesSchema = new mongoose.Schema(
   {timestamps: true}
 );
 
-export const VideoGameModel = mongoose.model('Video_games', videoGamesSchema);
+export const VideoGameModel = mongoose.model('Video_games', videoGameSchema);
