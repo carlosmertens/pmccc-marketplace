@@ -1,18 +1,18 @@
 import {Router} from 'express';
-import {ctrlrs} from '../controllers/userControllers.js';
+import {controllers} from '../controllers/userControllers.js';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import auth from '../middleware/auth.js';
 
 export const userRouter = Router();
 
-userRouter.route('/').get(auth, asyncWrapper(ctrlrs.getUsersCtrlr));
+userRouter.get('/', auth, asyncWrapper(controllers.getUsersCtrlr));
 
 userRouter
   .route('/:id')
-  .get(asyncWrapper(ctrlrs.getUserByIdCtrlr))
-  .put(asyncWrapper(ctrlrs.updateUserByIdCtrlr))
-  .delete(asyncWrapper(ctrlrs.deleteUserByIdCtrlr));
+  .get(asyncWrapper(controllers.getUserByIdCtrlr))
+  .put(asyncWrapper(controllers.updateUserByIdCtrlr))
+  .delete(asyncWrapper(controllers.deleteUserByIdCtrlr));
 
-userRouter.post('/signup', asyncWrapper(ctrlrs.addUsersCtrlr));
+userRouter.post('/signup', asyncWrapper(controllers.createNewUser));
 
-// TODO: post request to signin
+userRouter.post('/login', asyncWrapper(controllers.loginUser));

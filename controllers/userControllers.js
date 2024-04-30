@@ -1,4 +1,5 @@
-import {User, validate} from '../models/UserModel.js';
+import bcrypt from 'bcrypt';
+import {User, validateSignUp, validateLogin} from '../models/UserModel.js';
 import hashPassword from '../utils/hashPassword.js';
 import {CreateAppError} from '../utils/createAppError.js';
 
@@ -20,41 +21,76 @@ export const getUsersCtrlr = async (req, res) => {
   } else {
     return res
       .status(403)
-      .send({status: 'fail', message: 'You are not an Admin'});
+      .send({status: 'fail', message: 'You are not an Admin!'});
   }
 };
 
-export const addUsersCtrlr = async (req, res, next) => {
-  /** Validate data with Joi function */
-  const {error} = validate(req.body);
+/**
+ * Creates a new user in the database and returns a JWT token on success.
+ *
+ * @param {Object} req - Express request object containing user data in the body.
+ * @param {Object} res - Express response object for sending responses.
+ * @param {Function} next - Express middleware function for handling errors.
+ * @throws {CreateAppError} - Throws a custom error with message and status code if validation fails, user already exists, or password hashing fails.
+ * @returns {void} - No explicit return value, sends response on success.
+ */
+async function createNewUser(req, res, next) {
+  /** Validate data with Joi validation function */
+  const {error} = validateSignUp(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
-  /** Check for existing user in DB */
+  /** Find user in the database */
   let user = await User.findOne({email: req.body.email});
-  if (user) return res.status(400).send({message: 'User already exists.'});
+  if (user) return next(new CreateAppError('User already exists!', 400));
 
-  /** Create a new user model */
+  /** Create new user and hash the password with hashPassword util function */
   user = new User(req.body);
-
-  /** Encrypt and hash password */
   const hashedPass = await hashPassword(user.password);
   if (!hashedPass)
-    return res
-      .status(404)
-      .send({status: 'fail', message: 'Could not add user. Try again'});
+    return next(new CreateAppError('Password not generated. Try again!', 404));
 
   user.password = hashedPass;
 
-  /** Save user inn database */
+  /** Save new user in the database */
   await User.create(user);
 
+  /** Generate JWT token */
   const token = user.generateJWT();
 
+  /** Send a successful response with token attached to the header */
+  res.status(201).header('x-auth-token', token).send({
+    status: 'success',
+    message: 'User added in the database!',
+  });
+}
+
+/**
+ * Login (POST REQUEST) a user
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
+ */
+async function loginUser(req, res, next) {
+  /** Validate data with Joi function */
+  const {error} = validateLogin(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  /** Find user in the database */
+  const user = await User.findOne({email: req.body.email});
+  if (!user) return next(new CreateAppError('User Not found!', 404));
+
+  /** Verify password */
+  const isMatch = await bcrypt.compare(req.body.password, user.password);
+  if (!isMatch) return next(new CreateAppError('Incorrect password!', 400));
+
+  /** Generate JWT token */
+  const token = user.generateJWT();
+
+  /** Send a successful response with the token attached to the header */
   res
-    .status(201)
     .header('x-auth-token', token)
-    .send({status: 'success', message: 'User added'});
-};
+    .send({status: 'success', message: 'User logged, JWT token generated'});
+}
 
 /** Finds and returns a user by id when a valid id is provided*/
 export const getUserByIdCtrlr = async (req, res) => {
@@ -89,10 +125,11 @@ export const deleteUserByIdCtrlr = async (req, res) => {
   res.send({status: 'success', message: 'User deleted'});
 };
 
-export const ctrlrs = {
+export const controllers = {
   getUsersCtrlr,
-  addUsersCtrlr,
+  createNewUser,
   getUserByIdCtrlr,
   updateUserByIdCtrlr,
   deleteUserByIdCtrlr,
+  loginUser,
 };
