@@ -1,4 +1,5 @@
 import mongoose from 'mongoose';
+import Joi from 'joi';
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -39,7 +40,7 @@ const userSchema = new mongoose.Schema({
       values: ['male', 'female', 'other'],
       message: 'Please select male, female or other',
     },
-    required: false,
+    // required: false,
   },
 
   password: {
@@ -50,5 +51,18 @@ const userSchema = new mongoose.Schema({
   },
 });
 
-const UserModel = mongoose.model('users', userSchema);
-export default UserModel;
+const User = mongoose.model('users', userSchema);
+
+function validate(user) {
+  const schema = Joi.object({
+    firstName: Joi.string().min(2).max(30).required().trim(),
+    lastName: Joi.string().min(2).max(30).required().trim(),
+    age: Joi.number().min(18).max(120).required(),
+    email: Joi.string().email().required().trim(),
+    password: Joi.string().min(5).max(32).required().trim(),
+  });
+
+  return schema.validate(user);
+}
+
+export {User, validate};

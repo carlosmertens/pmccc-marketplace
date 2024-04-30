@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import User from '../models/UserModel.js';
+import {User} from '../models/UserModel.js';
 
 /** Checks if password is correct for a given user */
 const auth = async (req, res, next) => {

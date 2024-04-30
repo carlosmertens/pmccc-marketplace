@@ -1,5 +1,5 @@
 import Order from '../models/OrderModel.js';
-import User from '../models/UserModel.js';
+import {User} from '../models/UserModel.js';
 
 /** Returns a list of all orders*/
 export const getOrdersCtrlr = async (req, res) => {

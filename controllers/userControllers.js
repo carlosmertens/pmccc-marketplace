@@ -1,5 +1,6 @@
-import User from '../models/UserModel.js';
+import {User, validate} from '../models/UserModel.js';
 import hashPassword from '../utils/hashPassword.js';
+import {CreateAppError} from '../utils/createAppError.js';
 
 /** Returns a list of all users to an Admin*/
 export const getUsersCtrlr = async (req, res) => {
@@ -24,7 +25,10 @@ export const getUsersCtrlr = async (req, res) => {
 };
 
 /** Adds user with hashed password*/
-export const addUsersCtrlr = async (req, res) => {
+export const addUsersCtrlr = async (req, res, next) => {
+  const {error} = validate(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
   const newUser = req.body;
   const hashedPass = await hashPassword(newUser.password);
   if (!hashedPass)
