@@ -1,5 +1,6 @@
 import mongoose from 'mongoose';
 import Joi from 'joi';
+import jwt from 'jsonwebtoken';
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -50,6 +51,20 @@ const userSchema = new mongoose.Schema({
     select: false,
   },
 });
+
+userSchema.methods.generateJWT = function () {
+  return jwt.sign(
+    {
+      _id: this._id,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      email: this.email,
+      isAdmin: this.admin,
+    },
+    process.env.JWT_SECRET_KEY,
+    {expiresIn: '2 day'}
+  );
+};
 
 const User = mongoose.model('users', userSchema);
 

@@ -24,20 +24,36 @@ export const getUsersCtrlr = async (req, res) => {
   }
 };
 
-/** Adds user with hashed password*/
 export const addUsersCtrlr = async (req, res, next) => {
+  /** Validate data with Joi function */
   const {error} = validate(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
-  const newUser = req.body;
-  const hashedPass = await hashPassword(newUser.password);
+  /** Check for existing user in DB */
+  let user = await User.findOne({email: req.body.email});
+  if (user) return res.status(400).send({message: 'User already exists.'});
+
+  /** Create a new user model */
+  user = new User(req.body);
+
+  /** Encrypt and hash password */
+  const hashedPass = await hashPassword(user.password);
   if (!hashedPass)
     return res
       .status(404)
       .send({status: 'fail', message: 'Could not add user. Try again'});
-  newUser.password = hashedPass;
-  await User.create(newUser);
-  res.status(201).send({status: 'success', message: 'User added'});
+
+  user.password = hashedPass;
+
+  /** Save user inn database */
+  await User.create(user);
+
+  const token = user.generateJWT();
+
+  res
+    .status(201)
+    .header('x-auth-token', token)
+    .send({status: 'success', message: 'User added'});
 };
 
 /** Finds and returns a user by id when a valid id is provided*/
