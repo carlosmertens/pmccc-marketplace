@@ -26,13 +26,11 @@ export const getUsersCtrlr = async (req, res) => {
 };
 
 /**
- * Creates a new user in the database and returns a JWT token on success.
- *
- * @param {Object} req - Express request object containing user data in the body.
- * @param {Object} res - Express response object for sending responses.
- * @param {Function} next - Express middleware function for handling errors.
- * @throws {CreateAppError} - Throws a custom error with message and status code if validation fails, user already exists, or password hashing fails.
- * @returns {void} - No explicit return value, sends response on success.
+ * Create (POST REQUEST) a new user in the database
+ * Response a JWT token on success
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
  */
 async function createNewUser(req, res, next) {
   /** Validate data with Joi validation function */
@@ -61,11 +59,13 @@ async function createNewUser(req, res, next) {
   res.status(201).header('x-auth-token', token).send({
     status: 'success',
     message: 'User added in the database!',
+    xAuthToken: token,
   });
 }
 
 /**
  * Login (POST REQUEST) a user
+ * Response a JWT token on success
  * @param {Request} req - The request object
  * @param {Response} res - The response object
  * @param {NextFunction} next - The next object function
@@ -87,9 +87,11 @@ async function loginUser(req, res, next) {
   const token = user.generateJWT();
 
   /** Send a successful response with the token attached to the header */
-  res
-    .header('x-auth-token', token)
-    .send({status: 'success', message: 'User logged, JWT token generated'});
+  res.header('x-auth-token', token).send({
+    status: 'success',
+    message: 'User logged, JWT token generated',
+    xAuthToken: token,
+  });
 }
 
 /** Finds and returns a user by id when a valid id is provided*/
