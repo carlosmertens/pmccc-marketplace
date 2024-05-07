@@ -1,40 +1,144 @@
 import bcrypt from 'bcrypt';
-import {User, validateSignUp, validateLogin} from '../models/UserModel.js';
+import {
+  User,
+  validateUser,
+  validateLogin,
+  validatePatch,
+} from '../models/UserModel.js';
 import hashPassword from '../utils/hashPassword.js';
 import {CreateAppError} from '../utils/createAppError.js';
+import {processQuery} from '../utils/processQuery.js';
 
-/** Returns a list of all users to an Admin*/
-export const getUsersCtrlr = async (req, res) => {
-  const {email} = req.body;
-  const queryType = req.query.sort;
-  const user = await User.findOne({email});
-  let result;
-  if (user.isAdmin === true) {
-    result =
-      queryType === 'date'
-        ? await User.find().sort({date: -1})
-        : await User.find().sort({lastName: 1});
+/**
+ * Get (GET REQUEST) all users from the database
+ * Auth middleware restricted
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ */
+export const getAllUsers = async (req, res) => {
+  /** Call util function to process query request */
+  const query = processQuery(req.query, User);
 
-    if (result.length === 0)
-      return res.status(404).send({status: 'fail', message: 'No users found'});
-    res.status(200).send(result);
-  } else {
-    return res
-      .status(403)
-      .send({status: 'fail', message: 'You are not an Admin!'});
-  }
+  /** Execute query request to database */
+  const users = await query;
+
+  /** Send a successful response with all user data */
+  res.status(200).send({
+    status: 'success',
+    message: 'GET request to get all users was successful',
+    result: users.length,
+    data: users,
+  });
 };
 
 /**
- * Create (POST REQUEST) a new user in the database
- * Response a JWT token on success
+ * Get (GET REQUEST) a user from the database by its id
  * @param {Request} req - The request object
  * @param {Response} res - The response object
  * @param {NextFunction} next - The next object function
  */
-async function createNewUser(req, res, next) {
+async function getUser(req, res, next) {
+  const user = await User.findById(req.params.id).select(
+    '-__v -createdAt -updatedAt -password'
+  );
+
+  /** Check if the user exists */
+  if (!user) return next(new CreateAppError('Given id not found', 404));
+
+  /** Send a successful response with the user data */
+  res.send({
+    status: 'success',
+    message: 'GET request for one user by id',
+    data: user,
+  });
+}
+
+/**
+ * Update (PUT REQUEST) a user in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
+ */
+async function updateUser(req, res, next) {
   /** Validate data with Joi validation function */
-  const {error} = validateSignUp(req.body);
+  const {error} = validateUser(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  /** Find user in the database */
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+    runValidators: true,
+  }).select('-__v -createdAt -updatedAt -password');
+
+  /** Check if the user exists */
+  if (!user) return next(new CreateAppError('Given id not found', 404));
+
+  /** Send a successful response with the updated user data */
+  res.status(200).send({
+    status: 'success',
+    message: 'PUT request to update a user by id',
+    data: user,
+  });
+}
+
+/**
+ * Modify (PATCH REQUEST) a user in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
+ */
+async function patchUser(req, res, next) {
+  /** Validate data with Joi validation function */
+  const {error} = validatePatch(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  /** Find user in the database */
+  const user = await User.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  }).select('-__v -createdAt -updatedAt -password');
+
+  /** Check if the user exists */
+  if (!user) return next(new CreateAppError('Given id not found', 404));
+
+  /** Send a successful response with the updated user data */
+  res.status(200).send({
+    status: 'success',
+    message: 'PATCH request to modify user successfully',
+    data: user,
+  });
+}
+
+/**
+ * Delete (DELETE REQUEST) a user in the database by its id
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
+ */
+async function deleteUser(req, res, next) {
+  const user = await User.findByIdAndDelete(req.params.id);
+
+  /** Check if the user exists */
+  if (!user) return next(new CreateAppError('Given id not found', 404));
+
+  /** Send a successful response with the user deleted */
+  res.status(200).send({
+    status: 'success',
+    message: `DELETE request for id: ${req.params.id} has been successfully`,
+    data: user,
+  });
+}
+
+/**
+ * Signup (POST REQUEST) a new user in the database
+ * Response a JWT token on success
+ *
+ * @param {Request} req - The request object
+ * @param {Response} res - The response object
+ * @param {NextFunction} next - The next object function
+ */
+async function signUpUser(req, res, next) {
+  /** Validate data with Joi validation function */
+  const {error} = validateUser(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Find user in the database */
@@ -50,7 +154,8 @@ async function createNewUser(req, res, next) {
   user.password = hashedPass;
 
   /** Save new user in the database */
-  await User.create(user);
+  // await User.create(user);
+  await user.save();
 
   /** Generate JWT token */
   const token = user.generateJWT();
@@ -66,6 +171,7 @@ async function createNewUser(req, res, next) {
 /**
  * Login (POST REQUEST) a user
  * Response a JWT token on success
+ *
  * @param {Request} req - The request object
  * @param {Response} res - The response object
  * @param {NextFunction} next - The next object function
@@ -94,44 +200,12 @@ async function loginUser(req, res, next) {
   });
 }
 
-/** Finds and returns a user by id when a valid id is provided*/
-export const getUserByIdCtrlr = async (req, res) => {
-  const idForSearch = req.params.id;
-  const user = await User.findById(idForSearch).select({
-    firstName: 1,
-    lastName: 1,
-    email: 1,
-  });
-  // If id is incorrect, handled by error handling
-  res.status(200).json(user);
-};
-
-/** Finds and updates a user by id when a valid id is provided*/
-export const updateUserByIdCtrlr = async (req, res) => {
-  const idForSearch = req.params.id;
-  const newUser = req.body;
-  const hashedPass = await hashPassword(newUser.password);
-  if (!hashedPass)
-    return res
-      .status(404)
-      .send({status: 'fail', message: 'Could not add user. Try again'});
-  newUser.password = hashedPass;
-  await User.findByIdAndUpdate(idForSearch, newUser);
-  res.status(201).send({status: 'success', message: 'User updated'});
-};
-
-/** Deletes a user by id when a valid id is provided*/
-export const deleteUserByIdCtrlr = async (req, res) => {
-  const idForSearch = req.params.id;
-  await User.findByIdAndDelete(idForSearch);
-  res.send({status: 'success', message: 'User deleted'});
-};
-
 export const controllers = {
-  getUsersCtrlr,
-  createNewUser,
-  getUserByIdCtrlr,
-  updateUserByIdCtrlr,
-  deleteUserByIdCtrlr,
+  getAllUsers,
+  getUser,
+  updateUser,
+  patchUser,
+  deleteUser,
+  signUpUser,
   loginUser,
 };

@@ -30,7 +30,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       minLength: 2,
-      maxLength: 30,
+      maxLength: 50,
       trim: true,
       lowercase: true,
     },
@@ -38,7 +38,7 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       minLength: 2,
-      maxLength: 30,
+      maxLength: 50,
       trim: true,
       lowercase: true,
     },
@@ -58,6 +58,8 @@ const userSchema = new mongoose.Schema(
     email: {
       type: String,
       required: true,
+      minLength: 5,
+      maxLength: 255,
       unique: true,
       trim: true,
       lowercase: true,
@@ -66,7 +68,8 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: true,
       minLength: 5,
-      maxLength: 64,
+      maxLength: 1024,
+      trim: true,
     },
     isAdmin: {
       type: Boolean,
@@ -76,6 +79,7 @@ const userSchema = new mongoose.Schema(
   {timestamps: true}
 );
 
+// TODO: Check the isAdmin response
 /**
  * Generates a JWT token containing user information.
  *
@@ -89,7 +93,7 @@ userSchema.methods.generateJWT = function () {
       firstName: this.firstName,
       lastName: this.lastName,
       email: this.email,
-      isAdmin: this.admin,
+      isAdmin: this.isAdmin,
     },
     process.env.JWT_SECRET_KEY,
     {expiresIn: '2 day'}
@@ -105,14 +109,14 @@ const User = mongoose.model('users', userSchema);
  * @param {Object} user - User data to be validated.
  * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
  */
-function validateSignUp(user) {
+function validateUser(user) {
   const schema = Joi.object({
-    firstName: Joi.string().min(2).max(30).required().trim(),
-    lastName: Joi.string().min(2).max(30).required().trim(),
-    age: Joi.number().min(18).max(120).required(),
+    firstName: Joi.string().required().min(2).max(50).trim(),
+    lastName: Joi.string().required().min(2).max(50).trim(),
+    age: Joi.number().required().min(18).max(120),
     gender: Joi.string(),
-    email: Joi.string().email().required().trim(),
-    password: Joi.string().min(5).max(32).required().trim(),
+    email: Joi.string().required().email().min(5).max(255).trim(),
+    password: Joi.string().required().min(5).max(32).trim(),
     isAdmin: Joi.boolean().default(false),
   });
 
@@ -127,11 +131,31 @@ function validateSignUp(user) {
  */
 function validateLogin(user) {
   const schema = Joi.object({
-    email: Joi.string().email().required().trim(),
-    password: Joi.string().min(5).max(32).required().trim(),
+    email: Joi.string().required().email().min(5).max(255).trim(),
+    password: Joi.string().required().min(5).max(32).trim(),
   });
 
   return schema.validate(user);
 }
 
-export {User, validateSignUp, validateLogin};
+/**
+ * Validates user data for patching operation using Joi schema.
+ *
+ * @param {Object} user - User data to be validated.
+ * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
+ */
+function validatePatch(user) {
+  const schema = Joi.object({
+    firstName: Joi.string().min(2).max(50).trim(),
+    lastName: Joi.string().min(2).max(50).trim(),
+    age: Joi.number().min(18).max(120),
+    gender: Joi.string(),
+    email: Joi.string().email().min(5).max(255).trim(),
+    password: Joi.string().min(5).max(32).trim(),
+    isAdmin: Joi.boolean().default(false),
+  });
+
+  return schema.validate(user);
+}
+
+export {User, validateUser, validateLogin, validatePatch};

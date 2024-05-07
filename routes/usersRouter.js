@@ -5,14 +5,14 @@ import auth from '../middleware/auth.js';
 
 export const userRouter = Router();
 
-userRouter.get('/', auth, asyncWrapper(controllers.getUsersCtrlr));
+userRouter.get('/', auth, asyncWrapper(controllers.getAllUsers));
 
 userRouter
   .route('/:id')
-  .get(asyncWrapper(controllers.getUserByIdCtrlr))
-  .put(asyncWrapper(controllers.updateUserByIdCtrlr))
+  .get(asyncWrapper(controllers.getUser))
+  .put(asyncWrapper(controllers.updateUser))
   .delete(asyncWrapper(controllers.deleteUserByIdCtrlr));
 
-userRouter.post('/signup', asyncWrapper(controllers.createNewUser));
+userRouter.post('/signup', asyncWrapper(controllers.signUpUser));
 
 userRouter.post('/login', asyncWrapper(controllers.loginUser));

@@ -1,6 +1,7 @@
 import bcrypt from 'bcrypt';
 import {User} from '../models/UserModel.js';
 
+// TODO: Refactor to check the token validation
 /** Checks if password is correct for a given user */
 const auth = async (req, res, next) => {
   try {
