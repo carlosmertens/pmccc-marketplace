@@ -1,11 +1,7 @@
 import bcrypt from 'bcrypt';
-import {
-  User,
-  validateUser,
-  validateLogin,
-  validatePatch,
-} from '../models/UserModel.js';
-import hashPassword from '../utils/hashPassword.js';
+import _ from 'lodash';
+import {User, joi} from '../models/UserModel.js';
+import {hashPassword} from '../utils/hashPassword.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
@@ -89,7 +85,7 @@ async function updateUser(req, res, next) {
  */
 async function patchUser(req, res, next) {
   /** Validate data with Joi validation function */
-  const {error} = validatePatch(req.body);
+  const {error} = joi.validatePatch(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Find user in the database */
@@ -124,7 +120,7 @@ async function deleteUser(req, res, next) {
   res.status(200).send({
     status: 'success',
     message: `DELETE request for id: ${req.params.id} has been successfully`,
-    data: user,
+    data: _.pick(user, ['_id', 'firstName', 'lastName', 'email']),
   });
 }
 
@@ -138,20 +134,20 @@ async function deleteUser(req, res, next) {
  */
 async function signUpUser(req, res, next) {
   /** Validate data with Joi validation function */
-  const {error} = validateUser(req.body);
+  const {error} = joi.validateUser(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Find user in the database */
   let user = await User.findOne({email: req.body.email});
   if (user) return next(new CreateAppError('User already exists!', 400));
 
-  /** Create new user and hash the password with hashPassword util function */
+  /** Create new user and hash the password */
   user = new User(req.body);
-  const hashedPass = await hashPassword(user.password);
-  if (!hashedPass)
-    return next(new CreateAppError('Password not generated. Try again!', 404));
-
-  user.password = hashedPass;
+  // const hashedPass = await hashPassword(user.password);
+  // if (!hashedPass)
+  //   return next(new CreateAppError('Password not generated. Try again!', 404));
+  const salt = await bcrypt.genSalt(10);
+  user.password = await bcrypt.hash(user.password, salt);
 
   /** Save new user in the database */
   // await User.create(user);
@@ -161,11 +157,15 @@ async function signUpUser(req, res, next) {
   const token = user.generateJWT();
 
   /** Send a successful response with token attached to the header */
-  res.status(201).header('x-auth-token', token).send({
-    status: 'success',
-    message: 'User added in the database!',
-    xAuthToken: token,
-  });
+  res
+    .status(201)
+    .header('x-auth-token', token)
+    .send({
+      status: 'success',
+      message: 'User added in the database!',
+      data: _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'isAdmin']),
+      xAuthToken: token,
+    });
 }
 
 /**
@@ -178,7 +178,7 @@ async function signUpUser(req, res, next) {
  */
 async function loginUser(req, res, next) {
   /** Validate data with Joi function */
-  const {error} = validateLogin(req.body);
+  const {error} = joi.validateLogin(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Find user in the database */
@@ -196,6 +196,7 @@ async function loginUser(req, res, next) {
   res.header('x-auth-token', token).send({
     status: 'success',
     message: 'User logged, JWT token generated',
+    data: _.pick(user, ['_id', 'firstName', 'lastName', 'email', 'isAdmin']),
     xAuthToken: token,
   });
 }

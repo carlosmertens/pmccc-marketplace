@@ -1,27 +1,10 @@
-/**
- * Imports necessary libraries for user schema, validation, and JWT generation.
- *
- * @typedef {import('mongoose').Schema} Schema - Mongoose schema type definition.
- * @typedef {import('joi').ObjectSchema} ObjectSchema - Joi object schema type definition.
- */
 import mongoose from 'mongoose';
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
 
 /**
  * Defines the user schema for storing user data in MongoDB.
- *
  * @typedef {Object} User - User schema definition.
- * @property {string} firstName - User's first name. (required, min length 2, max length 30)
- * @property {string} lastName - User's last name. (required, min length 2, max length 30)
- * @property {number} age - User's age. (required, minimum 18, maximum 120)
- * @property {string} gender - User's gender. (optional, enum: male, female, other)
- * @property {string} email - User's email address. (required, unique, trimmed, lowercase)
- * @property {string} password - User's password. (required, minimum length 5, maximum length 32)
- * @property {boolean} isAdmin - Indicates if the user is an admin. (default: false)
- * @property {Date} createdAt - Date and time of user creation. (automatically generated)
- * @property {Date} updatedAt - Date and time of user data update. (automatically updated)
- *
  * @method User.generateJWT() - Generates a JWT token for the user.
  */
 const userSchema = new mongoose.Schema(
@@ -79,12 +62,8 @@ const userSchema = new mongoose.Schema(
   {timestamps: true}
 );
 
-// TODO: Check the isAdmin response
 /**
- * Generates a JWT token containing user information.
- *
- * @this {mongoose.Model} - User model instance
- * @returns {string} - The generated JWT token.
+ * Method that generates a JWT token containing user information.
  */
 userSchema.methods.generateJWT = function () {
   return jwt.sign(
@@ -105,7 +84,6 @@ const User = mongoose.model('users', userSchema);
 
 /**
  * Validates user data for signup using Joi schema.
- *
  * @param {Object} user - User data to be validated.
  * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
  */
@@ -125,7 +103,6 @@ function validateUser(user) {
 
 /**
  * Validates user data for login using Joi schema.
- *
  * @param {Object} user - User data to be validated.
  * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
  */
@@ -140,7 +117,6 @@ function validateLogin(user) {
 
 /**
  * Validates user data for patching operation using Joi schema.
- *
  * @param {Object} user - User data to be validated.
  * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
  */
@@ -158,4 +134,6 @@ function validatePatch(user) {
   return schema.validate(user);
 }
 
-export {User, validateUser, validateLogin, validatePatch};
+const joi = {validateUser, validateLogin, validatePatch};
+
+export {User, joi};

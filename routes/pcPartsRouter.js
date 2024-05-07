@@ -1,17 +1,18 @@
 import {Router} from 'express';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {controllers} from '../controllers/pcPartsController.js';
+import {auth} from '../middleware/auth.js';
 
 export const pcPartsRouter = Router();
 
 pcPartsRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllPcParts))
-  .post(asyncWrapper(controllers.createNewPcPart));
+  .post(auth, asyncWrapper(controllers.createNewPcPart));
 
 pcPartsRouter
   .route('/:id')
   .get(asyncWrapper(controllers.getPcPart))
-  .put(asyncWrapper(controllers.updatePcPart))
-  .patch(asyncWrapper(controllers.patchPcPart))
-  .delete(asyncWrapper(controllers.deletePcPart));
+  .put(auth, asyncWrapper(controllers.updatePcPart))
+  .patch(auth, asyncWrapper(controllers.patchPcPart))
+  .delete(auth, asyncWrapper(controllers.deletePcPart));

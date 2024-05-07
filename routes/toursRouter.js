@@ -1,6 +1,7 @@
 import {Router} from 'express';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {controllers} from '../controllers/toursControllers.js';
+import {auth} from '../middleware/auth.js';
 // import {validateParam} from '../middlewares/validateParam';
 
 export const toursRouter = Router();
@@ -11,11 +12,11 @@ export const toursRouter = Router();
 toursRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllTours))
-  .post(asyncWrapper(controllers.createNewTour));
+  .post(auth, asyncWrapper(controllers.createNewTour));
 
 toursRouter
   .route('/:id')
   .get(asyncWrapper(controllers.getTour))
-  .put(asyncWrapper(controllers.updateTour))
-  .patch(asyncWrapper(controllers.patchTour))
-  .delete(asyncWrapper(controllers.deleteTour));
+  .put(auth, asyncWrapper(controllers.updateTour))
+  .patch(auth, asyncWrapper(controllers.patchTour))
+  .delete(auth, asyncWrapper(controllers.deleteTour));
