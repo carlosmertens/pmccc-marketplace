@@ -3,6 +3,8 @@ import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {controllers} from '../controllers/videoGamesControllers.js';
 import {auth} from '../middleware/auth.js';
 
+/** Base Route: /api/v1/video-games */
+
 export const videoGamesRouter = Router();
 
 videoGamesRouter

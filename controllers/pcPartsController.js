@@ -2,11 +2,7 @@ import {PcPartModel} from '../models/PcPartModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/**
- * Get (GET REQUEST) all pc parts from the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Get (GET REQUEST) all pc parts from the database */
 async function getAllPcParts(req, res) {
   /** Call util function to process query request */
   const query = processQuery(req.query, PcPartModel);
@@ -23,11 +19,7 @@ async function getAllPcParts(req, res) {
   });
 }
 
-/**
- * Create (POST REQUEST) a new pc part in the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Create (POST REQUEST) a new pc part in the database */
 async function createNewPcPart(req, res) {
   const pcPart = await PcPartModel.create(req.body);
 
@@ -39,12 +31,7 @@ async function createNewPcPart(req, res) {
   });
 }
 
-/**
- * Get (GET REQUEST) a pc part from the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Get (GET REQUEST) a pc part from the database by its id */
 async function getPcPart(req, res, next) {
   const pcPart = await PcPartModel.findById(req.params.id);
 
@@ -59,12 +46,7 @@ async function getPcPart(req, res, next) {
   });
 }
 
-/**
- * Update (PUT REQUEST) a pc part in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Update (PUT REQUEST) a pc part in the database by its id */
 async function updatePcPart(req, res, next) {
   const pcPart = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -82,12 +64,7 @@ async function updatePcPart(req, res, next) {
   });
 }
 
-/**
- * Modify (PATCH REQUEST) a pc part in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/**  Modify (PATCH REQUEST) a pc part in the database by its id */
 async function patchPcPart(req, res, next) {
   const pcPart = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -104,12 +81,7 @@ async function patchPcPart(req, res, next) {
   });
 }
 
-/**
- * Delete (DELETE REQUEST) a pc part in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Delete (DELETE REQUEST) a pc part in the database by its id */
 async function deletePcPart(req, res, next) {
   const pcPart = await PcPartModel.findByIdAndDelete(req.params.id);
 

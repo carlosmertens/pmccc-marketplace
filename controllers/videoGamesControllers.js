@@ -2,11 +2,7 @@ import {VideoGameModel} from '../models/VideoGameModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/**
- * Get (GET REQUEST) all video games from the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Get (GET REQUEST) all video games from the database */
 async function getAllVideoGames(req, res) {
   /** Call util function to process query request */
   const query = processQuery(req.query, VideoGameModel);
@@ -23,11 +19,7 @@ async function getAllVideoGames(req, res) {
   });
 }
 
-/**
- * Create (POST REQUEST) a new video game in the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Create (POST REQUEST) a new video game in the database */
 async function createNewVideoGame(req, res) {
   const videoGame = await VideoGameModel.create(req.body);
 
@@ -39,12 +31,7 @@ async function createNewVideoGame(req, res) {
   });
 }
 
-/**
- * Get (GET REQUEST) a video game from the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Get (GET REQUEST) a video game from the database by its id */
 async function getVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findById(req.params.id);
 
@@ -59,12 +46,7 @@ async function getVideoGame(req, res, next) {
   });
 }
 
-/**
- * Update (PUT REQUEST) a video game in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Update (PUT REQUEST) a video game in the database by its id */
 async function updateVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findByIdAndUpdate(
     req.params.id,
@@ -86,12 +68,7 @@ async function updateVideoGame(req, res, next) {
   });
 }
 
-/**
- * Modify (PATCH REQUEST) a video game in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Modify (PATCH REQUEST) a video game in the database by its id */
 async function patchVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findByIdAndUpdate(
     req.params.id,
@@ -112,12 +89,7 @@ async function patchVideoGame(req, res, next) {
   });
 }
 
-/**
- * Delete (DELETE REQUEST) a video game in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Delete (DELETE REQUEST) a video game in the database by its id */
 async function deleteVideoGame(req, res, next) {
   const videoGame = await VideoGameModel.findByIdAndDelete(req.params.id);
 

@@ -2,12 +2,10 @@ import {Router} from 'express';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {controllers} from '../controllers/toursControllers.js';
 import {auth} from '../middleware/auth.js';
-// import {validateParam} from '../middlewares/validateParam';
+
+/** Base Route: /api/v1/tours */
 
 export const toursRouter = Router();
-
-// TODO: Delete validateParam middleware function
-// toursRouter.param('id', validateParam);
 
 toursRouter
   .route('/')

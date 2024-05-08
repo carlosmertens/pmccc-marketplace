@@ -2,11 +2,7 @@ import {BookModel} from '../models/BookModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/**
- * Get (GET REQUEST) all books from the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Get (GET REQUEST) all books from the database */
 async function getAllBooks(req, res) {
   /** Call util function to process query request */
   const query = processQuery(req.query, BookModel);
@@ -23,11 +19,7 @@ async function getAllBooks(req, res) {
   });
 }
 
-/**
- * Create (POST REQUEST) a new book in the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Create (POST REQUEST) a new book in the database */
 async function createNewBook(req, res) {
   const book = await BookModel.create(req.body);
 
@@ -39,12 +31,7 @@ async function createNewBook(req, res) {
   });
 }
 
-/**
- * Get (GET REQUEST) a book from the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Get (GET REQUEST) a book from the database by its id */
 async function getBook(req, res, next) {
   const book = await BookModel.findById(req.params.id);
 
@@ -59,12 +46,7 @@ async function getBook(req, res, next) {
   });
 }
 
-/**
- * Update (PUT REQUEST) a book in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Update (PUT REQUEST) a book in the database by its id */
 async function updateBook(req, res, next) {
   const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -82,12 +64,7 @@ async function updateBook(req, res, next) {
   });
 }
 
-/**
- * Modify (PATCH REQUEST) a book in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Modify (PATCH REQUEST) a book in the database by its id */
 async function patchBook(req, res, next) {
   const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -104,12 +81,7 @@ async function patchBook(req, res, next) {
   });
 }
 
-/**
- * Delete (DELETE REQUEST) a book in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Delete (DELETE REQUEST) a book in the database by its id */
 async function deleteBook(req, res, next) {
   const book = await BookModel.findByIdAndDelete(req.params.id);
 

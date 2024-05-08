@@ -2,11 +2,7 @@ import mongoose from 'mongoose';
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
 
-/**
- * Defines the user schema for storing user data in MongoDB.
- * @typedef {Object} User - User schema definition.
- * @method User.generateJWT() - Generates a JWT token for the user.
- */
+/** Defines the user schema for storing user data in MongoDB */
 const userSchema = new mongoose.Schema(
   {
     firstName: {
@@ -62,9 +58,7 @@ const userSchema = new mongoose.Schema(
   {timestamps: true}
 );
 
-/**
- * Method that generates a JWT token containing user information.
- */
+/** Method that generates a JWT token containing user information */
 userSchema.methods.generateJWT = function () {
   return jwt.sign(
     {
@@ -82,11 +76,7 @@ userSchema.methods.generateJWT = function () {
 /** Mongoose model representing the User collection in MongoDB. */
 const User = mongoose.model('users', userSchema);
 
-/**
- * Validates user data for signup using Joi schema.
- * @param {Object} user - User data to be validated.
- * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
- */
+/** Validates user data for signup using Joi schema */
 function validateUser(user) {
   const schema = Joi.object({
     firstName: Joi.string().required().min(2).max(50).trim(),
@@ -100,25 +90,7 @@ function validateUser(user) {
   return schema.validate(user);
 }
 
-/**
- * Validates user data for login using Joi schema.
- * @param {Object} user - User data to be validated.
- * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
- */
-function validateLogin(user) {
-  const schema = Joi.object({
-    email: Joi.string().required().email().min(5).max(255).trim(),
-    password: Joi.string().required().min(5).max(32).trim(),
-  });
-
-  return schema.validate(user);
-}
-
-/**
- * Validates user data for patching operation using Joi schema.
- * @param {Object} user - User data to be validated.
- * @returns {Promise<any>} - Promise resolving to the validation result or rejection with an error.
- */
+/** Validates user data for patching operation using Joi schema */
 function validatePatch(user) {
   const schema = Joi.object({
     firstName: Joi.string().min(2).max(50).trim(),
@@ -132,6 +104,15 @@ function validatePatch(user) {
   return schema.validate(user);
 }
 
-const joi = {validateUser, validateLogin, validatePatch};
+function validateLogin(req) {
+  const schema = Joi.object({
+    email: Joi.string().required().email().trim().min(5).max(255),
+    password: Joi.string().required().trim().min(5).max(32),
+  });
+
+  return schema.validate(req);
+}
+
+const joi = {validateUser, validatePatch, validateLogin};
 
 export {User, joi};

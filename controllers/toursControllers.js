@@ -2,11 +2,7 @@ import {TourModel} from '../models/TourModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/**
- * Get (GET REQUEST) all tours from the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Get (GET REQUEST) all tours from the database */
 async function getAllTours(req, res) {
   /** Call util function to process query request */
   const query = processQuery(req.query, TourModel);
@@ -23,11 +19,7 @@ async function getAllTours(req, res) {
   });
 }
 
-/**
- * Create (POST REQUEST) a new tour in the database
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- */
+/** Create (POST REQUEST) a new tour in the database */
 async function createNewTour(req, res) {
   const tour = await TourModel.create(req.body);
 
@@ -39,12 +31,7 @@ async function createNewTour(req, res) {
   });
 }
 
-/**
- * Get (GET REQUEST) a tour from the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Get (GET REQUEST) a tour from the database by its id */
 async function getTour(req, res, next) {
   const tour = await TourModel.findById(req.params.id);
 
@@ -59,12 +46,7 @@ async function getTour(req, res, next) {
   });
 }
 
-/**
- * Update (PUT REQUEST) a tour in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Update (PUT REQUEST) a tour in the database by its id */
 async function updateTour(req, res, next) {
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -81,12 +63,7 @@ async function updateTour(req, res, next) {
   });
 }
 
-/**
- * Modify (PATCH REQUEST) a book in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Modify (PATCH REQUEST) a book in the database by its id */
 async function patchTour(req, res, next) {
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
@@ -103,12 +80,7 @@ async function patchTour(req, res, next) {
   });
 }
 
-/**
- * Delete (DELETE REQUEST) a book in the database by its id
- * @param {Request} req - The request object
- * @param {Response} res - The response object
- * @param {NextFunction} next - The next object function
- */
+/** Delete (DELETE REQUEST) a book in the database by its id */
 async function deleteTour(req, res, next) {
   const tour = await TourModel.findByIdAndDelete(req.params.id);
 

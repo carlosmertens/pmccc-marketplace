@@ -1,9 +1,6 @@
 import bcrypt from 'bcrypt';
 
-/**
- * Hashes a plain text password using bcrypt for secure storage.
- * @param {string} password - The plain text password to be hashed.
- */
+/** Hashes a plain text password using bcrypt for secure storage */
 export async function hashPassword(password, next) {
   try {
     const salt = await bcrypt.genSalt(10);

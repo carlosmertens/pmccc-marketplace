@@ -3,13 +3,7 @@ import {VideoGameModel} from '../models/VideoGameModel.js';
 import {PcPartModel} from '../models/PcPartModel.js';
 import {TourModel} from '../models/TourModel.js';
 
-/**
- * @summary Get all types, names or titles of all resources (products, services) in the database
- * @description This endpoint returns an array of all resources (products, services) in the database, along with their types, names, or titles, depending on the query parameters.
- * @param {Object} req - Express request object
- * @param {Object} res - Express response object
- * @returns {Object} JSON response with status, result, data, and message properties
- */
+/** Get all resources (products, services) in the database */
 async function getResourcesList(req, res) {
   const booksArray = await BookModel.find().select({
     productType: 1,

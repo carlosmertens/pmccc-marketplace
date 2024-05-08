@@ -1,8 +1,8 @@
 import mongoose from 'mongoose';
 
 // TODO:
-// Review property (customer name, value up to 5 and comment)
-// Name default; anonymus
+// Review property (customer name, stars up to 5 and comment)
+// Name default anonymus
 // Add to all products and tours
 const BookSchema = new mongoose.Schema(
   {

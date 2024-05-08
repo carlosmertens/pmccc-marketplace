@@ -3,6 +3,8 @@ import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {controllers} from '../controllers/pcPartsController.js';
 import {auth} from '../middleware/auth.js';
 
+/** Base Route: /api/v1/pc-parts */
+
 export const pcPartsRouter = Router();
 
 pcPartsRouter
