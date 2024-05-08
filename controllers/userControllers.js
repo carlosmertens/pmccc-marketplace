@@ -49,6 +49,9 @@ async function getUser(req, res, next) {
   });
 }
 
+// TODO:
+// if password is changed, needs to be hash again before saving it in the database
+
 /**
  * Update (PUT REQUEST) a user in the database by its id
  * @param {Request} req - The request object
@@ -57,8 +60,12 @@ async function getUser(req, res, next) {
  */
 async function updateUser(req, res, next) {
   /** Validate data with Joi validation function */
-  const {error} = validateUser(req.body);
+  const {error} = joi.validateUser(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
+
+  /** If password changes, hash it */
+  if (req.body.password)
+    req.body.password = await hashPassword(req.body.password, next);
 
   /** Find user in the database */
   const user = await User.findByIdAndUpdate(req.params.id, req.body, {
@@ -87,6 +94,10 @@ async function patchUser(req, res, next) {
   /** Validate data with Joi validation function */
   const {error} = joi.validatePatch(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
+
+  /** If password changes, hash it */
+  if (req.body.password)
+    req.body.password = await hashPassword(req.body.password, next);
 
   /** Find user in the database */
   const user = await User.findByIdAndUpdate(req.params.id, req.body, {
@@ -141,13 +152,11 @@ async function signUpUser(req, res, next) {
   let user = await User.findOne({email: req.body.email});
   if (user) return next(new CreateAppError('User already exists!', 400));
 
-  /** Create new user and hash the password */
+  /** Create new user */
   user = new User(req.body);
-  // const hashedPass = await hashPassword(user.password);
-  // if (!hashedPass)
-  //   return next(new CreateAppError('Password not generated. Try again!', 404));
-  const salt = await bcrypt.genSalt(10);
-  user.password = await bcrypt.hash(user.password, salt);
+
+  /** Hash password and save it */
+  user.password = await hashPassword(user.password, next);
 
   /** Save new user in the database */
   // await User.create(user);
@@ -168,10 +177,13 @@ async function signUpUser(req, res, next) {
     });
 }
 
+// TODO:
+// Create middleware for auth = authentication (pass and token)
+// Create admin middleware
+
 /**
  * Login (POST REQUEST) a user
  * Response a JWT token on success
- *
  * @param {Request} req - The request object
  * @param {Response} res - The response object
  * @param {NextFunction} next - The next object function

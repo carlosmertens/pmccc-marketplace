@@ -14,7 +14,7 @@ export const auth = async (req, res, next) => {
 
     /** Verify is user is admin */
     if (!decoded.isAdmin)
-      return next(new CreateAppError('Access denied. User is not admin!', 403));
+      return next(new CreateAppError('Access denied. Only admin allow!', 403));
 
     /** Create user property on the request */
     req.user = decoded;

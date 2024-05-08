@@ -95,7 +95,6 @@ function validateUser(user) {
     gender: Joi.string(),
     email: Joi.string().required().email().min(5).max(255).trim(),
     password: Joi.string().required().min(5).max(32).trim(),
-    isAdmin: Joi.boolean().default(false),
   });
 
   return schema.validate(user);
@@ -128,7 +127,6 @@ function validatePatch(user) {
     gender: Joi.string(),
     email: Joi.string().email().min(5).max(255).trim(),
     password: Joi.string().min(5).max(32).trim(),
-    isAdmin: Joi.boolean().default(false),
   });
 
   return schema.validate(user);

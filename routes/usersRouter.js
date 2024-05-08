@@ -10,9 +10,9 @@ userRouter.get('/', auth, asyncWrapper(controllers.getAllUsers));
 userRouter
   .route('/:id')
   .get(auth, asyncWrapper(controllers.getUser))
-  .patch(auth, asyncWrapper(controllers.patchUser))
+  .patch(asyncWrapper(controllers.patchUser))
   .put(auth, asyncWrapper(controllers.updateUser))
-  .delete(auth, asyncWrapper(controllers.deleteUser));
+  .delete(asyncWrapper(controllers.deleteUser));
 
 userRouter.post('/signup', asyncWrapper(controllers.signUpUser));
 

@@ -1,13 +1,16 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
+// TODO:
+// We will populate ids
 const OrderSchema = mongoose.Schema({
-    user: {   
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "users",
-        require: true
-    }
-})
+  user: {
+    id: String,
+    address: String,
+  }, // user _id, address
+  items: String, // array of id products
+  status: String, // 'pending',
+});
 
-const orderModel = mongoose.model("Orders", OrderSchema);
+const orderModel = mongoose.model('Orders', OrderSchema);
 
 export default orderModel;
