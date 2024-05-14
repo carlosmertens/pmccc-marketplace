@@ -14,12 +14,12 @@ booksRouter
   .post([auth, admin], asyncWrapper(controllers.createNewBook));
 
 booksRouter
+  .route('/reviews')
+  .get(asyncWrapper((req, res) => res.send('Reviews requested!')));
+
+booksRouter
   .route('/:id')
   .get(asyncWrapper(controllers.getBook))
   .put([auth, admin], asyncWrapper(controllers.updateBook))
   .patch([auth, admin], asyncWrapper(controllers.patchBook))
   .delete([auth, admin], asyncWrapper(controllers.deleteBook));
-
-booksRouter
-  .route('/reviews')
-  .get(asyncWrapper((req, res) => res.send('Reviews requested!')));
