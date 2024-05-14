@@ -1,14 +1,19 @@
 import mongoose from 'mongoose';
 
-// TODO:
-// We will populate ids
 const OrderSchema = mongoose.Schema({
-  user: {
-    id: String,
-    address: String,
-  }, // user _id, address
-  items: String, // array of id products
-  status: String, // 'pending',
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Users',
+  },
+  detail: [{id: {type: mongoose.Schema.Types.ObjectId}, productType: String}],
+  TotalPrice: {type: Number}, // TODO: GETTER
+  status: {
+    type: String,
+    enum: {
+      values: ['pending', 'complete'],
+      message: 'Options: pending | complete',
+    },
+  },
 });
 
 const orderModel = mongoose.model('Orders', OrderSchema);

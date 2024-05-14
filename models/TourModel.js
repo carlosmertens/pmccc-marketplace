@@ -2,6 +2,7 @@ import mongoose from 'mongoose';
 
 const tourSchema = new mongoose.Schema(
   {
+    productType: {type: String, default: 'tours'},
     toursType: {
       type: String,
       enum: {
@@ -24,7 +25,7 @@ const tourSchema = new mongoose.Schema(
       maxLength: 20,
       default: 10,
     },
-    duration: {type: Number, required: true},
+    duration: {type: Number, required: true, min: 1},
     maxGroupSize: {type: Number, min: 2, max: 50, required: true},
     difficulty: {
       type: String,
@@ -41,8 +42,31 @@ const tourSchema = new mongoose.Schema(
       default: 'Contact us for more information!',
     },
     startDates: {type: [Date], select: false},
+    imgSrc: {
+      type: String,
+      minLength: 1,
+      maxLength: 500,
+      default: 'tours.jpeg',
+    },
   },
   {timestamps: true}
 );
 
-export const TourModel = mongoose.model('tours', tourSchema);
+function validateTour(tour) {
+  const schema = Joi.object({
+    name: Joi.string().required().trim().min(1).max(50),
+    price: Joi.number().required().min(100).max(9999),
+    discountPercentage: Joi.number().min(1).max(20).default(10),
+    duration: Joi.number().required().min(1),
+    maxGroupSize: Joi.number().require().min(2).max(50),
+    difficulty: Joi.string(),
+    description: Joi.string().required().trim().min(15).max(1000),
+    imgSrc: Joi.string().min(1).max(500).default('Sightseeing.jpeg'),
+  });
+
+  return schema.validate(tour);
+}
+
+const TourModel = mongoose.model('tours', tourSchema);
+
+export {TourModel, validateTour};

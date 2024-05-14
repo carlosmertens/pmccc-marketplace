@@ -1,4 +1,4 @@
-import {BookModel} from '../models/BookModel.js';
+import {BookModel, validateBook} from '../models/BookModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
@@ -21,6 +21,11 @@ async function getAllBooks(req, res) {
 
 /** Create (POST REQUEST) a new book in the database */
 async function createNewBook(req, res) {
+  /** Validate data with Joi validation function */
+  const {error} = joi.validateBook(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  /** Create new book in the database */
   const book = await BookModel.create(req.body);
 
   /** Send a successful response with the new book data */

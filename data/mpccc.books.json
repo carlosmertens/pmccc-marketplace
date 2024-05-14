@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "662e898645574de8c7f8c693"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "The Hobbit",
   "author": "J.R.R. Talkien",
   "genre": "Adventure",
@@ -17,13 +17,15 @@
   "updatedAt": {
     "$date": "2024-04-28T17:39:58.224Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8aa32bd6709fc244016f"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "The Lord of the Ring",
   "author": "J.R.R. Talkien",
   "genre": "Fantasy",
@@ -38,13 +40,15 @@
   "updatedAt": {
     "$date": "2024-04-28T17:42:59.965Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8b4d2bd6709fc2440172"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "Originals",
   "author": "Adam Gram",
   "genre": "Self-help",
@@ -59,13 +63,15 @@
   "updatedAt": {
     "$date": "2024-04-28T17:45:49.696Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8bcb2bd6709fc2440174"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "I Robot",
   "author": "Isaac Asimov",
   "genre": "Futuristic",
@@ -80,13 +86,15 @@
   "updatedAt": {
     "$date": "2024-04-28T17:47:55.997Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8c642bd6709fc2440177"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "Give and Take",
   "author": "Adam Grant",
   "genre": "Self-help",
@@ -101,13 +109,15 @@
   "updatedAt": {
     "$date": "2024-04-28T17:50:28.119Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8c8c2bd6709fc2440179"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "Think Again",
   "author": "Adam Grant",
   "genre": "Self-help",
@@ -122,13 +132,15 @@
   "updatedAt": {
     "$date": "2024-04-28T17:51:08.410Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8d762bd6709fc244017b"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "Steve Jobs",
   "author": "Walter Isaacson",
   "genre": "Biography",
@@ -143,17 +155,19 @@
   "updatedAt": {
     "$date": "2024-04-28T17:55:02.773Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8dff2bd6709fc244017d"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "The Innovators",
   "author": "Walter Isaacson",
   "genre": "Nonfiction",
-  "price": 20,
+  "price": 18,
   "discountPercentage": 10,
   "pages": 1987,
   "description": "Walter Isaacson's \"The Innovators\" explores the stories of key figures who revolutionized technology. From Alan Turing's code-breaking genius to Steve Jobs' design vision, the book examines how these individuals, despite their contrasting personalities, all shared a relentless pursuit of innovation. It highlights the importance of collaboration, risk-taking, and a drive to challenge the status quo that ultimately led to groundbreaking inventions.",
@@ -162,15 +176,17 @@
     "$date": "2024-04-28T17:57:19.905Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T17:57:19.905Z"
+    "$date": "2024-05-08T23:21:39.385Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8f422bd6709fc2440180"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "Misery",
   "author": "Stephen King",
   "genre": "Horror",
@@ -185,13 +201,15 @@
   "updatedAt": {
     "$date": "2024-04-28T18:02:42.376Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e8f842bd6709fc2440182"
   },
-  "productType": "BOOK",
+  "productType": "books",
   "name": "Carrie",
   "author": "Stephen King",
   "genre": "Horror",
@@ -206,5 +224,7 @@
   "updatedAt": {
     "$date": "2024-04-28T18:03:48.063Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 }]

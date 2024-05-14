@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "662e9ac9a980f598bf8ed598"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "Stellar Blade",
   "console": "PlayStation 5",
   "genre": "Simulation",
@@ -16,13 +16,15 @@
   "updatedAt": {
     "$date": "2024-04-28T18:51:53.053Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9b37a980f598bf8ed59a"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "Uncharted Legacy of Thieves Collection",
   "console": "PlayStation 5",
   "genre": "Adventure",
@@ -36,13 +38,15 @@
   "updatedAt": {
     "$date": "2024-04-28T18:53:43.566Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9bc0a980f598bf8ed59c"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "Fallout 4 Day One Edition",
   "console": "Xbox",
   "genre": "Action",
@@ -56,13 +60,15 @@
   "updatedAt": {
     "$date": "2024-04-28T18:56:00.942Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9c02a980f598bf8ed59f"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "Hogwarts Legacy",
   "console": "Xbox",
   "genre": "Action",
@@ -76,13 +82,15 @@
   "updatedAt": {
     "$date": "2024-04-28T18:57:06.327Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9c43a980f598bf8ed5a1"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "Battlefield 2042 - Standard Edition",
   "console": "Xbox",
   "genre": "War",
@@ -96,13 +104,15 @@
   "updatedAt": {
     "$date": "2024-04-28T18:58:11.330Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9ca3a980f598bf8ed5a3"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "Minecraft: Nintendo Switch Edition",
   "console": "Nintendo Switch",
   "genre": "Strategy",
@@ -116,13 +126,15 @@
   "updatedAt": {
     "$date": "2024-04-28T18:59:47.500Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9cf7a980f598bf8ed5a5"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "Mario Kart 8 Deluxe",
   "console": "Nintendo Switch",
   "genre": "Sport",
@@ -136,13 +148,15 @@
   "updatedAt": {
     "$date": "2024-04-28T19:01:11.363Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9d41a980f598bf8ed5a7"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "The Legend of Zelda: Tears of the Kingdom",
   "console": "Nintendo Switch",
   "genre": "Adventure",
@@ -156,13 +170,15 @@
   "updatedAt": {
     "$date": "2024-04-28T19:02:25.013Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9dcda980f598bf8ed5ab"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "EA SPORTS FC 24 Standard Edition",
   "console": "PlayStation 4",
   "genre": "Sport",
@@ -176,13 +192,15 @@
   "updatedAt": {
     "$date": "2024-04-28T19:04:45.958Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 },
 {
   "_id": {
     "$oid": "662e9df3a980f598bf8ed5ad"
   },
-  "productType": "VIDEO_GAME",
+  "productType": "video_games",
   "name": "WWE 2K24",
   "console": "PlayStation 4",
   "genre": "Sport",
@@ -196,5 +214,7 @@
   "updatedAt": {
     "$date": "2024-04-28T19:05:23.507Z"
   },
-  "__v": 0
+  "__v": 0,
+  "reviews": [],
+  "ratings": 1
 }]

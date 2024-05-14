@@ -2,12 +2,13 @@ import {Router} from 'express';
 import {controllers} from '../controllers/userControllers.js';
 import {asyncWrapper} from '../middleware/asyncWrapper.js';
 import {auth} from '../middleware/auth.js';
+import {admin} from '../middleware/admin.js';
 
-/** Base Route: /api/v1/users */
+/** Base Route: /api/v1/users/ */
 
 export const userRouter = Router();
 
-userRouter.get('/', auth, asyncWrapper(controllers.getAllUsers));
+userRouter.get('/', [auth, admin], asyncWrapper(controllers.getAllUsers));
 
 userRouter.post('/signup', asyncWrapper(controllers.createNewUser));
 
