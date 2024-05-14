@@ -2,33 +2,31 @@ import {BookModel, validateBook} from '../models/BookModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/** Get (GET REQUEST) all books from the database */
+/** (GET REQUEST) */
 async function getAllBooks(req, res) {
-  /** Call util function to process query request */
+  /** Process query request and execute it */
   const query = processQuery(req.query, BookModel);
+  const data = await query;
 
-  /** Execute query request to database */
-  const books = await query;
-
-  /** Send a successful response with all books data */
+  /** Send a successful response */
   res.status(200).send({
     status: 'success',
     message: 'GET request to get all books was successful',
-    result: books.length,
-    data: books,
+    result: data.length,
+    data,
   });
 }
 
-/** Create (POST REQUEST) a new book in the database */
+/** (POST REQUEST) */
 async function createNewBook(req, res) {
-  /** Validate data with Joi validation function */
-  const {error} = joi.validateBook(req.body);
+  /** Validate data */
+  const {error} = validateBook(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
-  /** Create new book in the database */
+  /** Create new book */
   const book = await BookModel.create(req.body);
 
-  /** Send a successful response with the new book data */
+  /** Send a successful response */
   res.status(201).send({
     status: 'success',
     message: 'POST request to create a new book was successful',
@@ -36,68 +34,100 @@ async function createNewBook(req, res) {
   });
 }
 
-/** Get (GET REQUEST) a book from the database by its id */
+/** (GET REQUEST) */
 async function getBook(req, res, next) {
-  const book = await BookModel.findById(req.params.id);
+  /** Get a book */
+  const data = await BookModel.findById(req.params.id);
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the book exists */
-  if (!book) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the book data */
+  /** Send a successful response */
   res.status(200).send({
     status: 'success',
     message: 'GET request for one book by id',
-    data: book,
+    data,
   });
 }
 
-/** Update (PUT REQUEST) a book in the database by its id */
+/** (PUT REQUEST) */
 async function updateBook(req, res, next) {
-  const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
+  /** Validate data */
+  const {error} = validateBook(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  /** Find and update a book */
+  const data = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the book exists */
-  if (!book) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the updated book data */
+  /** Send a successful response  */
   res.status(200).send({
     status: 'success',
     message: 'PUT request to update a book by id',
-    data: book,
+    data,
   });
 }
 
-/** Modify (PATCH REQUEST) a book in the database by its id */
+/** (PATCH REQUEST) */
 async function patchBook(req, res, next) {
-  const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
+  // TODO: Validate Patch with Joi
+  /** Find and update a book's property(s) */
+  const data = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the book exists */
-  if (!book) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the updated book data */
+  /** Send a successful response */
   res.status(200).send({
     status: 'success',
     message: 'PATCH request to modify book successfully',
-    data: book,
+    data,
   });
 }
 
-/** Delete (DELETE REQUEST) a book in the database by its id */
+/** (DELETE REQUEST) */
 async function deleteBook(req, res, next) {
-  const book = await BookModel.findByIdAndDelete(req.params.id);
+  /** Find and delete a book */
+  const data = await BookModel.findByIdAndDelete(req.params.id);
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the book exists */
-  if (!book) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the book data */
+  /** Send a successful response */
   res.status(200).send({
     status: 'success',
     message: `DELETE request for id: ${req.params.id} has been successfully`,
-    data: book,
+    data,
+  });
+}
+
+/** (GET REQUEST) */
+async function getAllReviews(req, res, next) {
+  /** Find Reviews */
+  const data = await BookModel.findById(req.params.id).select('reviews');
+
+  /** Send a successful response */
+  res.send({
+    status: 'success',
+    message: 'Array containing all reviews has been requested',
+    result: data.length,
+    data,
+  });
+}
+
+/** (POST REQUEST)  */
+async function createNewReview(req, res, next) {
+  /** Find and update review property */
+  const book = await BookModel.findById(req.params.id);
+  book.reviews.push(req.body);
+
+  /** Save back data */
+  const data = await BookModel.findByIdAndUpdate(req.params.id, book);
+
+  /** Send a successful response */
+  res.send({
+    status: 'success',
+    message: 'New review has been created',
+    data,
   });
 }
 
@@ -108,4 +138,6 @@ export const controllers = {
   updateBook,
   patchBook,
   deleteBook,
+  getAllReviews,
+  createNewReview,
 };
