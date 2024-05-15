@@ -16,6 +16,7 @@ export function startMiddleware(app) {
         'Access-Control-Allow-Credentials',
         'x-auth-token',
       ],
+      exposedHeaders: ['x-auth-token'],
     })
   );
   // app.use(express.static('public'));

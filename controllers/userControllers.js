@@ -5,15 +5,11 @@ import {hashPassword} from '../utils/hashPassword.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/** Get (GET REQUEST) all users from the database */
+/** (GET REQUEST) */
 export const getAllUsers = async (req, res) => {
-  /** Call util function to process query request */
   const query = processQuery(req.query, User);
-
-  /** Execute query request to database */
   const users = await query;
 
-  /** Send a successful response with all user data */
   res.status(200).send({
     status: 'success',
     message: 'GET request to get all users was successful',
@@ -22,29 +18,22 @@ export const getAllUsers = async (req, res) => {
   });
 };
 
-/** Create (POST REQUEST) a new user in the database */
+/** (POST REQUEST) */
 async function createNewUser(req, res, next) {
-  /** Validate data with Joi validation function */
   const {error} = joi.validateUser(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
-  /** Find user in the database */
   let user = await User.findOne({email: req.body.email});
   if (user) return next(new CreateAppError('User already exists!', 400));
 
-  /** Create new user */
   user = new User(req.body);
 
-  /** Hash password and save it */
   user.password = await hashPassword(user.password, next);
 
-  /** Save new user in the database */
   await user.save();
 
-  /** Generate JWT token */
   const token = user.generateJWT();
 
-  /** Send a successful response with token attached to the header */
   res
     .status(201)
     .header('x-auth-token', token)
@@ -55,16 +44,13 @@ async function createNewUser(req, res, next) {
     });
 }
 
-/** Get (GET REQUEST) a user from the database by its id */
+/** (GET REQUEST) */
 async function getUser(req, res, next) {
   const user = await User.findById(req.user._id).select(
     '-__v -createdAt -updatedAt -password'
   );
-
-  /** Check if the user exists */
   if (!user) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the user data */
   res.send({
     status: 'success',
     message: 'GET request for one user by id',
@@ -72,25 +58,19 @@ async function getUser(req, res, next) {
   });
 }
 
-/** Update (PUT REQUEST) a user in the database by its id */
+/** (PUT REQUEST) */
 async function updateUser(req, res, next) {
-  /** Validate data with Joi validation function */
   const {error} = joi.validateUser(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
-  /** Hash password */
   req.body.password = await hashPassword(req.body.password, next);
 
-  /** Find user in the database */
   const user = await User.findByIdAndUpdate(req.user._id, req.body, {
     new: true,
     runValidators: true,
   }).select('-__v -createdAt -updatedAt -password');
-
-  /** Check if the user exists */
   if (!user) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the updated user data */
   res.status(200).send({
     status: 'success',
     message: 'PUT request to update a user by id',
@@ -98,25 +78,20 @@ async function updateUser(req, res, next) {
   });
 }
 
-/** Modify (PATCH REQUEST) a user in the database by its id */
+/** (PATCH REQUEST) */
 async function patchUser(req, res, next) {
-  /** Validate data with Joi validation function */
   const {error} = joi.validatePatch(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
-  /** If password changes, hash it */
   if (req.body.password)
     req.body.password = await hashPassword(req.body.password, next);
 
-  /** Find user in the database */
   const user = await User.findByIdAndUpdate(req.user._id, req.body, {
     new: true,
   }).select('-__v -createdAt -updatedAt -password');
 
-  /** Check if the user exists */
   if (!user) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the updated user data */
   res.status(200).send({
     status: 'success',
     message: 'PATCH request to modify user successfully',
@@ -124,7 +99,7 @@ async function patchUser(req, res, next) {
   });
 }
 
-/** Delete (DELETE REQUEST) a user in the database by its id */
+/** (DELETE REQUEST) */
 async function deleteUser(req, res, next) {
   const user = await User.findByIdAndDelete(req.user._id);
 

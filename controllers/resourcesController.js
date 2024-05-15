@@ -25,6 +25,7 @@ async function getResourcesList(req, res) {
   });
 
   const toursArray = await TourModel.find().select({
+    productType: 1,
     serviceType: 1,
     name: 1,
   });
