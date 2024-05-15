@@ -72,7 +72,7 @@ async function updateBook(req, res, next) {
 /** (PATCH REQUEST) */
 async function patchBook(req, res, next) {
   // TODO: Validate Patch with Joi
-  /** Find and update a book's property(s) */
+  /** Find and update property(s) */
   const data = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -114,19 +114,21 @@ async function getAllReviews(req, res, next) {
   });
 }
 
-/** (POST REQUEST)  */
+/** (PATCH REQUEST)  */
 async function createNewReview(req, res, next) {
   /** Find and update review property */
   const book = await BookModel.findById(req.params.id);
   book.reviews.push(req.body);
 
   /** Save back data */
-  const data = await BookModel.findByIdAndUpdate(req.params.id, book);
+  const data = await BookModel.findByIdAndUpdate(req.params.id, book, {
+    new: true,
+  });
 
   /** Send a successful response */
   res.send({
     status: 'success',
-    message: 'New review has been created',
+    message: 'New review has been received',
     data,
   });
 }

@@ -23,4 +23,4 @@ booksRouter
 booksRouter
   .route('/:id/reviews')
   .get(asyncWrapper(controllers.getAllReviews))
-  .post(asyncWrapper(controllers.createNewReview));
+  .patch(asyncWrapper(controllers.createNewReview));

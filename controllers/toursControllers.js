@@ -2,15 +2,13 @@ import {TourModel} from '../models/TourModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/** Get (GET REQUEST) all tours from the database */
-async function getAllTours(req, res) {
-  /** Call util function to process query request */
-  const query = processQuery(req.query, TourModel);
+ // TODO: Create Joi validation
 
-  /** Execute query request to database */
+/** (GET REQUEST) */
+async function getAllTours(req, res) {
+  const query = processQuery(req.query, TourModel);
   const tours = await query;
 
-  /** Send a successful response with the tours data */
   res.status(200).send({
     status: 'success',
     message: 'All tours were requested',
@@ -19,11 +17,10 @@ async function getAllTours(req, res) {
   });
 }
 
-/** Create (POST REQUEST) a new tour in the database */
+/** (POST REQUEST) */
 async function createNewTour(req, res) {
   const tour = await TourModel.create(req.body);
 
-  /** Send a successful response with the new tour data */
   res.status(201).send({
     status: 'success',
     message: 'New tour has been created',
@@ -31,14 +28,11 @@ async function createNewTour(req, res) {
   });
 }
 
-/** Get (GET REQUEST) a tour from the database by its id */
+/** (GET REQUEST) */
 async function getTour(req, res, next) {
   const tour = await TourModel.findById(req.params.id);
-
-  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the tour data */
   res.status(200).send({
     status: 'success',
     message: 'GET request for one tour with id',
@@ -46,16 +40,13 @@ async function getTour(req, res, next) {
   });
 }
 
-/** Update (PUT REQUEST) a tour in the database by its id */
+/** (PUT REQUEST) */
 async function updateTour(req, res, next) {
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-
-  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the tour modified data */
   res.status(200).send({
     status: 'success',
     message: 'PUT request to update a tour',
@@ -63,16 +54,13 @@ async function updateTour(req, res, next) {
   });
 }
 
-/** Modify (PATCH REQUEST) a book in the database by its id */
+/** (PATCH REQUEST) */
 async function patchTour(req, res, next) {
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-
-  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the tour patched data */
   res.status(200).send({
     status: 'success',
     message: 'PATCH request to modify a property of a tour',
@@ -80,18 +68,43 @@ async function patchTour(req, res, next) {
   });
 }
 
-/** Delete (DELETE REQUEST) a book in the database by its id */
+/** (DELETE REQUEST) */
 async function deleteTour(req, res, next) {
   const tour = await TourModel.findByIdAndDelete(req.params.id);
-
-  /** Check if the tour exists */
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the tour deleted data */
   res.status(200).send({
     status: 'success',
     message: `Tour ${req.params.id} has been deleted`,
     data: tour,
+  });
+}
+
+/** (GET REQUEST) */
+async function getAllReviews(req, res, next) {
+  const data = await TourModel.findById(req.params.id).select('reviews');
+
+  res.send({
+    status: 'success',
+    message: 'Array containing all reviews has been requested',
+    result: data.length,
+    data,
+  });
+}
+
+/** (PATCH REQUEST)  */
+async function createNewReview(req, res, next) {
+  const tour = await TourModel.findById(req.params.id);
+  tour.reviews.push(req.body);
+
+  const data = await TourModel.findByIdAndUpdate(req.params.id, tour, {
+    new: true,
+  });
+
+  res.send({
+    status: 'success',
+    message: 'New review has been received',
+    data,
   });
 }
 
@@ -102,4 +115,6 @@ export const controllers = {
   updateTour,
   patchTour,
   deleteTour,
+  getAllReviews,
+  createNewReview,
 };

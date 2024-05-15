@@ -1,5 +1,7 @@
 import mongoose from 'mongoose';
 
+//TODO: Create a getter to calculate reviews in ratings property
+
 const tourSchema = new mongoose.Schema(
   {
     productType: {type: String, default: 'tours'},
@@ -17,13 +19,6 @@ const tourSchema = new mongoose.Schema(
       minLength: 1,
       maxLength: 50,
       required: true,
-    },
-    price: {type: Number, min: 100, max: 9999, required: true},
-    discountPercentage: {
-      type: Number,
-      minLength: 1,
-      maxLength: 20,
-      default: 10,
     },
     duration: {type: Number, required: true, min: 1},
     maxGroupSize: {type: Number, min: 2, max: 50, required: true},
@@ -48,6 +43,39 @@ const tourSchema = new mongoose.Schema(
       maxLength: 500,
       default: 'tours.jpeg',
     },
+    price: {type: Number, min: 100, max: 9999, required: true},
+    discountPercentage: {
+      type: Number,
+      minLength: 1,
+      maxLength: 20,
+      default: 10,
+    },
+    reviews: {
+      type: [
+        {
+          userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Users',
+            required: true,
+          },
+          rating: {type: Number, required: true, minLength: 1, maxLength: 5},
+          name: {
+            type: String,
+            minLength: 1,
+            maxLength: 30,
+            default: 'Anonymous',
+          },
+          comment: {
+            type: String,
+            required: true,
+            minLength: 10,
+            maxLength: 500,
+          },
+        },
+      ],
+      default: [],
+    },
+    ratings: {type: Number, minLength: 1, maxLength: 5},
   },
   {timestamps: true}
 );

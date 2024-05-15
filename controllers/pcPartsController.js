@@ -2,97 +2,110 @@ import {PcPartModel} from '../models/PcPartModel.js';
 import {CreateAppError} from '../utils/createAppError.js';
 import {processQuery} from '../utils/processQuery.js';
 
-/** Get (GET REQUEST) all pc parts from the database */
+// TODO: Create Joi validation
+
+/** (GET REQUEST) */
 async function getAllPcParts(req, res) {
-  /** Call util function to process query request */
   const query = processQuery(req.query, PcPartModel);
+  const data = await query;
 
-  /** Execute query request to database */
-  const pcParts = await query;
-
-  /** Send a successful response with all pc parts data */
   res.status(200).send({
     status: 'success',
     message: 'GET request to get all pc parts was successful',
-    result: pcParts.length,
-    data: pcParts,
+    result: data.length,
+    data,
   });
 }
 
-/** Create (POST REQUEST) a new pc part in the database */
+/** (POST REQUEST) */
 async function createNewPcPart(req, res) {
-  const pcPart = await PcPartModel.create(req.body);
+  const data = await PcPartModel.create(req.body);
 
-  /** Send a successful response with the new pc part data */
   res.status(201).send({
     status: 'success',
     message: 'POST request to create a new pc part was successful',
-    data: pcPart,
+    data,
   });
 }
 
-/** Get (GET REQUEST) a pc part from the database by its id */
+/** (GET REQUEST) */
 async function getPcPart(req, res, next) {
-  const pcPart = await PcPartModel.findById(req.params.id);
+  const data = await PcPartModel.findById(req.params.id);
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the pc part exists */
-  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the pc part data */
   res.status(200).send({
     status: 'success',
     message: 'GET request for one pc part by id',
-    data: pcPart,
+    data,
   });
 }
 
-/** Update (PUT REQUEST) a pc part in the database by its id */
+/** (PUT REQUEST) */
 async function updatePcPart(req, res, next) {
-  const pcPart = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
+  const data = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the pc part exists */
-  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the updated pc part data */
   res.status(200).send({
     status: 'success',
     message: 'PUT request to update a pcPart by id',
-    data: pcPart,
+    data,
   });
 }
 
-/**  Modify (PATCH REQUEST) a pc part in the database by its id */
+/**  (PATCH REQUEST) */
 async function patchPcPart(req, res, next) {
-  const pcPart = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
+  const data = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the pc part exists */
-  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the updated pc part data */
   res.status(200).send({
     status: 'success',
     message: 'PATCH request to modify pc part successfully',
-    data: pcPart,
+    data,
   });
 }
 
-/** Delete (DELETE REQUEST) a pc part in the database by its id */
+/** (DELETE REQUEST) */
 async function deletePcPart(req, res, next) {
-  const pcPart = await PcPartModel.findByIdAndDelete(req.params.id);
+  const data = await PcPartModel.findByIdAndDelete(req.params.id);
+  if (!data) return next(new CreateAppError('Given id not found', 404));
 
-  /** Check if the pc part exists */
-  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
-
-  /** Send a successful response with the pc part data */
   res.status(200).send({
     status: 'success',
     message: `DELETE request for id: ${req.params.id} has been successfully`,
-    data: pcPart,
+    data,
+  });
+}
+
+/** (GET REQUEST) */
+async function getAllReviews(req, res, next) {
+  const data = await PcPartModel.findById(req.params.id).select('reviews');
+
+  res.send({
+    status: 'success',
+    message: 'Array containing all reviews has been requested',
+    result: data.length,
+    data,
+  });
+}
+
+/** (PATCH REQUEST)  */
+async function createNewReview(req, res, next) {
+  const part = await PcPartModel.findById(req.params.id);
+  part.reviews.push(req.body);
+
+  const data = await PcPartModel.findByIdAndUpdate(req.params.id, part, {
+    new: true,
+  });
+
+  res.send({
+    status: 'success',
+    message: 'New review has been received',
+    data,
   });
 }
 
@@ -103,4 +116,6 @@ export const controllers = {
   updatePcPart,
   patchPcPart,
   deletePcPart,
+  getAllReviews,
+  createNewReview,
 };
