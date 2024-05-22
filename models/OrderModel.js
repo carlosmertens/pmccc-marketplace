@@ -6,7 +6,14 @@ const OrderSchema = mongoose.Schema({
     ref: 'Users',
   },
   detail: [{id: {type: mongoose.Schema.Types.ObjectId}, productType: String}],
-  TotalPrice: {type: Number}, // TODO: GETTER
+  /**
+   * guest id
+   * {
+   * product id
+   * frozen price
+   * }
+   */
+  TotalPrice: {type: Number},
   status: {
     type: String,
     enum: {

@@ -2,8 +2,6 @@ import mongoose from 'mongoose';
 import Joi from 'joi';
 import jwt from 'jsonwebtoken';
 
-//TODO: Option to newsletter (true/false)
-
 /** Defines the user schema for storing user data in MongoDB */
 const userSchema = new mongoose.Schema(
   {
@@ -33,14 +31,14 @@ const userSchema = new mongoose.Schema(
       default: 'unknown',
     },
     homeAddress: {
-      street: {type: String, default: ''},
-      city: {type: String, default: ''},
-      country: {type: String, default: ''},
+      street: {type: String, default: '', lowercase: true},
+      city: {type: String, default: '', lowercase: true},
+      country: {type: String, default: '', lowercase: true},
     },
     shippingAddress: {
-      street: {type: String, default: ''},
-      city: {type: String, default: ''},
-      country: {type: String, default: ''},
+      street: {type: String, default: '', lowercase: true},
+      city: {type: String, default: '', lowercase: true},
+      country: {type: String, default: '', lowercase: true},
     },
     orders: [{type: mongoose.Schema.Types.ObjectId}],
     email: {
@@ -62,6 +60,7 @@ const userSchema = new mongoose.Schema(
     newsletter: {type: Boolean, default: false},
     isAdmin: {type: Boolean, default: false},
   },
+  // myTours: {type: }
   {timestamps: true}
 );
 
