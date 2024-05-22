@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "662e9ac9a980f598bf8ed598"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "Stellar Blade",
   "console": "PlayStation 5",
   "genre": "Simulation",
@@ -24,7 +24,7 @@
   "_id": {
     "$oid": "662e9b37a980f598bf8ed59a"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "Uncharted Legacy of Thieves Collection",
   "console": "PlayStation 5",
   "genre": "Adventure",
@@ -46,7 +46,7 @@
   "_id": {
     "$oid": "662e9bc0a980f598bf8ed59c"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "Fallout 4 Day One Edition",
   "console": "Xbox",
   "genre": "Action",
@@ -68,7 +68,7 @@
   "_id": {
     "$oid": "662e9c02a980f598bf8ed59f"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "Hogwarts Legacy",
   "console": "Xbox",
   "genre": "Action",
@@ -90,7 +90,7 @@
   "_id": {
     "$oid": "662e9c43a980f598bf8ed5a1"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "Battlefield 2042 - Standard Edition",
   "console": "Xbox",
   "genre": "War",
@@ -112,7 +112,7 @@
   "_id": {
     "$oid": "662e9ca3a980f598bf8ed5a3"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "Minecraft: Nintendo Switch Edition",
   "console": "Nintendo Switch",
   "genre": "Strategy",
@@ -134,7 +134,7 @@
   "_id": {
     "$oid": "662e9cf7a980f598bf8ed5a5"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "Mario Kart 8 Deluxe",
   "console": "Nintendo Switch",
   "genre": "Sport",
@@ -156,7 +156,7 @@
   "_id": {
     "$oid": "662e9d41a980f598bf8ed5a7"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "The Legend of Zelda: Tears of the Kingdom",
   "console": "Nintendo Switch",
   "genre": "Adventure",
@@ -178,7 +178,7 @@
   "_id": {
     "$oid": "662e9dcda980f598bf8ed5ab"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "EA SPORTS FC 24 Standard Edition",
   "console": "PlayStation 4",
   "genre": "Sport",
@@ -200,7 +200,7 @@
   "_id": {
     "$oid": "662e9df3a980f598bf8ed5ad"
   },
-  "productType": "video_games",
+  "productType": "video-games",
   "name": "WWE 2K24",
   "console": "PlayStation 4",
   "genre": "Sport",
@@ -212,9 +212,21 @@
     "$date": "2024-04-28T19:05:23.507Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T19:05:23.507Z"
+    "$date": "2024-05-22T13:37:03.760Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratingAvg": 0
+  "reviews": [
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 5,
+      "name": "Pieter",
+      "comment": "djkncjclfv ljeoijeorijfierjc jerououohfeoh oheouh",
+      "_id": {
+        "$oid": "664df4ffd49b3fbfff8cabdb"
+      }
+    }
+  ],
+  "ratingAvg": 5
 }]

@@ -2,7 +2,7 @@
   "_id": {
     "$oid": "662e947030281a9e8122c0e4"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "Vengeance LPX 16 GB",
   "brand": "Corsair",
   "price": 40,
@@ -24,7 +24,7 @@
   "_id": {
     "$oid": "662e94ae30281a9e8122c0e6"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "Vengeance 32 GB",
   "brand": "Corsair",
   "price": 75,
@@ -46,7 +46,7 @@
   "_id": {
     "$oid": "662e950b30281a9e8122c0e8"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "Trident Z5 RGB 32 GB",
   "brand": "G.Skill",
   "price": 104,
@@ -68,7 +68,7 @@
   "_id": {
     "$oid": "662e958f30281a9e8122c0ea"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "FURY Beast 32 GB",
   "brand": "Kingstom",
   "price": 110,
@@ -90,7 +90,7 @@
   "_id": {
     "$oid": "662e95fc30281a9e8122c0ec"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "Ryzen 7 7800X3D 4.2 GHz",
   "brand": "AMD",
   "price": 380,
@@ -112,7 +112,7 @@
   "_id": {
     "$oid": "662e961a30281a9e8122c0ee"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "Ryzen 5 7600X 4.7 GHz",
   "brand": "AMD",
   "price": 205,
@@ -134,7 +134,7 @@
   "_id": {
     "$oid": "662e963b30281a9e8122c0f0"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "Core i9-14900K 3.2 GHz",
   "brand": "Intel",
   "price": 530,
@@ -156,7 +156,7 @@
   "_id": {
     "$oid": "662e965030281a9e8122c0f2"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "Core i7-14700K 3.4 GHz",
   "brand": "Intel",
   "price": 390,
@@ -178,7 +178,7 @@
   "_id": {
     "$oid": "662e96d030281a9e8122c0f5"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "GeForce RTX 4060 8 GB",
   "brand": "Asus",
   "price": 300,
@@ -200,7 +200,7 @@
   "_id": {
     "$oid": "662e96fd30281a9e8122c0f7"
   },
-  "productType": "pc_parts",
+  "productType": "pc-parts",
   "name": "GeForce RTX 4090 24 GB",
   "brand": "Nvidia",
   "price": 1950,
