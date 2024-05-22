@@ -36,7 +36,14 @@ const BookSchema = new mongoose.Schema(
       default: [],
     },
     //TODO: Create a getter to calculate the reviews
-    ratings: {type: Number, minLength: 1, maxLength: 5},
+    ratingAvg: {
+      type: Number,
+      minLength: 1,
+      maxLength: 5,
+      set: () => {
+        3;
+      },
+    },
     price: {type: Number, minLength: 1, required: true},
     discountPercentage: {
       type: Number,

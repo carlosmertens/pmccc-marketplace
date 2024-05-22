@@ -8,8 +8,8 @@ const tourSchema = new mongoose.Schema(
     toursType: {
       type: String,
       enum: {
-        values: ['HIKING', 'MUSEUM', 'SIGHTSEEING'],
-        message: 'Creating a tours can only be HIKING, MUSEUM and SIGHTSEEING',
+        values: ['hiking', 'museum', 'sightseeing'],
+        message: 'Creating a tours can only be hiking, museum or sightseeing',
       },
       required: true,
     },
