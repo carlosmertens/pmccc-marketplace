@@ -2,12 +2,17 @@ import mongoose from 'mongoose';
 
 const videoGameSchema = new mongoose.Schema(
   {
-    productType: {type: String, default: 'video_games'},
-    name: {type: String, required: true, minLength: 1, maxLength: 100},
-    console: {type: String, required: true, minLength: 1, maxLength: 50},
-    genre: {type: String, required: true, minLength: 1, maxLength: 50},
-    description: {type: String, required: true, minLength: 15, maxLength: 1000},
-    imgSrc: {type: String, minLength: 1, maxLength: 500, default: 'game.jpg'},
+    productType: { type: String, default: 'video-games' },
+    name: { type: String, required: true, minLength: 1, maxLength: 100 },
+    console: { type: String, required: true, minLength: 1, maxLength: 50 },
+    genre: { type: String, required: true, minLength: 1, maxLength: 50 },
+    description: {
+      type: String,
+      required: true,
+      minLength: 15,
+      maxLength: 1000,
+    },
+    imgSrc: { type: String, minLength: 1, maxLength: 500, default: 'game.jpg' },
     reviews: {
       type: [
         {
@@ -16,7 +21,7 @@ const videoGameSchema = new mongoose.Schema(
             ref: 'Users',
             required: true,
           },
-          rating: {type: Number, required: true, minLength: 1, maxLength: 5},
+          rating: { type: Number, required: true, minLength: 1, maxLength: 5 },
           name: {
             type: String,
             minLength: 1,
@@ -34,8 +39,8 @@ const videoGameSchema = new mongoose.Schema(
       default: [],
     },
     //TODO: Create a getter to calculate the reviews
-    ratings: {type: Number, minLength: 1, maxLength: 5},
-    price: {type: Number, required: true, min: 1},
+    ratings: { type: Number, minLength: 1, maxLength: 5 },
+    price: { type: Number, required: true, min: 1 },
     discountPercentage: {
       type: Number,
       minLength: 1,
@@ -43,10 +48,10 @@ const videoGameSchema = new mongoose.Schema(
       default: 10,
     },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
-const VideoGameModel = mongoose.model('Video_games', videoGameSchema);
+const VideoGameModel = mongoose.model('video-games', videoGameSchema);
 
 function validateVideoGame(game) {
   const schema = Joi.object({
@@ -63,4 +68,4 @@ function validateVideoGame(game) {
   return schema.validate(game);
 }
 
-export {VideoGameModel, validateVideoGame};
+export { VideoGameModel, validateVideoGame };

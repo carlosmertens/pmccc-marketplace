@@ -1,0 +1,222 @@
+[
+  {
+    "_id": {
+      "$oid": "662e9ac9a980f598bf8ed598"
+    },
+    "productType": "video-games",
+    "name": "Stellar Blade",
+    "console": "PlayStation 5",
+    "genre": "Simulation",
+    "price": 65,
+    "discountPercentage": 10,
+    "description": "The future of humanity hangs on a knife's edge. Earth has been ravaged by strange, powerful creatures, and what's left of humanity has fled to a colony in space. From the Colony, EVE travels to the ravaged remnants of our planet with one mission: to save humanity by reclaiming Earth from the Nativa, the malevolent force that once devastated it.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T18:51:53.053Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T18:51:53.053Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9b37a980f598bf8ed59a"
+    },
+    "productType": "video-games",
+    "name": "Uncharted Legacy of Thieves Collection",
+    "console": "PlayStation 5",
+    "genre": "Adventure",
+    "price": 15,
+    "discountPercentage": 10,
+    "description": "Experience adventures like never before thanks to the features and incredible speed of the PlayStation5 console. Naughty Dog's award-winning realism and attention to detail are made even more breathtaking by the improved graphics and frame rate. Feel the blockbuster action of the UNCHARTED series through the haptic feedback and adaptive triggers of the DualSense wireless controller.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T18:53:43.566Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T18:53:43.566Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9bc0a980f598bf8ed59c"
+    },
+    "productType": "video-games",
+    "name": "Fallout 4 Day One Edition",
+    "console": "Xbox",
+    "genre": "Action",
+    "price": 18,
+    "discountPercentage": 10,
+    "description": "As the sole survivor of Vault 111, you enter a world devastated by nuclear war. Every second is a fight for survival and everything is in your hands. Only you can rebuild it and determine the fate of the wasteland. Welcome Home.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T18:56:00.942Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T18:56:00.942Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9c02a980f598bf8ed59f"
+    },
+    "productType": "video-games",
+    "name": "Hogwarts Legacy",
+    "console": "Xbox",
+    "genre": "Action",
+    "price": 35,
+    "discountPercentage": 10,
+    "description": "Experience Hogwarts in the 19th century. Find allies, fight against black magic and ultimately decide the fate of the world of magic. Your legacy is what you make of it. Live the unwritten.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T18:57:06.327Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T18:57:06.327Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9c43a980f598bf8ed5a1"
+    },
+    "productType": "video-games",
+    "name": "Battlefield 2042 - Standard Edition",
+    "console": "Xbox",
+    "genre": "War",
+    "price": 9,
+    "discountPercentage": 10,
+    "description": "BattlefieldTM 2042 is a first-person shooter that once again presents the full extent of war. Adapt her to a near-future, unhinged world and try to survive on dynamic battlefields with her squad and a state-of-the-art arsenal.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T18:58:11.330Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T18:58:11.330Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9ca3a980f598bf8ed5a3"
+    },
+    "productType": "video-games",
+    "name": "Minecraft: Nintendo Switch Edition",
+    "console": "Nintendo Switch",
+    "genre": "Strategy",
+    "price": 24,
+    "discountPercentage": 10,
+    "description": "Minecraft is a game where blocks are placed and adventures are experienced! Explore randomly created worlds, and build great things from the simple house to the most magnificent castle. Play in creative mode with unlimited resources or immerse deep into the world of Pberlife mode, and make weapons and armor to defend against dangerous creatures.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T18:59:47.500Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T18:59:47.500Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9cf7a980f598bf8ed5a5"
+    },
+    "productType": "video-games",
+    "name": "Mario Kart 8 Deluxe",
+    "console": "Nintendo Switch",
+    "genre": "Sport",
+    "price": 45,
+    "discountPercentage": 10,
+    "description": "If one item was never enough for you, you can now look forward to having two items with you at the same time. New items from previous titles in the series are also included this time, such as Buu Huu, who steals items, and the feather, which enables particularly high jumps in battle.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T19:01:11.363Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T19:01:11.363Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9d41a980f598bf8ed5a7"
+    },
+    "productType": "video-games",
+    "name": "The Legend of Zelda: Tears of the Kingdom",
+    "console": "Nintendo Switch",
+    "genre": "Adventure",
+    "price": 55,
+    "discountPercentage": 10,
+    "description": "Embark on a dangerous mission to uncover the truth behind a catastrophic event that has plunged the kingdom into chaos.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T19:02:25.013Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T19:02:25.013Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9dcda980f598bf8ed5ab"
+    },
+    "productType": "video-games",
+    "name": "EA SPORTS FC 24 Standard Edition",
+    "console": "PlayStation 4",
+    "genre": "Sport",
+    "price": 35,
+    "discountPercentage": 10,
+    "description": "Three groundbreaking technologies bring you even closer to football and create unique realism in every game: HyperMotionV*, Opta-optimized playing styles and the improved Frostbite engine. HyperMotionV maps the real football with volumetric data from over 180 men's and women's professional games and ensures that the movements in the game correspond exactly to the real game.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T19:04:45.958Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T19:04:45.958Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  },
+  {
+    "_id": {
+      "$oid": "662e9df3a980f598bf8ed5ad"
+    },
+    "productType": "video-games",
+    "name": "WWE 2K24",
+    "console": "PlayStation 4",
+    "genre": "Sport",
+    "price": 42,
+    "discountPercentage": 10,
+    "description": "WrestleMania is the biggest event in sports entertainment – ​​where superstars become WWE legends. Experience a captivating retelling of WrestleMania's greatest moments in 2K Showcase of The Immortals. Here you'll relive a series of the most unforgettable matches that defined entire careers.",
+    "imgSrc": "game.jpg",
+    "createdAt": {
+      "$date": "2024-04-28T19:05:23.507Z"
+    },
+    "updatedAt": {
+      "$date": "2024-04-28T19:05:23.507Z"
+    },
+    "__v": 0,
+    "reviews": [],
+    "ratings": 1
+  }
+]

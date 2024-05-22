@@ -2,12 +2,22 @@ import mongoose from 'mongoose';
 
 const pcPartSchema = new mongoose.Schema(
   {
-    productType: {type: String, default: 'pc_parts'},
-    name: {type: String, minLength: 1, maxLength: 100, required: true},
-    brand: {type: String, minLength: 1, maxLength: 50, required: true},
-    category: {type: String, minLength: 1, maxLength: 50, required: true},
-    description: {type: String, minLength: 15, maxLength: 1000, required: true},
-    imgSrc: {type: String, minLength: 1, maxLength: 500, default: 'pcpart.jpg'},
+    productType: { type: String, default: 'pc-parts' },
+    name: { type: String, minLength: 1, maxLength: 100, required: true },
+    brand: { type: String, minLength: 1, maxLength: 50, required: true },
+    category: { type: String, minLength: 1, maxLength: 50, required: true },
+    description: {
+      type: String,
+      minLength: 15,
+      maxLength: 1000,
+      required: true,
+    },
+    imgSrc: {
+      type: String,
+      minLength: 1,
+      maxLength: 500,
+      default: 'pcpart.jpg',
+    },
     reviews: {
       type: [
         {
@@ -16,7 +26,7 @@ const pcPartSchema = new mongoose.Schema(
             ref: 'Users',
             required: true,
           },
-          rating: {type: Number, required: true, minLength: 1, maxLength: 5},
+          rating: { type: Number, required: true, minLength: 1, maxLength: 5 },
           name: {
             type: String,
             minLength: 1,
@@ -34,8 +44,8 @@ const pcPartSchema = new mongoose.Schema(
       default: [],
     },
     //TODO: Create a getter to calculate the reviews
-    ratings: {type: Number, minLength: 1, maxLength: 5},
-    price: {type: Number, minLength: 1, required: true},
+    ratings: { type: Number, minLength: 1, maxLength: 5 },
+    price: { type: Number, minLength: 1, required: true },
     discountPercentage: {
       type: Number,
       minLength: 1,
@@ -43,10 +53,10 @@ const pcPartSchema = new mongoose.Schema(
       default: 10,
     },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
-const PcPartModel = mongoose.model('Pc_part', pcPartSchema);
+const PcPartModel = mongoose.model('pc-part', pcPartSchema);
 
 function validatePcParts(part) {
   const schema = Joi.object({
@@ -62,4 +72,4 @@ function validatePcParts(part) {
   return schema.validate(part);
 }
 
-export {PcPartModel, validatePcParts};
+export { PcPartModel, validatePcParts };

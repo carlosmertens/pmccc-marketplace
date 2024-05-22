@@ -3,13 +3,18 @@ import Joi from 'joi';
 
 const BookSchema = new mongoose.Schema(
   {
-    productType: {type: String, default: 'books'},
-    name: {type: String, minLength: 1, maxLength: 50, required: true},
-    author: {type: String, minLength: 1, maxLength: 50, required: true},
-    genre: {type: String, minLength: 1, maxLength: 50, required: true},
-    pages: {type: Number, required: true},
-    description: {type: String, minLength: 15, maxLength: 1000, required: true},
-    imgSrc: {type: String, minLength: 1, maxLength: 500, default: 'book.jpg'},
+    productType: { type: String, default: 'books' },
+    name: { type: String, minLength: 1, maxLength: 50, required: true },
+    author: { type: String, minLength: 1, maxLength: 50, required: true },
+    genre: { type: String, minLength: 1, maxLength: 50, required: true },
+    pages: { type: Number, required: true },
+    description: {
+      type: String,
+      minLength: 15,
+      maxLength: 1000,
+      required: true,
+    },
+    imgSrc: { type: String, minLength: 1, maxLength: 500, default: 'book.jpg' },
     reviews: {
       type: [
         {
@@ -18,7 +23,7 @@ const BookSchema = new mongoose.Schema(
             ref: 'Users',
             required: true,
           },
-          rating: {type: Number, required: true, minLength: 1, maxLength: 5},
+          rating: { type: Number, required: true, minLength: 1, maxLength: 5 },
           name: {
             type: String,
             minLength: 1,
@@ -38,13 +43,11 @@ const BookSchema = new mongoose.Schema(
     //TODO: Create a getter to calculate the reviews
     ratingAvg: {
       type: Number,
-      minLength: 1,
-      maxLength: 5,
-      set: () => {
-        3;
-      },
+      // minLength: 1,
+      // maxLength: 5,
+      default: 0,
     },
-    price: {type: Number, minLength: 1, required: true},
+    price: { type: Number, minLength: 1, required: true },
     discountPercentage: {
       type: Number,
       minLength: 1,
@@ -52,7 +55,11 @@ const BookSchema = new mongoose.Schema(
       default: 10,
     },
   },
-  {timestamps: true}
+  { timestamps: true },
+  {
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+  }
 );
 
 const BookModel = mongoose.model('Book', BookSchema);
@@ -72,4 +79,4 @@ function validateBook(book) {
   return schema.validate(book);
 }
 
-export {BookModel, validateBook};
+export { BookModel, validateBook };

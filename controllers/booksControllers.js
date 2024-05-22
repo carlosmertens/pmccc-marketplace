@@ -1,6 +1,6 @@
-import {BookModel, validateBook} from '../models/BookModel.js';
-import {CreateAppError} from '../utils/createAppError.js';
-import {processQuery} from '../utils/processQuery.js';
+import { BookModel, validateBook } from '../models/BookModel.js';
+import { CreateAppError } from '../utils/createAppError.js';
+import { processQuery } from '../utils/processQuery.js';
 
 /** (GET REQUEST) */
 async function getAllBooks(req, res) {
@@ -20,7 +20,7 @@ async function getAllBooks(req, res) {
 /** (POST REQUEST) */
 async function createNewBook(req, res) {
   /** Validate data */
-  const {error} = validateBook(req.body);
+  const { error } = validateBook(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Create new book */
@@ -51,7 +51,7 @@ async function getBook(req, res, next) {
 /** (PUT REQUEST) */
 async function updateBook(req, res, next) {
   /** Validate data */
-  const {error} = validateBook(req.body);
+  const { error } = validateBook(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Find and update a book */
@@ -103,7 +103,19 @@ async function deleteBook(req, res, next) {
 /** (GET REQUEST) */
 async function getAllReviews(req, res, next) {
   /** Find Reviews */
-  const data = await BookModel.findById(req.params.id).select('reviews');
+  const data = await BookModel.findById(req.params.id).select(
+    'reviews ratingAvg'
+  );
+
+  /** Set review average */
+
+  // console.log(data.reviews.length);
+
+  // const avg =
+  //   data.reviews.reduce((acc, value) => acc + value.rating, 0) /
+  //   data.reviews.length;
+
+  // console.log(avg);
 
   /** Send a successful response */
   res.send({
@@ -119,6 +131,13 @@ async function createNewReview(req, res, next) {
   /** Find and update review property */
   const book = await BookModel.findById(req.params.id);
   book.reviews.push(req.body);
+
+  /** Calculate reviews average */
+  console.log(book);
+
+  book.ratingAvg =
+    book.reviews.reduce((acc, value) => acc + value.rating, 0) /
+    book.reviews.length;
 
   /** Save back data */
   const data = await BookModel.findByIdAndUpdate(req.params.id, book, {
