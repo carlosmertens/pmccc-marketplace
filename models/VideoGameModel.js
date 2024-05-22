@@ -38,8 +38,10 @@ const videoGameSchema = new mongoose.Schema(
       ],
       default: [],
     },
-    //TODO: Create a getter to calculate the reviews
-    ratings: { type: Number, minLength: 1, maxLength: 5 },
+    ratingAvg: {
+      type: Number,
+      default: 0,
+    },
     price: { type: Number, required: true, min: 1 },
     discountPercentage: {
       type: Number,

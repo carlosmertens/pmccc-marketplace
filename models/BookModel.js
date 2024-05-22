@@ -40,11 +40,8 @@ const BookSchema = new mongoose.Schema(
       ],
       default: [],
     },
-    //TODO: Create a getter to calculate the reviews
     ratingAvg: {
       type: Number,
-      // minLength: 1,
-      // maxLength: 5,
       default: 0,
     },
     price: { type: Number, minLength: 1, required: true },
@@ -55,11 +52,7 @@ const BookSchema = new mongoose.Schema(
       default: 10,
     },
   },
-  { timestamps: true },
-  {
-    toJSON: { virtuals: true },
-    toObject: { virtuals: true },
-  }
+  { timestamps: true }
 );
 
 const BookModel = mongoose.model('Book', BookSchema);

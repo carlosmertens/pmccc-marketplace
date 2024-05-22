@@ -19,7 +19,7 @@
   },
   "__v": 0,
   "reviews": [],
-  "ratings": 1
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -42,7 +42,7 @@
   },
   "__v": 0,
   "reviews": [],
-  "ratings": 1
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -65,7 +65,7 @@
   },
   "__v": 0,
   "reviews": [],
-  "ratings": 1
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -84,11 +84,89 @@
     "$date": "2024-04-28T17:47:55.997Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T17:47:55.997Z"
+    "$date": "2024-05-15T07:41:08.542Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratings": 1
+  "reviews": [
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 3,
+      "name": "CarlosM",
+      "comment": "blo blo blo blo blo blo",
+      "_id": {
+        "$oid": "6643cc81fb5fa51b7894960d"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 3,
+      "name": "Calichan",
+      "comment": "ble ble ble ble ble ble",
+      "_id": {
+        "$oid": "6643cc9afb5fa51b78949612"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 2,
+      "name": "mertens",
+      "comment": "Hola Hola Hola Hola hola holla",
+      "_id": {
+        "$oid": "6643d33822ee96ffeb5e4520"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 4,
+      "name": "mertens",
+      "comment": "En la cima del mundo vive un pollito",
+      "_id": {
+        "$oid": "6643d5679c4cdcab8930bfe8"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 4,
+      "name": "mertens",
+      "comment": "El robot estaba mas loco que una cabra. Pero me gusto el libro",
+      "_id": {
+        "$oid": "6644409d71aea2d628a93d10"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 4,
+      "name": "mertens",
+      "comment": "El que prueba y prueba, consigue resultados",
+      "_id": {
+        "$oid": "6644410bed1f1ae378e35de7"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 4,
+      "name": "Claudia",
+      "comment": "djkncjclfv ljeoijeorijfierjc jerououohfeoh oheouh",
+      "_id": {
+        "$oid": "664467146c1b6a8fe998c3fb"
+      }
+    }
+  ],
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -111,7 +189,7 @@
   },
   "__v": 0,
   "reviews": [],
-  "ratings": 1
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -134,7 +212,7 @@
   },
   "__v": 0,
   "reviews": [],
-  "ratings": 1
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -157,7 +235,7 @@
   },
   "__v": 0,
   "reviews": [],
-  "ratings": 1
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -176,11 +254,34 @@
     "$date": "2024-04-28T17:57:19.905Z"
   },
   "updatedAt": {
-    "$date": "2024-05-08T23:21:39.385Z"
+    "$date": "2024-05-14T20:37:40.655Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratings": 1
+  "reviews": [
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 4,
+      "name": "Carlos",
+      "comment": "bla bla bla bla bla bla",
+      "_id": {
+        "$oid": "6643ca03564a3b2f46c380de"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 3,
+      "name": "CarlosM",
+      "comment": "blo blo blo blo blo blo",
+      "_id": {
+        "$oid": "6643cb94a984ccab3fc07a6e"
+      }
+    }
+  ],
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -203,7 +304,7 @@
   },
   "__v": 0,
   "reviews": [],
-  "ratings": 1
+  "ratingAvg": 0
 },
 {
   "_id": {
@@ -222,9 +323,21 @@
     "$date": "2024-04-28T18:03:48.063Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T18:03:48.063Z"
+    "$date": "2024-05-22T11:32:49.077Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratings": 1
+  "reviews": [
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 4,
+      "name": "Claudia",
+      "comment": "djkncjclfv ljeoijeorijfierjc jerououohfeoh oheouh",
+      "_id": {
+        "$oid": "664dd7e1b9e27a48d9f4ff18"
+      }
+    }
+  ],
+  "ratingAvg": 0
 }]

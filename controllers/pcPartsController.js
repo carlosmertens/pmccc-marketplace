@@ -1,6 +1,6 @@
-import {PcPartModel} from '../models/PcPartModel.js';
-import {CreateAppError} from '../utils/createAppError.js';
-import {processQuery} from '../utils/processQuery.js';
+import { PcPartModel } from '../models/PcPartModel.js';
+import { CreateAppError } from '../utils/createAppError.js';
+import { processQuery } from '../utils/processQuery.js';
 
 // TODO: Create Joi validation
 
@@ -97,6 +97,10 @@ async function getAllReviews(req, res, next) {
 async function createNewReview(req, res, next) {
   const part = await PcPartModel.findById(req.params.id);
   part.reviews.push(req.body);
+
+  part.ratingAvg =
+    part.reviews.reduce((acc, value) => acc + value.rating, 0) /
+    part.reviews.length;
 
   const data = await PcPartModel.findByIdAndUpdate(req.params.id, part, {
     new: true,

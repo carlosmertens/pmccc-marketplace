@@ -107,16 +107,6 @@ async function getAllReviews(req, res, next) {
     'reviews ratingAvg'
   );
 
-  /** Set review average */
-
-  // console.log(data.reviews.length);
-
-  // const avg =
-  //   data.reviews.reduce((acc, value) => acc + value.rating, 0) /
-  //   data.reviews.length;
-
-  // console.log(avg);
-
   /** Send a successful response */
   res.send({
     status: 'success',
@@ -133,8 +123,6 @@ async function createNewReview(req, res, next) {
   book.reviews.push(req.body);
 
   /** Calculate reviews average */
-  console.log(book);
-
   book.ratingAvg =
     book.reviews.reduce((acc, value) => acc + value.rating, 0) /
     book.reviews.length;

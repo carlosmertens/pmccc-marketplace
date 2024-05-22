@@ -1,8 +1,8 @@
-import {TourModel} from '../models/TourModel.js';
-import {CreateAppError} from '../utils/createAppError.js';
-import {processQuery} from '../utils/processQuery.js';
+import { TourModel } from '../models/TourModel.js';
+import { CreateAppError } from '../utils/createAppError.js';
+import { processQuery } from '../utils/processQuery.js';
 
- // TODO: Create Joi validation
+// TODO: Create Joi validation
 
 /** (GET REQUEST) */
 async function getAllTours(req, res) {
@@ -96,6 +96,10 @@ async function getAllReviews(req, res, next) {
 async function createNewReview(req, res, next) {
   const tour = await TourModel.findById(req.params.id);
   tour.reviews.push(req.body);
+
+  tour.ratingAvg =
+    tour.reviews.reduce((acc, value) => acc + value.rating, 0) /
+    tour.reviews.length;
 
   const data = await TourModel.findByIdAndUpdate(req.params.id, tour, {
     new: true,

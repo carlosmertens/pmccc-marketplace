@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 
 const tourSchema = new mongoose.Schema(
   {
-    productType: {type: String, default: 'tours'},
+    productType: { type: String, default: 'tours' },
     toursType: {
       type: String,
       enum: {
@@ -20,8 +20,8 @@ const tourSchema = new mongoose.Schema(
       maxLength: 50,
       required: true,
     },
-    duration: {type: Number, required: true, min: 1},
-    maxGroupSize: {type: Number, min: 2, max: 50, required: true},
+    duration: { type: Number, required: true, min: 1 },
+    maxGroupSize: { type: Number, min: 2, max: 50, required: true },
     difficulty: {
       type: String,
       enum: {
@@ -36,14 +36,14 @@ const tourSchema = new mongoose.Schema(
       maxLength: 1000,
       default: 'Contact us for more information!',
     },
-    startDates: {type: [Date], select: false},
+    startDates: { type: [Date], select: false },
     imgSrc: {
       type: String,
       minLength: 1,
       maxLength: 500,
       default: 'tours.jpeg',
     },
-    price: {type: Number, min: 100, max: 9999, required: true},
+    price: { type: Number, min: 100, max: 9999, required: true },
     discountPercentage: {
       type: Number,
       minLength: 1,
@@ -58,7 +58,7 @@ const tourSchema = new mongoose.Schema(
             ref: 'Users',
             required: true,
           },
-          rating: {type: Number, required: true, minLength: 1, maxLength: 5},
+          rating: { type: Number, required: true, minLength: 1, maxLength: 5 },
           name: {
             type: String,
             minLength: 1,
@@ -75,9 +75,12 @@ const tourSchema = new mongoose.Schema(
       ],
       default: [],
     },
-    ratings: {type: Number, minLength: 1, maxLength: 5},
+    ratingAvg: {
+      type: Number,
+      default: 0,
+    },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
 function validateTour(tour) {
@@ -97,4 +100,4 @@ function validateTour(tour) {
 
 const TourModel = mongoose.model('tours', tourSchema);
 
-export {TourModel, validateTour};
+export { TourModel, validateTour };

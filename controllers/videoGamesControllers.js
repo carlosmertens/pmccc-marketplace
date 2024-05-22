@@ -1,6 +1,6 @@
-import {VideoGameModel} from '../models/VideoGameModel.js';
-import {CreateAppError} from '../utils/createAppError.js';
-import {processQuery} from '../utils/processQuery.js';
+import { VideoGameModel } from '../models/VideoGameModel.js';
+import { CreateAppError } from '../utils/createAppError.js';
+import { processQuery } from '../utils/processQuery.js';
 
 // TODO: Create Joi validation
 
@@ -97,6 +97,10 @@ async function getAllReviews(req, res, next) {
 async function createNewReview(req, res, next) {
   const game = await VideoGameModel.findById(req.params.id);
   game.reviews.push(req.body);
+
+  game.ratingAvg =
+    game.reviews.reduce((acc, value) => acc + value.rating, 0) /
+    game.reviews.length;
 
   const data = await VideoGameModel.findByIdAndUpdate(req.params.id, game, {
     new: true,
