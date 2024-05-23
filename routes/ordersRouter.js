@@ -1,15 +1,18 @@
-import {Router} from 'express';
-import {ctrlrs} from '../controllers/orderControllers.js';
-import {asyncWrapper} from '../middleware/asyncWrapper.js';
+import { Router } from 'express';
+import { controllers } from '../controllers/orderControllers.js';
+import { asyncWrapper } from '../middleware/asyncWrapper.js';
+import { auth } from '../middleware/auth.js';
+import { admin } from '../middleware/admin.js';
+
+/** Base Route: /api/v1/orders */
 
 export const ordersRouter = Router();
 
-ordersRouter
-  .route('/')
-  .get(asyncWrapper(ctrlrs.getOrdersCtrlr))
-  .post(asyncWrapper(ctrlrs.addOrderCtrlr));
+ordersRouter.get('/', [auth, admin], asyncWrapper(controllers.getAllOrders));
+
+ordersRouter.post('/checkout', auth, asyncWrapper(controllers.createNewOrder));
 
 ordersRouter
   .route('/:id')
-  .get(asyncWrapper(ctrlrs.getOrderByIdCtrlr))
-  .delete(asyncWrapper(ctrlrs.deleteOrderByIdCtrlr));
+  .get(auth, asyncWrapper(controllers.getOrder))
+  .delete([auth, admin], asyncWrapper(controllers.deleteOrder));

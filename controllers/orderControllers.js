@@ -1,43 +1,54 @@
-import Order from '../models/OrderModel.js';
-import {User} from '../models/UserModel.js';
+import { OrderModel } from '../models/OrderModel.js';
+import { User } from '../models/UserModel.js';
+import { processQuery } from '../utils/processQuery.js';
 
-/** Returns a list of all orders*/
-export const getOrdersCtrlr = async (req, res) => {
-  const allOrders = await Order.find();
-  if (allOrders.length === 0)
-    return res.status(404).send({status: 'fail', message: 'No orders found'});
-  res.status(200).send(allOrders);
+/** (GET REQUEST) */
+export const getAllOrders = async (req, res) => {
+  const query = processQuery(req.body);
+  const data = await query;
+
+  res.send({
+    status: 'success',
+    message: 'All orders has been sent',
+    result: data.length,
+    data,
+  });
 };
 
-/** Creates a new order linked to a user*/
-export const addOrderCtrlr = async (req, res) => {
-  const {email} = req.body;
-  const currentUser = await User.findOne({email});
-  const currentUserId = currentUser._id;
-  await Order.create({user: currentUserId});
-  res.status(201).send({status: 'success', message: 'Order added'});
+/** (POST REQUEST) */
+export const createNewOrder = async (req, res) => {
+  const order = await OrderModel.create(req.body);
+
+  const user = await User.findById(req.user._id);
+
+  user.orders.push(order);
+
+  res.send({ status: 'success', message: 'Order created', order });
 };
 
-/** Returns the order by id with user info*/
-export const getOrderByIdCtrlr = async (req, res) => {
-  const idForSearch = req.params.id;
-  const order = await Order.findById(idForSearch).populate(
-    'user',
-    '-__v -password -email -age -createdOn -isAdmin'
-  );
-  res.status(200).json(order);
+/** (GET REQUEST) */
+export const getOrder = async (req, res) => {
+  const data = await OrderModel.findById(req.params.id);
+  if (!data) return next(new CreateAppError('Given id not found', 404));
+
+  res.send({
+    status: 'success',
+    message: 'Individual request by id was provided',
+    data,
+  });
 };
 
-/** Deleted the order by id providing a valid id*/
-export const deleteOrderByIdCtrlr = async (req, res) => {
-  const idForSearch = req.params.id;
-  await Order.findByIdAndDelete(idForSearch);
-  res.send({status: 'success', message: 'Order deleted'});
+/** (DELETE REQUEST) */
+export const deleteOrder = async (req, res) => {
+  const data = await OrderModel.findByIdAndDelete(req.params.id);
+  if (!data) return next(new CreateAppError('Given id not found', 404));
+
+  res.send({ status: 'success', message: 'Order deleted', data });
 };
 
-export const ctrlrs = {
-  getOrdersCtrlr,
-  addOrderCtrlr,
-  getOrderByIdCtrlr,
-  deleteOrderByIdCtrlr,
+export const controllers = {
+  getAllOrders,
+  createNewOrder,
+  getOrder,
+  deleteOrder,
 };

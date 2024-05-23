@@ -5,24 +5,22 @@ const OrderSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',
   },
-  detail: [{id: {type: mongoose.Schema.Types.ObjectId}, productType: String}],
-  /**
-   * guest id
-   * {
-   * product id
-   * frozen price
-   * }
-   */
-  TotalPrice: {type: Number},
+  detail: [
+    { productId: String, productType: String, name: String, price: Number },
+  ],
+  TotalPrice: { type: Number },
   status: {
     type: String,
     enum: {
       values: ['pending', 'complete'],
       message: 'Options: pending | complete',
     },
+    default: 'pending',
   },
 });
 
-const orderModel = mongoose.model('Orders', OrderSchema);
+const OrderModel = mongoose.model('Orders', OrderSchema);
 
-export default orderModel;
+// TODO: Joi validation function
+
+export { OrderModel };

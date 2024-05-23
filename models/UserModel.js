@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema(
       trim: true,
       lowercase: true,
     },
-    age: {type: Number, required: true, min: 18, max: 120},
+    age: { type: Number, required: true, min: 18, max: 120 },
     gender: {
       type: String,
       enum: {
@@ -31,16 +31,16 @@ const userSchema = new mongoose.Schema(
       default: 'unknown',
     },
     homeAddress: {
-      street: {type: String, default: '', lowercase: true},
-      city: {type: String, default: '', lowercase: true},
-      country: {type: String, default: '', lowercase: true},
+      street: { type: String, default: '', lowercase: true },
+      city: { type: String, default: '', lowercase: true },
+      country: { type: String, default: '', lowercase: true },
     },
     shippingAddress: {
-      street: {type: String, default: '', lowercase: true},
-      city: {type: String, default: '', lowercase: true},
-      country: {type: String, default: '', lowercase: true},
+      street: { type: String, default: '', lowercase: true },
+      city: { type: String, default: '', lowercase: true },
+      country: { type: String, default: '', lowercase: true },
     },
-    orders: [{type: mongoose.Schema.Types.ObjectId}],
+    orders: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Orders' }],
     email: {
       type: String,
       required: true,
@@ -57,11 +57,11 @@ const userSchema = new mongoose.Schema(
       maxLength: 1024,
       trim: true,
     },
-    newsletter: {type: Boolean, default: false},
-    isAdmin: {type: Boolean, default: false},
+    newsletter: { type: Boolean, default: false },
+    isAdmin: { type: Boolean, default: false },
   },
   // myTours: {type: }
-  {timestamps: true}
+  { timestamps: true }
 );
 
 /** Method that generates a JWT token containing user information */
@@ -75,7 +75,7 @@ userSchema.methods.generateJWT = function () {
       isAdmin: this.isAdmin,
     },
     process.env.JWT_SECRET_KEY,
-    {expiresIn: '2 day'}
+    { expiresIn: '2 day' }
   );
 };
 
@@ -140,6 +140,6 @@ function validateLogin(req) {
   return schema.validate(req);
 }
 
-const joi = {validateUser, validatePatch, validateLogin};
+const joi = { validateUser, validatePatch, validateLogin };
 
-export {User, joi};
+export { User, joi };
