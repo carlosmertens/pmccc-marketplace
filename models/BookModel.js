@@ -33,7 +33,7 @@ const BookSchema = new mongoose.Schema(
           comment: {
             type: String,
             required: true,
-            minLength: 10,
+            minLength: 2,
             maxLength: 500,
           },
         },

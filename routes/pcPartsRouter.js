@@ -1,8 +1,8 @@
-import {Router} from 'express';
-import {asyncWrapper} from '../middleware/asyncWrapper.js';
-import {controllers} from '../controllers/pcPartsController.js';
-import {auth} from '../middleware/auth.js';
-import {admin} from '../middleware/admin.js';
+import { Router } from 'express';
+import { asyncWrapper } from '../middleware/asyncWrapper.js';
+import { controllers } from '../controllers/pcPartsController.js';
+import { auth } from '../middleware/auth.js';
+import { admin } from '../middleware/admin.js';
 
 /** Base Route: /api/v1/pc-parts */
 
@@ -22,5 +22,5 @@ pcPartsRouter
 
 pcPartsRouter
   .route('/:id/reviews')
-  .get(asyncWrapper(controllers.getAllReviews))
+  .get(auth, asyncWrapper(controllers.getAllReviews))
   .patch(asyncWrapper(controllers.createNewReview));

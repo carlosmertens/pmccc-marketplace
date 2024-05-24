@@ -1,8 +1,8 @@
-import {Router} from 'express';
-import {asyncWrapper} from '../middleware/asyncWrapper.js';
-import {controllers} from '../controllers/toursControllers.js';
-import {auth} from '../middleware/auth.js';
-import {admin} from '../middleware/admin.js';
+import { Router } from 'express';
+import { asyncWrapper } from '../middleware/asyncWrapper.js';
+import { controllers } from '../controllers/toursControllers.js';
+import { auth } from '../middleware/auth.js';
+import { admin } from '../middleware/admin.js';
 
 /** Base Route: /api/v1/tours */
 
@@ -23,4 +23,4 @@ toursRouter
 toursRouter
   .route('/:id/reviews')
   .get(asyncWrapper(controllers.getAllReviews))
-  .patch(asyncWrapper(controllers.createNewReview));
+  .patch(auth, asyncWrapper(controllers.createNewReview));
