@@ -4,11 +4,17 @@ const OrderSchema = mongoose.Schema({
   userId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Users',
+    required: true,
   },
   detail: [
-    { productId: String, productType: String, name: String, price: Number },
+    {
+      productId: { type: String, required: true },
+      productType: { type: String, required: true },
+      name: { type: String, required: true },
+      price: { type: Number, required: true },
+    },
   ],
-  TotalPrice: { type: Number },
+  totalPrice: { type: Number, required: true },
   status: {
     type: String,
     enum: {
