@@ -17,4 +17,8 @@ ordersRouter
   .get(auth, asyncWrapper(controllers.getOrder))
   .delete([auth, admin], asyncWrapper(controllers.deleteOrder));
 
-ordersRouter.patch('/:id/status', asyncWrapper(controllers.orderStatus));
+ordersRouter.patch(
+  '/:id/status',
+  [auth, admin],
+  asyncWrapper(controllers.orderStatus)
+);
