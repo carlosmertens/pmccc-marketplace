@@ -19,6 +19,9 @@ export const getAllOrders = async (req, res) => {
 
 /** (POST REQUEST) */
 export const createNewOrder = async (req, res) => {
+  const body = req.body;
+  body.userId = req.user._id;
+
   const order = await OrderModel.create(req.body);
 
   const user = await User.findById(req.user._id);
