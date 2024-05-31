@@ -1,8 +1,8 @@
-import {Router} from 'express';
-import {controllers} from '../controllers/userControllers.js';
-import {asyncWrapper} from '../middleware/asyncWrapper.js';
-import {auth} from '../middleware/auth.js';
-import {admin} from '../middleware/admin.js';
+import { Router } from 'express';
+import { controllers } from '../controllers/userControllers.js';
+import { asyncWrapper } from '../middleware/asyncWrapper.js';
+import { auth } from '../middleware/auth.js';
+import { admin } from '../middleware/admin.js';
 
 /** Base Route: /api/v1/users/ */
 
@@ -18,5 +18,7 @@ userRouter
   .patch(auth, asyncWrapper(controllers.patchUser))
   .put(auth, asyncWrapper(controllers.updateUser))
   .delete(auth, asyncWrapper(controllers.deleteUser));
+
+userRouter.get('/me/newsletter', auth, asyncWrapper(controllers.getNewsletter));
 
 userRouter.post('/login', asyncWrapper(controllers.loginUser));
