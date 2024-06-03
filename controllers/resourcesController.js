@@ -1,7 +1,7 @@
-import {BookModel} from '../models/BookModel.js';
-import {VideoGameModel} from '../models/VideoGameModel.js';
-import {PcPartModel} from '../models/PcPartModel.js';
-import {TourModel} from '../models/TourModel.js';
+import { BookModel } from '../models/BookModel.js';
+import { VideoGameModel } from '../models/VideoGameModel.js';
+import { PcPartModel } from '../models/PcPartModel.js';
+import { TourModel } from '../models/TourModel.js';
 
 /** Get all resources (products, services) in the database */
 async function getResourcesList(req, res) {
@@ -30,7 +30,15 @@ async function getResourcesList(req, res) {
     name: 1,
   });
 
+  const categoriesArray = [
+    { _id: 1, name: 'Video-games', productType: 'category' },
+    { _id: 2, name: 'Books', productType: 'category' },
+    { _id: 3, name: 'Pc Parts', productType: 'category' },
+    { _id: 4, name: 'Tours', productType: 'category' },
+  ];
+
   let resources = [
+    ...categoriesArray,
     ...booksArray,
     ...videoGamesArray,
     ...pcPartsArray,
@@ -45,4 +53,4 @@ async function getResourcesList(req, res) {
   });
 }
 
-export const controllers = {getResourcesList};
+export const controllers = { getResourcesList };
