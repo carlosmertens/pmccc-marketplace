@@ -18,7 +18,7 @@
     "$date": "2024-04-29T10:59:56.171Z"
   },
   "__v": 0,
-  "imgSrc": "Sightseeing.jpeg",
+  "imgSrc": "seeing0.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -43,7 +43,7 @@
     "$date": "2024-04-29T11:00:51.959Z"
   },
   "__v": 0,
-  "imgSrc": "Sightseeing.jpeg",
+  "imgSrc": "seeing1.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -68,7 +68,7 @@
     "$date": "2024-04-29T11:02:19.252Z"
   },
   "__v": 0,
-  "imgSrc": "Sightseeing.jpeg",
+  "imgSrc": "seeing2.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -93,7 +93,7 @@
     "$date": "2024-04-29T11:07:46.946Z"
   },
   "__v": 0,
-  "imgSrc": "Hiking.jpeg",
+  "imgSrc": "hiking0.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -118,7 +118,7 @@
     "$date": "2024-04-29T11:06:20.093Z"
   },
   "__v": 0,
-  "imgSrc": "Hiking.jpeg",
+  "imgSrc": "hiking1.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -143,7 +143,7 @@
     "$date": "2024-04-29T11:09:47.470Z"
   },
   "__v": 0,
-  "imgSrc": "Hiking.jpeg",
+  "imgSrc": "hiking2.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -168,7 +168,7 @@
     "$date": "2024-05-15T07:43:47.012Z"
   },
   "__v": 0,
-  "imgSrc": "Museum.jpeg",
+  "imgSrc": "museum0.jpg",
   "productType": "tours",
   "reviews": [
     {
@@ -205,7 +205,7 @@
     "$date": "2024-04-29T11:11:41.472Z"
   },
   "__v": 0,
-  "imgSrc": "Museum.jpeg",
+  "imgSrc": "museum1.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -230,7 +230,7 @@
     "$date": "2024-04-29T11:12:21.103Z"
   },
   "__v": 0,
-  "imgSrc": "Museum.jpeg",
+  "imgSrc": "museum2.jpg",
   "productType": "tours",
   "reviews": [],
   "ratingAvg": 0
@@ -255,7 +255,7 @@
     "$date": "2024-05-15T05:24:22.088Z"
   },
   "__v": 0,
-  "imgSrc": "Museum.jpeg",
+  "imgSrc": "museum3.jpg",
   "productType": "tours",
   "reviews": [
     {

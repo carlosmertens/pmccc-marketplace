@@ -9,16 +9,33 @@
   "price": 65,
   "discountPercentage": 10,
   "description": "The future of humanity hangs on a knife's edge. Earth has been ravaged by strange, powerful creatures, and what's left of humanity has fled to a colony in space. From the Colony, EVE travels to the ravaged remnants of our planet with one mission: to save humanity by reclaiming Earth from the Nativa, the malevolent force that once devastated it.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video0.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:51:53.053Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T18:51:53.053Z"
+    "$date": "2024-05-28T13:41:13.154Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratingAvg": 0
+  "reviews": [
+    {
+      "rating": 3,
+      "name": "Gallina",
+      "comment": "jbdicbdeibcie ondochoeiqhocqehoic ermperf",
+      "_id": {
+        "$oid": "6655dec0b2cef4f9a37abcb6"
+      }
+    },
+    {
+      "rating": 5,
+      "name": "carlos",
+      "comment": "welfnouernkn pirjfo8yer8fhiok pojpiurf9uerjojer;k. pojrpjfpe",
+      "_id": {
+        "$oid": "6655def9b2cef4f9a37abd08"
+      }
+    }
+  ],
+  "ratingAvg": 4
 },
 {
   "_id": {
@@ -31,16 +48,25 @@
   "price": 15,
   "discountPercentage": 10,
   "description": "Experience adventures like never before thanks to the features and incredible speed of the PlayStation5 console. Naughty Dog's award-winning realism and attention to detail are made even more breathtaking by the improved graphics and frame rate. Feel the blockbuster action of the UNCHARTED series through the haptic feedback and adaptive triggers of the DualSense wireless controller.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video1.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:53:43.566Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T18:53:43.566Z"
+    "$date": "2024-05-29T06:59:13.294Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratingAvg": 0
+  "reviews": [
+    {
+      "rating": 3,
+      "name": "carlos",
+      "comment": "ltrgjrtirtigjiojrt",
+      "_id": {
+        "$oid": "6656d241b2cef4f9a37ac10e"
+      }
+    }
+  ],
+  "ratingAvg": 3
 },
 {
   "_id": {
@@ -53,16 +79,25 @@
   "price": 18,
   "discountPercentage": 10,
   "description": "As the sole survivor of Vault 111, you enter a world devastated by nuclear war. Every second is a fight for survival and everything is in your hands. Only you can rebuild it and determine the fate of the wasteland. Welcome Home.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video2.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:56:00.942Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T18:56:00.942Z"
+    "$date": "2024-05-28T12:33:19.283Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratingAvg": 0
+  "reviews": [
+    {
+      "rating": 1,
+      "name": "Gallina",
+      "comment": "dkhcuihdiuchiud jdncodhochodhc ndocidoijcoiefjvcoiev oijniofjciei",
+      "_id": {
+        "$oid": "6655cf0fb2cef4f9a37aba9f"
+      }
+    }
+  ],
+  "ratingAvg": 1
 },
 {
   "_id": {
@@ -75,7 +110,7 @@
   "price": 35,
   "discountPercentage": 10,
   "description": "Experience Hogwarts in the 19th century. Find allies, fight against black magic and ultimately decide the fate of the world of magic. Your legacy is what you make of it. Live the unwritten.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video3.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:57:06.327Z"
   },
@@ -97,7 +132,7 @@
   "price": 9,
   "discountPercentage": 10,
   "description": "BattlefieldTM 2042 is a first-person shooter that once again presents the full extent of war. Adapt her to a near-future, unhinged world and try to survive on dynamic battlefields with her squad and a state-of-the-art arsenal.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video4.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:58:11.330Z"
   },
@@ -119,7 +154,7 @@
   "price": 24,
   "discountPercentage": 10,
   "description": "Minecraft is a game where blocks are placed and adventures are experienced! Explore randomly created worlds, and build great things from the simple house to the most magnificent castle. Play in creative mode with unlimited resources or immerse deep into the world of Pberlife mode, and make weapons and armor to defend against dangerous creatures.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video5.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:59:47.500Z"
   },
@@ -141,7 +176,7 @@
   "price": 45,
   "discountPercentage": 10,
   "description": "If one item was never enough for you, you can now look forward to having two items with you at the same time. New items from previous titles in the series are also included this time, such as Buu Huu, who steals items, and the feather, which enables particularly high jumps in battle.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video6.jpg",
   "createdAt": {
     "$date": "2024-04-28T19:01:11.363Z"
   },
@@ -163,16 +198,25 @@
   "price": 55,
   "discountPercentage": 10,
   "description": "Embark on a dangerous mission to uncover the truth behind a catastrophic event that has plunged the kingdom into chaos.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video7.jpg",
   "createdAt": {
     "$date": "2024-04-28T19:02:25.013Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T19:02:25.013Z"
+    "$date": "2024-05-29T06:58:21.170Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratingAvg": 0
+  "reviews": [
+    {
+      "rating": 5,
+      "name": "Gallina",
+      "comment": "kjkjfdhfh lnuhuvhuhev onreohoierhoieir ",
+      "_id": {
+        "$oid": "6656d20db2cef4f9a37ac0a7"
+      }
+    }
+  ],
+  "ratingAvg": 5
 },
 {
   "_id": {
@@ -185,16 +229,25 @@
   "price": 35,
   "discountPercentage": 10,
   "description": "Three groundbreaking technologies bring you even closer to football and create unique realism in every game: HyperMotionV*, Opta-optimized playing styles and the improved Frostbite engine. HyperMotionV maps the real football with volumetric data from over 180 men's and women's professional games and ensures that the movements in the game correspond exactly to the real game.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video8.jpg",
   "createdAt": {
     "$date": "2024-04-28T19:04:45.958Z"
   },
   "updatedAt": {
-    "$date": "2024-04-28T19:04:45.958Z"
+    "$date": "2024-05-29T08:02:30.002Z"
   },
   "__v": 0,
-  "reviews": [],
-  "ratingAvg": 0
+  "reviews": [
+    {
+      "rating": 3,
+      "name": "carlos",
+      "comment": "jhrfuhuerh rnuofhoruehouhre rnofjrjoijroei",
+      "_id": {
+        "$oid": "6656e116b2cef4f9a37ac275"
+      }
+    }
+  ],
+  "ratingAvg": 3
 },
 {
   "_id": {
@@ -207,12 +260,12 @@
   "price": 42,
   "discountPercentage": 10,
   "description": "WrestleMania is the biggest event in sports entertainment – ​​where superstars become WWE legends. Experience a captivating retelling of WrestleMania's greatest moments in 2K Showcase of The Immortals. Here you'll relive a series of the most unforgettable matches that defined entire careers.",
-  "imgSrc": "game.jpg",
+  "imgSrc": "video9.jpg",
   "createdAt": {
     "$date": "2024-04-28T19:05:23.507Z"
   },
   "updatedAt": {
-    "$date": "2024-05-22T13:37:03.760Z"
+    "$date": "2024-05-24T08:21:18.486Z"
   },
   "__v": 0,
   "reviews": [
@@ -226,7 +279,29 @@
       "_id": {
         "$oid": "664df4ffd49b3fbfff8cabdb"
       }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 5,
+      "name": "carlos",
+      "comment": "djkncjclfv ljeoijeorijfierjc jerououohfeoh oheouh",
+      "_id": {
+        "$oid": "66504d386fa21c2565d6ab51"
+      }
+    },
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 3,
+      "name": "Loco",
+      "comment": "djkncjclfv ljeoijeorijfierjc jerououohfeoh oheouh",
+      "_id": {
+        "$oid": "66504dfe2cdf1ad1ca8647a1"
+      }
     }
   ],
-  "ratingAvg": 5
+  "ratingAvg": 4.333333333333333
 }]

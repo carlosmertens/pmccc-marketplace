@@ -10,7 +10,7 @@
   "discountPercentage": 10,
   "pages": 480,
   "description": "Bilbo, a timid hobbit, joins a band of dwarves on a quest to reclaim their mountain home from a dragon. Facing trolls, goblins, and Gollum, Bilbo finds courage and a mysterious ring. The dwarves reach their treasure, but tensions rise with humans and elves. Bilbo's schemes for a share ignite war. A monstrous army forces the former enemies to unite, leading to many losses. Bilbo escapes with a single coin, forever changed by his adventure.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book0.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:38:14.296Z"
   },
@@ -33,7 +33,7 @@
   "discountPercentage": 10,
   "pages": 3480,
   "description": "Frodo, a hobbit inherits the One Ring, an evil artifact that threatens to enslave Middle-earth. Accompanied by a fellowship of hobbits, a dwarf, an elf, a wizard, and men, Frodo embarks on a perilous journey to destroy the Ring in the fires of Mount Doom. They face orcs, Sauron's dark forces, and internal struggles. The fellowship fractures, forcing Frodo and his loyal friend Sam to continue alone. With the help of Gollum, a creature corrupted by the Ring, they reach Mount Doom. But at the last moment, Frodo succumbs to the Ring's power. Gollum, in a twist of fate, destroys the Ring, defeating Sauron and saving Middle-earth. Frodo, forever marked by his quest, returns home a changed hobbit.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book1.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:42:59.965Z"
   },
@@ -56,7 +56,7 @@
   "discountPercentage": 10,
   "pages": 1480,
   "description": "Originals challenges the \"lone genius\" myth. Grant argues rebels, contrarians, and collaborators can be just as original. He explores overcoming the \"bystander effect\" and developing the courage to challenge assumptions and find new solutions. ",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book2.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:45:49.696Z"
   },
@@ -79,12 +79,12 @@
   "discountPercentage": 10,
   "pages": 856,
   "description": "Detective Elijah Baley investigates futuristic crimes alongside positronic robots, AIs bound by the Three Laws of Robotics to never harm humans. Through a series of interconnected stories, Asimov explores ethical dilemmas arising when these laws are challenged. Baley grapples with robots defying orders, questioning their own existence, and the nature of what it means to be human.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book3.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:47:55.997Z"
   },
   "updatedAt": {
-    "$date": "2024-05-15T07:41:08.542Z"
+    "$date": "2024-06-02T19:52:27.237Z"
   },
   "__v": 0,
   "reviews": [
@@ -164,9 +164,17 @@
       "_id": {
         "$oid": "664467146c1b6a8fe998c3fb"
       }
+    },
+    {
+      "rating": 2,
+      "name": "carlos",
+      "comment": "hfhfhdjknjdc iuneucuecueori iunoicjoiejdocijeio",
+      "_id": {
+        "$oid": "665ccd7bcbe572786d86103d"
+      }
     }
   ],
-  "ratingAvg": 0
+  "ratingAvg": 3.25
 },
 {
   "_id": {
@@ -180,7 +188,7 @@
   "discountPercentage": 10,
   "pages": 855,
   "description": "Adam Grant's \"Give and Take\" explores personality types in the workplace: Givers (prioritize helping others), Takers (prioritize themselves), and Matchers (find balance).  Givers often get burnt out, while Takers can alienate colleagues. Grant proposes strategies for Givers to thrive, like setting boundaries and becoming \"strategic givers\" who focus on high-impact help.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book4.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:50:28.119Z"
   },
@@ -203,7 +211,7 @@
   "discountPercentage": 10,
   "pages": 856,
   "description": "Intelligence is usually seen as the ability to think and learn, but in a rapidly changing world, there's another set of cognitive skills that might matter more: the ability to rethink and unlearn.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book5.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:51:08.410Z"
   },
@@ -226,7 +234,7 @@
   "discountPercentage": 10,
   "pages": 987,
   "description": "Isaacson's biography paints Steve Jobs as a perfectionist obsessed with design. He co-founded Apple, driving the creation of groundbreaking products like the Macintosh and iPhone. However, his ruthless business practices and volatile personality strained relationships. The book explores Jobs' impact on the tech industry and the complex legacy he left behind.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book6.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:55:02.773Z"
   },
@@ -249,7 +257,7 @@
   "discountPercentage": 10,
   "pages": 1987,
   "description": "Walter Isaacson's \"The Innovators\" explores the stories of key figures who revolutionized technology. From Alan Turing's code-breaking genius to Steve Jobs' design vision, the book examines how these individuals, despite their contrasting personalities, all shared a relentless pursuit of innovation. It highlights the importance of collaboration, risk-taking, and a drive to challenge the status quo that ultimately led to groundbreaking inventions.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book7.jpg",
   "createdAt": {
     "$date": "2024-04-28T17:57:19.905Z"
   },
@@ -295,7 +303,7 @@
   "discountPercentage": 10,
   "pages": 1230,
   "description": "Novelist Paul Sheldon crashes after a blizzard. Annie Wilkes, his \"number one fan,\" rescues him, but she's a delusional nurse with a twisted obsession for Paul's work. Holding him captive, she forces him to write a new novel featuring her favorite character, all while becoming increasingly violent and controlling. Paul must use his wits and remaining strength to survive her psychotic rage and escape his horrifying literary prison.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book8.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:02:42.376Z"
   },
@@ -318,7 +326,7 @@
   "discountPercentage": 10,
   "pages": 989,
   "description": "Carrie White, an awkward teenager ostracized by classmates and abused by her religious fanatic mother, discovers she has telekinetic powers. After a humiliating incident at school, Carrie snaps, unleashing her rage in a horrifying prom night massacre. The story explores themes of bullying, religious extremism, and the destructive power of repressed emotions, culminating in a shocking and unforgettable climax.",
-  "imgSrc": "book.jpg",
+  "imgSrc": "book9.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:03:48.063Z"
   },
@@ -340,4 +348,39 @@
     }
   ],
   "ratingAvg": 0
+},
+{
+  "_id": {
+    "$oid": "664df2d4d49b3fbfff8cabcc"
+  },
+  "productType": "books",
+  "name": "The Hobbit 2",
+  "author": "J.R.R. Talkien",
+  "genre": "Adventure",
+  "pages": 480,
+  "description": "Bilbo, a timid hobbit, joins a band of dwarves on a quest to reclaim their mountain home from a dragon. Facing trolls, goblins, and Gollum, Bilbo finds courage and a mysterious ring. The dwarves reach their treasure, but tensions rise with humans and elves. Bilbo's schemes for a share ignite war. A monstrous army forces the former enemies to unite, leading to many losses. Bilbo escapes with a single coin, forever changed by his adventure.",
+  "imgSrc": "book10.jpg",
+  "ratingAvg": 5,
+  "price": 150,
+  "discountPercentage": 10,
+  "reviews": [
+    {
+      "userId": {
+        "$oid": "6643c5980088cea368a54f29"
+      },
+      "rating": 5,
+      "name": "Pieter",
+      "comment": "djkncjclfv ljeoijeorijfierjc jerououohfeoh oheouh",
+      "_id": {
+        "$oid": "664df433d49b3fbfff8cabd3"
+      }
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-05-22T13:27:48.606Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-22T13:33:39.344Z"
+  },
+  "__v": 0
 }]

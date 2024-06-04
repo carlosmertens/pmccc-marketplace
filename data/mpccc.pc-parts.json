@@ -9,7 +9,7 @@
   "discountPercentage": 10,
   "category": "Memory",
   "description": "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part0.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:24:48.645Z"
   },
@@ -31,7 +31,7 @@
   "discountPercentage": 10,
   "category": "Memory",
   "description": "The quick, brown fox jumps over a lazy dog. DJs flock by when MTV ax quiz prog. Junk MTV quiz graced by fox whelps. Bawds jog, flick quartz, vex nymphs. Waltz, bad nymph, for quick jigs vex! Fox nymphs grab quick-jived waltz. Brick quiz whangs jumpy veldt fox. Bright vixens jump; dozy fowl quack. Quick wafting zephyrs vex bold Jim. Quick zephyrs blow, vexing daft Jim. Sex-charged fop blew my junk.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part1.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:25:50.427Z"
   },
@@ -53,7 +53,7 @@
   "discountPercentage": 10,
   "category": "Memory",
   "description": "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part2.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:27:23.696Z"
   },
@@ -75,7 +75,7 @@
   "discountPercentage": 10,
   "category": "Memory",
   "description": "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part3.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:29:35.222Z"
   },
@@ -97,7 +97,7 @@
   "discountPercentage": 10,
   "category": "CPU",
   "description": "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part4.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:31:24.141Z"
   },
@@ -119,7 +119,7 @@
   "discountPercentage": 10,
   "category": "CPU",
   "description": "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part5.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:31:54.846Z"
   },
@@ -141,7 +141,7 @@
   "discountPercentage": 10,
   "category": "CPU",
   "description": "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part6.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:32:27.920Z"
   },
@@ -163,7 +163,7 @@
   "discountPercentage": 10,
   "category": "CPU",
   "description": "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part7.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:32:48.205Z"
   },
@@ -185,7 +185,7 @@
   "discountPercentage": 10,
   "category": "Video Card",
   "description": "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part8.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:34:56.451Z"
   },
@@ -207,7 +207,7 @@
   "discountPercentage": 10,
   "category": "Video Card",
   "description": "Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt.",
-  "imgSrc": "pcpart.jpg",
+  "imgSrc": "part9.jpg",
   "createdAt": {
     "$date": "2024-04-28T18:35:41.337Z"
   },
