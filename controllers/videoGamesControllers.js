@@ -18,7 +18,7 @@ async function getAllVideoGames(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createNewVideoGame(req, res) {
+async function createVideoGame(req, res) {
   const data = await VideoGameModel.create(req.body);
 
   res.status(201).send({
@@ -94,7 +94,7 @@ async function getAllReviews(req, res, next) {
 }
 
 /** (PATCH REQUEST)  */
-async function createNewReview(req, res, next) {
+async function createReview(req, res, next) {
   const game = await VideoGameModel.findById(req.params.id);
   game.reviews.push(req.body);
 
@@ -115,11 +115,11 @@ async function createNewReview(req, res, next) {
 
 export const controllers = {
   getAllVideoGames,
-  createNewVideoGame,
+  createVideoGame,
   getVideoGame,
   updateVideoGame,
   patchVideoGame,
   deleteVideoGame,
   getAllReviews,
-  createNewReview,
+  createReview,
 };

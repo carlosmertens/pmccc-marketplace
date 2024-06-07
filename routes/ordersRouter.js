@@ -10,7 +10,7 @@ export const ordersRouter = Router();
 
 ordersRouter.get('/', [auth, admin], asyncWrapper(controllers.getAllOrders));
 
-ordersRouter.post('/checkout', auth, asyncWrapper(controllers.createNewOrder));
+ordersRouter.post('/checkout', auth, asyncWrapper(controllers.createOrder));
 
 ordersRouter
   .route('/:id')

@@ -11,7 +11,7 @@ export const pcPartsRouter = Router();
 pcPartsRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllPcParts))
-  .post([auth, admin], asyncWrapper(controllers.createNewPcPart));
+  .post([auth, admin], asyncWrapper(controllers.createPcPart));
 
 pcPartsRouter
   .route('/:id')
@@ -23,4 +23,4 @@ pcPartsRouter
 pcPartsRouter
   .route('/:id/reviews')
   .get(auth, asyncWrapper(controllers.getAllReviews))
-  .patch(asyncWrapper(controllers.createNewReview));
+  .patch(asyncWrapper(controllers.createReview));

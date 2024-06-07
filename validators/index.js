@@ -1,6 +1,6 @@
 import Joi from 'joi';
 
-function book(book) {
+function createBook(book) {
   const schema = Joi.object({
     name: Joi.string().required().min(1).max(50),
     author: Joi.string().required().min(1).max(50),
@@ -15,4 +15,19 @@ function book(book) {
   return schema.validate(book);
 }
 
-export const validate = { book };
+function patchBook(book) {
+  const schema = Joi.object({
+    name: Joi.string().min(1).max(50),
+    author: Joi.string().min(1).max(50),
+    genre: Joi.string().min(1).max(50),
+    pages: Joi.number().min(1),
+    description: Joi.string().min(15).max(1000),
+    imgSrc: Joi.string().min(1).max(500).default('book.jpg'),
+    price: Joi.number().min(1),
+    discountPercentage: Joi.number().min(1).max(20).default(10),
+  });
+
+  return schema.validate(book);
+}
+
+export const validate = { createBook, patchBook };

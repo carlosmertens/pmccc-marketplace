@@ -11,7 +11,7 @@ export const toursRouter = Router();
 toursRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllTours))
-  .post([auth, admin], asyncWrapper(controllers.createNewTour));
+  .post([auth, admin], asyncWrapper(controllers.createTour));
 
 toursRouter
   .route('/:id')
@@ -23,4 +23,4 @@ toursRouter
 toursRouter
   .route('/:id/reviews')
   .get(asyncWrapper(controllers.getAllReviews))
-  .patch(auth, asyncWrapper(controllers.createNewReview));
+  .patch(auth, asyncWrapper(controllers.createReview));

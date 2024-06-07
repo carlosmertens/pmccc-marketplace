@@ -18,7 +18,7 @@ async function getAllPcParts(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createNewPcPart(req, res) {
+async function createPcPart(req, res) {
   const data = await PcPartModel.create(req.body);
 
   res.status(201).send({
@@ -94,7 +94,7 @@ async function getAllReviews(req, res, next) {
 }
 
 /** (PATCH REQUEST)  */
-async function createNewReview(req, res, next) {
+async function createReview(req, res, next) {
   const part = await PcPartModel.findById(req.params.id);
   part.reviews.push(req.body);
 
@@ -115,11 +115,11 @@ async function createNewReview(req, res, next) {
 
 export const controllers = {
   getAllPcParts,
-  createNewPcPart,
+  createPcPart,
   getPcPart,
   updatePcPart,
   patchPcPart,
   deletePcPart,
   getAllReviews,
-  createNewReview,
+  createReview,
 };

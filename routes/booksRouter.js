@@ -11,7 +11,7 @@ export const booksRouter = Router();
 booksRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllBooks))
-  .post([auth, admin], asyncWrapper(controllers.createNewBook));
+  .post([auth, admin], asyncWrapper(controllers.createBook));
 
 booksRouter
   .route('/:id')
@@ -23,4 +23,4 @@ booksRouter
 booksRouter
   .route('/:id/reviews')
   .get(asyncWrapper(controllers.getAllReviews))
-  .patch(auth, asyncWrapper(controllers.createNewReview));
+  .patch(auth, asyncWrapper(controllers.createReview));

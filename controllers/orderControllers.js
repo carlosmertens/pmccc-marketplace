@@ -18,7 +18,7 @@ export const getAllOrders = async (req, res) => {
 };
 
 /** (POST REQUEST) */
-export const createNewOrder = async (req, res) => {
+export const createOrder = async (req, res) => {
   const body = req.body;
   body.userId = req.user._id;
 
@@ -80,7 +80,7 @@ function validateStatus(req) {
 
 export const controllers = {
   getAllOrders,
-  createNewOrder,
+  createOrder,
   getOrder,
   deleteOrder,
   orderStatus,

@@ -11,7 +11,7 @@ export const videoGamesRouter = Router();
 videoGamesRouter
   .route('/')
   .get(asyncWrapper(controllers.getAllVideoGames))
-  .post([auth, admin], asyncWrapper(controllers.createNewVideoGame));
+  .post([auth, admin], asyncWrapper(controllers.createVideoGame));
 
 videoGamesRouter
   .route('/:id')
@@ -23,4 +23,4 @@ videoGamesRouter
 videoGamesRouter
   .route('/:id/reviews')
   .get(asyncWrapper(controllers.getAllReviews))
-  .patch(auth, asyncWrapper(controllers.createNewReview));
+  .patch(auth, asyncWrapper(controllers.createReview));

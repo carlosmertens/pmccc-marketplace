@@ -19,7 +19,7 @@ export const getAllUsers = async (req, res) => {
 };
 
 /** (POST REQUEST) */
-async function createNewUser(req, res, next) {
+async function createUser(req, res, next) {
   const { error } = joi.validateUser(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
@@ -145,7 +145,7 @@ async function getNewsletter(req, res, next) {
 
 export const controllers = {
   getAllUsers,
-  createNewUser,
+  createUser,
   getUser,
   updateUser,
   patchUser,

@@ -10,7 +10,7 @@ export const userRouter = Router();
 
 userRouter.get('/', [auth, admin], asyncWrapper(controllers.getAllUsers));
 
-userRouter.post('/signup', asyncWrapper(controllers.createNewUser));
+userRouter.post('/signup', asyncWrapper(controllers.createUser));
 
 userRouter
   .route('/me')

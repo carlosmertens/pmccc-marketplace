@@ -18,7 +18,7 @@ async function getAllTours(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createNewTour(req, res) {
+async function createTour(req, res) {
   const tour = await TourModel.create(req.body);
 
   res.status(201).send({
@@ -93,7 +93,7 @@ async function getAllReviews(req, res, next) {
 }
 
 /** (PATCH REQUEST)  */
-async function createNewReview(req, res, next) {
+async function createReview(req, res, next) {
   const tour = await TourModel.findById(req.params.id);
   tour.reviews.push(req.body);
 
@@ -114,11 +114,11 @@ async function createNewReview(req, res, next) {
 
 export const controllers = {
   getAllTours,
-  createNewTour,
+  createTour,
   getTour,
   updateTour,
   patchTour,
   deleteTour,
   getAllReviews,
-  createNewReview,
+  createReview,
 };
