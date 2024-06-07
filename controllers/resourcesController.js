@@ -3,7 +3,7 @@ import { VideoGameModel } from '../models/VideoGameModel.js';
 import { PcPartModel } from '../models/PcPartModel.js';
 import { TourModel } from '../models/TourModel.js';
 
-/** Get all resources (products, services) in the database */
+/** (GET REQUEST) */
 async function getResourcesList(req, res) {
   const booksArray = await BookModel.find().select({
     productType: 1,

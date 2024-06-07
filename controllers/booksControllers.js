@@ -1,4 +1,5 @@
-import { BookModel, validateBook } from '../models/BookModel.js';
+import { BookModel } from '../models/BookModel.js';
+import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
 import { processQuery } from '../utils/processQuery.js';
 
@@ -20,7 +21,7 @@ async function getAllBooks(req, res) {
 /** (POST REQUEST) */
 async function createNewBook(req, res) {
   /** Validate data */
-  const { error } = validateBook(req.body);
+  const { error } = validate.book(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Create new book */
@@ -51,7 +52,7 @@ async function getBook(req, res, next) {
 /** (PUT REQUEST) */
 async function updateBook(req, res, next) {
   /** Validate data */
-  const { error } = validateBook(req.body);
+  const { error } = validate.book(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
   /** Find and update a book */

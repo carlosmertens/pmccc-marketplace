@@ -1,7 +1,6 @@
-/** Processes a query object into a Mongoose query request object */
 export function processQuery(query, Model) {
   /** Filter reserved keywords */
-  const queryObj = {...query};
+  const queryObj = { ...query };
   ['page', 'sort', 'limit', 'fields'].forEach(iten => delete queryObj[iten]);
 
   /** Refactor if any: gte, gt, lt, lte operators */

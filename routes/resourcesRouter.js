@@ -1,6 +1,6 @@
-import {Router} from 'express';
-import {asyncWrapper} from '../middleware/asyncWrapper.js';
-import {controllers} from '../controllers/resourcesController.js';
+import { Router } from 'express';
+import { asyncWrapper } from '../middleware/asyncWrapper.js';
+import { controllers } from '../controllers/resourcesController.js';
 
 /** Base Route: /api/v1/resources/ */
 

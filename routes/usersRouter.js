@@ -19,6 +19,7 @@ userRouter
   .put(auth, asyncWrapper(controllers.updateUser))
   .delete(auth, asyncWrapper(controllers.deleteUser));
 
+// TODO: Testing route - Verify with front end if route is not needed it anymore and delete it, also the controller
 userRouter.get('/me/newsletter', auth, asyncWrapper(controllers.getNewsletter));
 
 userRouter.post('/login', asyncWrapper(controllers.loginUser));

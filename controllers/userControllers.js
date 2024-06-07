@@ -102,11 +102,8 @@ async function patchUser(req, res, next) {
 /** (DELETE REQUEST) */
 async function deleteUser(req, res, next) {
   const user = await User.findByIdAndDelete(req.user._id);
-
-  /** Check if the user exists */
   if (!user) return next(new CreateAppError('Given id not found', 404));
 
-  /** Send a successful response with the user deleted */
   res.status(200).send({
     status: 'success',
     message: `DELETE request for id: ${req.user._id} has been successfully`,
@@ -116,22 +113,17 @@ async function deleteUser(req, res, next) {
 
 /** (POST REQUEST) */
 async function loginUser(req, res, next) {
-  /** Validate login data with Joi validate function */
   const { error } = joi.validateLogin(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
-  /** Find user in MongoDB database */
   const user = await User.findOne({ email: req.body.email });
   if (!user) return next(new CreateAppError('Invalid email/password!', 400));
 
-  /** Verify password */
   const isMatch = await bcrypt.compare(req.body.password, user.password);
   if (!isMatch) return next(new CreateAppError('Invalid email/password!', 400));
 
-  /** Generate JWT token */
   const token = user.generateJWT();
 
-  /** Send a successful response */
   res.header('x-auth-token', token).send({
     status: 'success',
     message: 'User logged, JWT token generated',

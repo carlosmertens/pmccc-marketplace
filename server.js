@@ -1,9 +1,9 @@
 import 'dotenv/config';
 import express from 'express';
-import {log} from './logs/index.js';
-import {connectDB} from './startup/connectDB.js';
-import {startMiddleware} from './startup/startMiddleware.js';
-import {startRoutes} from './startup/startRoutes.js';
+import { log } from './logs/index.js';
+import { connectDB } from './startup/connectDB.js';
+import { startMiddleware } from './startup/startMiddleware.js';
+import { startRoutes } from './startup/startRoutes.js';
 
 /** Handle Rejections and Exceptions */
 process.on('unhandledRejection', err => {
@@ -21,18 +21,13 @@ process.on('uncaughtException', err => {
   close(() => process.exit(1));
 });
 
+/** Initialize app */
 const app = express();
-
-/** Start MongoDB database connection */
 connectDB();
-
-/** Start middleware  */
 startMiddleware(app);
-
-/** Initialize routes */
 startRoutes(app);
 
-/** Start the server */
+/** Initialize server */
 const PORT = process.env.PORT || 8001;
 const server = app.listen(PORT, () => {
   log.server(`Server is running on port ${PORT}`);
