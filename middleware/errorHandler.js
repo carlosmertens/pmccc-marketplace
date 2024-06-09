@@ -1,4 +1,6 @@
-import {log} from '../logs/index.js';
+import { log } from '../logs/index.js';
+
+// TODO: Handle Joi validation errors
 
 export const errorHandler = (err, req, res, next) => {
   log.error(err.status, err.statusCode, err.message);
@@ -8,7 +10,6 @@ export const errorHandler = (err, req, res, next) => {
       message: `Operational Error: Invalid ${err.path}: ${err.value}`,
       errorName: err.name,
     });
-    // TODO: Handle Joi validation errors
   } else if (err.status === 'fail') {
     return res.status(err.statusCode).send({
       status: err.status,

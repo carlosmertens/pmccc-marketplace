@@ -58,20 +58,4 @@ const pcPartSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const PcPartModel = mongoose.model('pc-part', pcPartSchema);
-
-function validatePcParts(part) {
-  const schema = Joi.object({
-    name: Joi.string().required().min(1).max(100),
-    brand: Joi.string().required().min(1).max(50),
-    category: Joi.string().required().min(1).max(50),
-    description: Joi.string().required().min(15).max(1000),
-    imgSrc: Joi.string().min(1).max(500).default('pcpart.jpg'),
-    price: Joi.number().required().min(1),
-    discountPercentage: Joi.number().min(1).max(20).default(10),
-  });
-
-  return schema.validate(part);
-}
-
-export { PcPartModel, validatePcParts };
+export const PcPartModel = mongoose.model('pc-part', pcPartSchema);

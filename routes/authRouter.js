@@ -1,5 +1,5 @@
-import {Router} from 'express';
-import {controllers} from '../controllers/authControllers.js';
+import { Router } from 'express';
+import { controllers } from '../controllers/authControllers.js';
 
 /** Base Route: /api/v1/auth */
 

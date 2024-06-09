@@ -15,10 +15,11 @@ ordersRouter.post('/checkout', auth, asyncWrapper(controllers.createOrder));
 ordersRouter
   .route('/:id')
   .get(auth, asyncWrapper(controllers.getOrder))
+  .patch(auth, asyncWrapper(controllers.patchOrder))
   .delete([auth, admin], asyncWrapper(controllers.deleteOrder));
 
 ordersRouter.patch(
-  '/:id/status',
+  'status/:id',
   [auth, admin],
   asyncWrapper(controllers.orderStatus)
 );

@@ -1,30 +1,33 @@
 import { TourModel } from '../models/TourModel.js';
+import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
 import { processQuery } from '../utils/processQuery.js';
-
-// TODO: Create Joi validation
+import { calcRatingAvg } from '../utils/calcRatingAvg.js';
 
 /** (GET REQUEST) */
 async function getAllTours(req, res) {
   const query = processQuery(req.query, TourModel);
   const tours = await query;
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'All tours were requested',
     result: tours.length,
-    data: tours,
+    tours,
   });
 }
 
 /** (POST REQUEST) */
 async function createTour(req, res) {
+  const { error } = validate.createTour(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
   const tour = await TourModel.create(req.body);
 
   res.status(201).send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'New tour has been created',
-    data: tour,
+    tour,
   });
 }
 
@@ -33,82 +36,92 @@ async function getTour(req, res, next) {
   const tour = await TourModel.findById(req.params.id);
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'GET request for one tour with id',
-    data: tour,
+    tour,
   });
 }
 
 /** (PUT REQUEST) */
 async function updateTour(req, res, next) {
+  const { error } = validate.createTour(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
+    runValidators: true,
     new: true,
   });
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'PUT request to update a tour',
-    data: tour,
+    tour,
   });
 }
 
 /** (PATCH REQUEST) */
 async function patchTour(req, res, next) {
+  const { error } = validate.patchTour(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
   const tour = await TourModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'PATCH request to modify a property of a tour',
-    data: tour,
+    tour,
   });
 }
 
 /** (DELETE REQUEST) */
 async function deleteTour(req, res, next) {
-  const tour = await TourModel.findByIdAndDelete(req.params.id);
+  const tour = await TourModel.findByIdAndDelete(req.params.id, { new: true });
   if (!tour) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: `Tour ${req.params.id} has been deleted`,
-    data: tour,
+    tour,
   });
 }
 
 /** (GET REQUEST) */
 async function getAllReviews(req, res, next) {
-  const data = await TourModel.findById(req.params.id).select('reviews');
+  const data = await TourModel.findById(req.params.id).select(
+    'reviews, ratingAvg'
+  );
 
   res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'Array containing all reviews has been requested',
-    result: data.length,
-    data,
+    result: data.reviews.length,
+    reviews: data,
   });
 }
 
-/** (PATCH REQUEST)  */
+/** (POST REQUEST)  */
 async function createReview(req, res, next) {
-  const tour = await TourModel.findById(req.params.id);
+  const { error } = validate.createReview(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  let tour = await TourModel.findById(req.params.id);
   tour.reviews.push(req.body);
 
-  tour.ratingAvg =
-    tour.reviews.reduce((acc, value) => acc + value.rating, 0) /
-    tour.reviews.length;
+  tour.ratingAvg = calcRatingAvg(tour.reviews);
 
-  const data = await TourModel.findByIdAndUpdate(req.params.id, tour, {
+  tour = await TourModel.findByIdAndUpdate(req.params.id, tour, {
     new: true,
   });
 
   res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'New review has been received',
-    data,
+    tour,
   });
 }
 

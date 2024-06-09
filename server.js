@@ -6,20 +6,20 @@ import { startMiddleware } from './startup/startMiddleware.js';
 import { startRoutes } from './startup/startRoutes.js';
 
 /** Handle Rejections and Exceptions */
-process.on('unhandledRejection', err => {
-  console.log('UNHANDLED REJECTION => ' + err);
-  console.log('Server shutting down 💥');
+// process.on('unhandledRejection', err => {
+//   console.log('UNHANDLED REJECTION => ' + err);
+//   console.log('Server shutting down 💥');
 
-  close(() => process.exit(1));
-});
+//   close(() => process.exit(1));
+// });
 
-process.on('uncaughtException', err => {
-  console.log('UNCAUGHT EXCEPTION => ' + err.name);
-  console.log('UNCAUGHT EXCEPTION => ' + err.message);
-  console.log('Server shutting down 💥');
+// process.on('uncaughtException', err => {
+//   console.log('UNCAUGHT EXCEPTION => ' + err.name);
+//   console.log('UNCAUGHT EXCEPTION => ' + err.message);
+//   console.log('Server shutting down 💥');
 
-  close(() => process.exit(1));
-});
+//   close(() => process.exit(1));
+// });
 
 /** Initialize app */
 const app = express();

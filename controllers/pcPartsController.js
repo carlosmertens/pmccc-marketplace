@@ -1,115 +1,129 @@
 import { PcPartModel } from '../models/PcPartModel.js';
+import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
 import { processQuery } from '../utils/processQuery.js';
-
-// TODO: Create Joi validation
+import { calcRatingAvg } from '../utils/calcRatingAvg.js';
 
 /** (GET REQUEST) */
 async function getAllPcParts(req, res) {
   const query = processQuery(req.query, PcPartModel);
-  const data = await query;
+  const pcParts = await query;
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'GET request to get all pc parts was successful',
-    result: data.length,
-    data,
+    result: pcParts.length,
+    pcParts,
   });
 }
 
 /** (POST REQUEST) */
 async function createPcPart(req, res) {
-  const data = await PcPartModel.create(req.body);
+  const { error } = validate.createPcPart(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  const pcPart = await PcPartModel.create(req.body);
 
   res.status(201).send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'POST request to create a new pc part was successful',
-    data,
+    pcPart,
   });
 }
 
 /** (GET REQUEST) */
 async function getPcPart(req, res, next) {
-  const data = await PcPartModel.findById(req.params.id);
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  const pcPart = await PcPartModel.findById(req.params.id);
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'GET request for one pc part by id',
-    data,
+    pcPart,
   });
 }
 
 /** (PUT REQUEST) */
 async function updatePcPart(req, res, next) {
-  const data = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  const { error } = validate.createPcPart(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
 
-  res.status(200).send({
+  const pcPart = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
+    runValidators: true,
+    new: true,
+  });
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
+
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'PUT request to update a pcPart by id',
-    data,
+    pcPart,
   });
 }
 
 /**  (PATCH REQUEST) */
 async function patchPcPart(req, res, next) {
-  const data = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
+  const { error } = validate.patchPcPart(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  const pcPart = await PcPartModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'PATCH request to modify pc part successfully',
-    data,
+    pcPart,
   });
 }
 
 /** (DELETE REQUEST) */
 async function deletePcPart(req, res, next) {
-  const data = await PcPartModel.findByIdAndDelete(req.params.id);
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  const pcPart = await PcPartModel.findByIdAndDelete(req.params.id, {
+    new: true,
+  });
+  if (!pcPart) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: `DELETE request for id: ${req.params.id} has been successfully`,
-    data,
+    pcPart,
   });
 }
 
 /** (GET REQUEST) */
 async function getAllReviews(req, res, next) {
-  const data = await PcPartModel.findById(req.params.id).select('reviews');
+  const data = await PcPartModel.findById(req.params.id).select(
+    'reviews ratingAvg'
+  );
 
   res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'Array containing all reviews has been requested',
-    result: data.length,
-    data,
+    result: data.reviews.length,
+    reviews: data,
   });
 }
 
 /** (PATCH REQUEST)  */
 async function createReview(req, res, next) {
-  const part = await PcPartModel.findById(req.params.id);
-  part.reviews.push(req.body);
+  const { error } = validate.createReview(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
 
-  part.ratingAvg =
-    part.reviews.reduce((acc, value) => acc + value.rating, 0) /
-    part.reviews.length;
+  let pcPart = await PcPartModel.findById(req.params.id);
+  pcPart.reviews.push(req.body);
 
-  const data = await PcPartModel.findByIdAndUpdate(req.params.id, part, {
+  pcPart.ratingAvg = calcRatingAvg(pcPart.reviews);
+
+  pcPart = await PcPartModel.findByIdAndUpdate(req.params.id, pcPart, {
     new: true,
   });
 
   res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'New review has been received',
-    data,
+    pcPart,
   });
 }
 

@@ -1,115 +1,134 @@
 import { VideoGameModel } from '../models/VideoGameModel.js';
+import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
 import { processQuery } from '../utils/processQuery.js';
-
-// TODO: Create Joi validation
+import { calcRatingAvg } from '../utils/calcRatingAvg.js';
 
 /** (GET REQUEST) */
 async function getAllVideoGames(req, res) {
   const query = processQuery(req.query, VideoGameModel);
-  const data = await query;
+  const videoGames = await query;
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'GET request to get all video games was successful',
-    result: data.length,
-    data,
+    result: videoGames.length,
+    videoGames,
   });
 }
 
 /** (POST REQUEST) */
 async function createVideoGame(req, res) {
-  const data = await VideoGameModel.create(req.body);
+  const { error } = validate.createVideoGame(re.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  const videoGame = await VideoGameModel.create(req.body);
 
   res.status(201).send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'POST request to create a new video game was successful',
-    data,
+    videoGame,
   });
 }
 
 /** (GET REQUEST) */
 async function getVideoGame(req, res, next) {
-  const data = await VideoGameModel.findById(req.params.id);
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  const videoGame = await VideoGameModel.findById(req.params.id);
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'GET request for one video game by id',
-    data,
+    videoGame,
   });
 }
 
 /** (PUT REQUEST) */
 async function updateVideoGame(req, res, next) {
-  const data = await VideoGameModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-    runValidators: true,
-  });
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  const videoGame = await VideoGameModel.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      runValidators: true,
+      new: true,
+    }
+  );
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'PUT request to update a video game by id',
-    data,
+    videoGame,
   });
 }
 
 /** (PATCH REQUEST) */
 async function patchVideoGame(req, res, next) {
-  const data = await VideoGameModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  const { error } = validate.patchVideoGame(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
 
-  res.status(200).send({
+  const videoGame = await VideoGameModel.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
+    }
+  );
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
+
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'PATCH request to modify video game successfully',
-    data,
+    videoGame,
   });
 }
 
 /** (DELETE REQUEST) */
 async function deleteVideoGame(req, res, next) {
-  const data = await VideoGameModel.findByIdAndDelete(req.params.id);
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+  const videoGame = await VideoGameModel.findByIdAndDelete(req.params.id, {
+    new: true,
+  });
+  if (!videoGame) return next(new CreateAppError('Given id not found', 404));
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: `DELETE request for id: ${req.params.id} has been successfully`,
-    data,
+    videoGame,
   });
 }
 
 /** (GET REQUEST) */
 async function getAllReviews(req, res, next) {
-  const data = await VideoGameModel.findById(req.params.id).select('reviews');
+  const data = await VideoGameModel.findById(req.params.id).select(
+    'reviews ratingAvg'
+  );
 
   res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'Array containing all reviews has been requested',
-    result: data.length,
-    data,
+    result: data.reviews.length,
+    reviews: data,
   });
 }
 
-/** (PATCH REQUEST)  */
+/** (POST REQUEST)  */
 async function createReview(req, res, next) {
-  const game = await VideoGameModel.findById(req.params.id);
-  game.reviews.push(req.body);
+  const { error } = validate.createReview(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
 
-  game.ratingAvg =
-    game.reviews.reduce((acc, value) => acc + value.rating, 0) /
-    game.reviews.length;
+  let videoGame = await VideoGameModel.findById(req.params.id);
+  videoGame.reviews.push(req.body);
 
-  const data = await VideoGameModel.findByIdAndUpdate(req.params.id, game, {
+  videoGame.ratingAvg = calcRatingAvg(videoGame.reviews);
+
+  videoGame = await VideoGameModel.findByIdAndUpdate(req.params.id, videoGame, {
     new: true,
   });
 
   res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'New review has been received',
-    data,
+    videoGame,
   });
 }
 

@@ -1,7 +1,5 @@
 import mongoose from 'mongoose';
 
-//TODO: Create a getter to calculate reviews in ratings property
-
 const tourSchema = new mongoose.Schema(
   {
     productType: { type: String, default: 'tours' },
@@ -33,6 +31,7 @@ const tourSchema = new mongoose.Schema(
     description: {
       type: String,
       trim: true,
+      minLength: 10,
       maxLength: 1000,
       default: 'Contact us for more information!',
     },
@@ -83,21 +82,4 @@ const tourSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-function validateTour(tour) {
-  const schema = Joi.object({
-    name: Joi.string().required().trim().min(1).max(50),
-    price: Joi.number().required().min(100).max(9999),
-    discountPercentage: Joi.number().min(1).max(20).default(10),
-    duration: Joi.number().required().min(1),
-    maxGroupSize: Joi.number().require().min(2).max(50),
-    difficulty: Joi.string(),
-    description: Joi.string().required().trim().min(15).max(1000),
-    imgSrc: Joi.string().min(1).max(500).default('Sightseeing.jpeg'),
-  });
-
-  return schema.validate(tour);
-}
-
-const TourModel = mongoose.model('tours', tourSchema);
-
-export { TourModel, validateTour };
+export const TourModel = mongoose.model('tours', tourSchema);

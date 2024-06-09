@@ -1,87 +1,106 @@
-import Joi from 'joi';
 import { OrderModel } from '../models/OrderModel.js';
 import { User } from '../models/UserModel.js';
+import { validate } from '../validators/index.js';
 import { processQuery } from '../utils/processQuery.js';
 import { CreateAppError } from '../utils/createAppError.js';
 
 /** (GET REQUEST) */
-export const getAllOrders = async (req, res) => {
+async function getAllOrders(req, res) {
   const query = processQuery(req.body, OrderModel);
-  const data = await query;
+  const orders = await query;
 
   res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'All orders has been sent',
-    result: data.length,
-    data,
+    result: orders.length,
+    orders,
   });
-};
+}
 
 /** (POST REQUEST) */
-export const createOrder = async (req, res) => {
-  const body = req.body;
-  body.userId = req.user._id;
+async function createOrder(req, res) {
+  const { error } = validate.createOrder(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
 
   const order = await OrderModel.create(req.body);
-
   const user = await User.findById(req.user._id);
 
   user.orders.push(order);
 
   user.save();
 
-  res.send({ status: 'success', message: 'Order created', data: user });
-};
+  res.status(201).send({
+    message: 'PMCCC Marketplace API',
+    status: 'success',
+    user,
+  });
+}
 
 /** (GET REQUEST) */
-export const getOrder = async (req, res) => {
-  const data = await OrderModel.findById(req.params.id);
-  if (!data) return next(new CreateAppError('Given id not found', 404));
+async function getOrder(req, res) {
+  const order = await OrderModel.findById(req.params.id);
+  if (!order) return next(new CreateAppError('Given id not found', 404));
+
+  res.send({
+    message: 'PMCCC Marketplace API',
+    status: 'success',
+    order,
+  });
+}
+
+/** (PATCH REQUEST) */
+async function patchOrder(req, res, next) {
+  const { error } = validate.patchOrder(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  const order = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+  if (!order) return next(new CreateAppError('Given id not found', 404));
+
+  res.send({
+    message: 'PMCCC Marketplace API',
+    status: 'success',
+    order,
+  });
+}
+
+/** (DELETE REQUEST) */
+async function deleteOrder(req, res) {
+  const order = await OrderModel.findByIdAndDelete(req.params.id, {
+    new: true,
+  });
+  if (!order) return next(new CreateAppError('Given id not found', 404));
+
+  res.send({
+    message: 'PMCCC Marketplace API',
+    status: 'success',
+    order,
+  });
+}
+
+/** (PATCH REQUEST) */
+async function orderStatus(req, res, next) {
+  const { error } = validate.patchOrderStatus(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  const order = await OrderModel.findByIdAndUpdate(req.params.id, req.body, {
+    new: true,
+  });
+  if (!order) return next(new CreateAppError('Given id not found', 404));
 
   res.send({
     status: 'success',
-    message: 'Individual request by id was provided',
-    data,
+    message: 'PMCCC Marketplace API',
+    order,
   });
-};
-
-/** (DELETE REQUEST) */
-export const deleteOrder = async (req, res) => {
-  const data = await OrderModel.findByIdAndDelete(req.params.id);
-  if (!data) return next(new CreateAppError('Given id not found', 404));
-
-  res.send({ status: 'success', message: 'Order deleted', data });
-};
-
-/** (PATCH REQUEST) */
-export const orderStatus = async (req, res, next) => {
-  const { error } = validateStatus(req.body);
-  if (error) return next(new CreateAppError(error.message, 400));
-
-  const data = await OrderModel.findByIdAndUpdate(req.params.id, req.body, {
-    new: true,
-  });
-  if (!data) return next(new CreateAppError('Given id not found', 404));
-
-  res.status(200).send({
-    status: 'success',
-    message: 'Order status modified',
-    data,
-  });
-};
-
-function validateStatus(req) {
-  const schema = Joi.object({
-    status: Joi.string().valid('pending', 'complete'),
-  });
-
-  return schema.validate(req);
 }
 
 export const controllers = {
   getAllOrders,
   createOrder,
   getOrder,
+  patchOrder,
   deleteOrder,
   orderStatus,
 };

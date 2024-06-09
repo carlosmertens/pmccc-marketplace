@@ -22,5 +22,5 @@ pcPartsRouter
 
 pcPartsRouter
   .route('/:id/reviews')
-  .get(auth, asyncWrapper(controllers.getAllReviews))
-  .patch(asyncWrapper(controllers.createReview));
+  .get(asyncWrapper(controllers.getAllReviews))
+  .post(asyncWrapper(controllers.createReview));

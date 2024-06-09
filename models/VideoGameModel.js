@@ -53,21 +53,4 @@ const videoGameSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const VideoGameModel = mongoose.model('video-games', videoGameSchema);
-
-function validateVideoGame(game) {
-  const schema = Joi.object({
-    name: Joi.string().required().min(1).max(100),
-    console: Joi.string().required().min(1).max(50),
-    genre: Joi.string().required().min(1).max(50),
-    description: Joi.string().required().min(15).max(1000),
-    imgSrc: Joi.string().min(1).max(500).default('pcpart.jpg'),
-    price: Joi.number().required().min(1),
-    discountPercentage: Joi.number().min(1).max(20).default(10),
-    category: Joi.string().required().min(1).max(50),
-  });
-
-  return schema.validate(game);
-}
-
-export { VideoGameModel, validateVideoGame };
+export const VideoGameModel = mongoose.model('video-games', videoGameSchema);

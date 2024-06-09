@@ -45,9 +45,9 @@ async function getResourcesList(req, res) {
     ...toursArray,
   ];
 
-  res.status(200).send({
+  res.send({
+    message: 'PMCCC Marketplace API',
     status: 'success',
-    message: 'GET request to get all resources in the database sussccesful',
     result: resources.length,
     data: resources,
   });

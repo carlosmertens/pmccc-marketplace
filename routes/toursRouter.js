@@ -23,4 +23,4 @@ toursRouter
 toursRouter
   .route('/:id/reviews')
   .get(asyncWrapper(controllers.getAllReviews))
-  .patch(auth, asyncWrapper(controllers.createReview));
+  .post(auth, asyncWrapper(controllers.createReview));
