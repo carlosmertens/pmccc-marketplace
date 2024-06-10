@@ -18,7 +18,7 @@ async function getAllTours(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createTour(req, res) {
+async function createTour(req, res, next) {
   const { error } = validate.createTour(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
