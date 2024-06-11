@@ -10,16 +10,17 @@ import { routeNotFoundHandler } from '../middleware/routeNotFoundHandler.js';
 import { errorHandler } from '../middleware/errorHandler.js';
 
 export function startRoutes(app) {
-  app.use('/api/v1/tours', toursRouter);
-  app.use('/api/v1/books', booksRouter);
-  app.use('/api/v1/pc-parts', pcPartsRouter);
-  app.use('/api/v1/video-games', videoGamesRouter);
-  app.use('/api/v1/users', userRouter);
-  app.use('/api/v1/auth', authRouter);
-  app.use('/api/v1/orders', ordersRouter);
-  app.use('/api/v1/resources', resourcesRouter);
+  app.use('/api/v2/tours', toursRouter);
+  app.use('/api/v2/books', booksRouter);
+  app.use('/api/v2/pc-parts', pcPartsRouter);
+  app.use('/api/v2/video-games', videoGamesRouter);
+  app.use('/api/v2/users', userRouter);
+  app.use('/api/v2/auth', authRouter);
+  app.use('/api/v2/orders', ordersRouter);
+  app.use('/api/v2/resources', resourcesRouter);
 
   app.use('*', routeNotFoundHandler);
 
   app.use(errorHandler);
 }
+// Testing guthub rules
