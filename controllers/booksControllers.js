@@ -19,7 +19,7 @@ async function getAllBooks(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createNewBook(req, res) {
+async function createNewBook(req, res, next) {
   /** Validate data */
   const { error } = validate.book(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
