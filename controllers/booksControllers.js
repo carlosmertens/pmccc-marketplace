@@ -91,7 +91,7 @@ async function deleteBook(req, res, next) {
 }
 
 /** (GET REQUEST) */
-async function getAllReviews(req, res, next) {
+async function getAllReviews(req, res) {
   const data = await BookModel.findById(req.params.id).select(
     'reviews ratingAvg'
   );

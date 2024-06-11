@@ -18,7 +18,7 @@ async function getAllPcParts(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createPcPart(req, res) {
+async function createPcPart(req, res, next) {
   const { error } = validate.createPcPart(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
@@ -93,7 +93,7 @@ async function deletePcPart(req, res, next) {
 }
 
 /** (GET REQUEST) */
-async function getAllReviews(req, res, next) {
+async function getAllReviews(req, res) {
   const data = await PcPartModel.findById(req.params.id).select(
     'reviews ratingAvg'
   );

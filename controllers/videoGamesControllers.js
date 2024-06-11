@@ -18,7 +18,7 @@ async function getAllVideoGames(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createVideoGame(req, res) {
+async function createVideoGame(req, res, next) {
   const { error } = validate.createVideoGame(re.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
@@ -98,7 +98,7 @@ async function deleteVideoGame(req, res, next) {
 }
 
 /** (GET REQUEST) */
-async function getAllReviews(req, res, next) {
+async function getAllReviews(req, res) {
   const data = await VideoGameModel.findById(req.params.id).select(
     'reviews ratingAvg'
   );

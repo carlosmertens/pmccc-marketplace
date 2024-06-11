@@ -18,7 +18,7 @@ async function getAllOrders(req, res) {
 }
 
 /** (POST REQUEST) */
-async function createOrder(req, res) {
+async function createOrder(req, res, next) {
   const { error } = validate.createOrder(req.body);
   if (error) return next(new CreateAppError(error.message, 400));
 
@@ -37,7 +37,7 @@ async function createOrder(req, res) {
 }
 
 /** (GET REQUEST) */
-async function getOrder(req, res) {
+async function getOrder(req, res, next) {
   const order = await OrderModel.findById(req.params.id);
   if (!order) return next(new CreateAppError('Given id not found', 404));
 
@@ -66,7 +66,7 @@ async function patchOrder(req, res, next) {
 }
 
 /** (DELETE REQUEST) */
-async function deleteOrder(req, res) {
+async function deleteOrder(req, res, next) {
   const order = await OrderModel.findByIdAndDelete(req.params.id, {
     new: true,
   });

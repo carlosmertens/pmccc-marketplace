@@ -1,6 +1,6 @@
 # MPCCC MARKETPLACE API
 
-API connecting MPCCC MongoDB database with website
+API connecting MPCCC MongoDB database with website and a mobile app in the future.
 
 ## ROUTES
 
