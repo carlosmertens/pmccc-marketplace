@@ -58,4 +58,4 @@ const pcPartSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const PcPartModel = mongoose.model('pc-part', pcPartSchema);
+export const PcPartModel = mongoose.model('Pc-part', pcPartSchema);

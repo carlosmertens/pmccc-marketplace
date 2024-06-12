@@ -1,12 +1,12 @@
 import { VideoGameModel } from '../models/VideoGameModel.js';
 import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
-import { processQuery } from '../utils/processQuery.js';
+import { apiQueries } from '../utils/apiQueries.js';
 import { calcRatingAvg } from '../utils/calcRatingAvg.js';
 
 /** (GET REQUEST) */
 async function getAllVideoGames(req, res) {
-  const query = processQuery(req.query, VideoGameModel);
+  const query = apiQueries(req.query, VideoGameModel);
   const videoGames = await query;
 
   res.send({

@@ -1,7 +1,7 @@
-export function processQuery(query, Model) {
+export function apiQueries(query, Model) {
   /** Filter reserved keywords */
   const queryObj = { ...query };
-  ['page', 'sort', 'limit', 'fields'].forEach(iten => delete queryObj[iten]);
+  ['sort', 'fields', 'limit', 'page'].forEach(iten => delete queryObj[iten]);
 
   /** Refactor if any: gte, gt, lt, lte operators */
   let queryStr = JSON.stringify(queryObj);
@@ -14,9 +14,16 @@ export function processQuery(query, Model) {
   if (query.sort) result = result.sort(query.sort.split(',').join(' '));
   else result = result.sort('-createdAt');
 
-  /** Limit fields */
+  /** Fields selected */
   if (query.fields) result = result.select(query.fields.split(',').join(' '));
-  else result.select('-__v -createdAt');
+  else result.select('-__v -createdAt -updatedAt');
+
+  /** Pagination */
+  const page = query.page * 1 || 1;
+  const limit = query.limit * 1 || 100;
+  const skip = (page - 1) * limit;
+
+  result.skip(skip).limit(limit);
 
   return result;
 }

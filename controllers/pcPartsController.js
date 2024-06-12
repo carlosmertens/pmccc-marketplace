@@ -1,12 +1,12 @@
 import { PcPartModel } from '../models/PcPartModel.js';
 import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
-import { processQuery } from '../utils/processQuery.js';
+import { apiQueries } from '../utils/apiQueries.js';
 import { calcRatingAvg } from '../utils/calcRatingAvg.js';
 
 /** (GET REQUEST) */
 async function getAllPcParts(req, res) {
-  const query = processQuery(req.query, PcPartModel);
+  const query = apiQueries(req.query, PcPartModel);
   const pcParts = await query;
 
   res.send({

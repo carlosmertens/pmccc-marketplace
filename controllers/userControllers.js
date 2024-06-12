@@ -4,11 +4,11 @@ import { User } from '../models/UserModel.js';
 import { validate } from '../validators/index.js';
 import { hashPassword } from '../utils/hashPassword.js';
 import { CreateAppError } from '../utils/createAppError.js';
-import { processQuery } from '../utils/processQuery.js';
+import { apiQueries } from '../utils/apiQueries.js';
 
 /** (GET REQUEST) */
 export const getAllUsers = async (req, res) => {
-  const query = processQuery(req.query, User);
+  const query = apiQueries(req.query, User);
   const users = await query;
 
   res.send({

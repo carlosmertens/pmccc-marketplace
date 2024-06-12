@@ -1,12 +1,12 @@
 import { OrderModel } from '../models/OrderModel.js';
 import { User } from '../models/UserModel.js';
 import { validate } from '../validators/index.js';
-import { processQuery } from '../utils/processQuery.js';
+import { apiQueries } from '../utils/apiQueries.js';
 import { CreateAppError } from '../utils/createAppError.js';
 
 /** (GET REQUEST) */
 async function getAllOrders(req, res) {
-  const query = processQuery(req.body, OrderModel);
+  const query = apiQueries(req.body, OrderModel);
   const orders = await query;
 
   res.send({

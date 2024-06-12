@@ -1,12 +1,12 @@
 import { BookModel } from '../models/BookModel.js';
 import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
-import { processQuery } from '../utils/processQuery.js';
+import { apiQueries } from '../utils/apiQueries.js';
 import { calcRatingAvg } from '../utils/calcRatingAvg.js';
 
 /** (GET REQUEST) */
 async function getAllBooks(req, res) {
-  const query = processQuery(req.query, BookModel);
+  const query = apiQueries(req.query, BookModel);
   const books = await query;
 
   res.send({

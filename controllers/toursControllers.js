@@ -1,12 +1,12 @@
 import { TourModel } from '../models/TourModel.js';
 import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
-import { processQuery } from '../utils/processQuery.js';
+import { apiQueries } from '../utils/apiQueries.js';
 import { calcRatingAvg } from '../utils/calcRatingAvg.js';
 
 /** (GET REQUEST) */
 async function getAllTours(req, res) {
-  const query = processQuery(req.query, TourModel);
+  const query = apiQueries(req.query, TourModel);
   const tours = await query;
 
   res.send({

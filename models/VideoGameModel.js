@@ -53,4 +53,4 @@ const videoGameSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-export const VideoGameModel = mongoose.model('video-games', videoGameSchema);
+export const VideoGameModel = mongoose.model('Video-game', videoGameSchema);

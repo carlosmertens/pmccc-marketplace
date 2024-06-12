@@ -23,4 +23,3 @@ export function startRoutes(app) {
 
   app.use(errorHandler);
 }
-// Testing guthub rules
