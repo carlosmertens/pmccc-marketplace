@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "start": "DEBUG= && node server.js",
-    "dev": "DEBUG= && nodemon server.js"
+    "dev": "DEBUG= && nodemon server.js",
+    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest"
   },
   "author": "",
   "license": "MIT",
@@ -20,7 +21,10 @@
     "jsonwebtoken": "^9.0.2",
     "lodash": "^4.17.21",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.3.0",
+    "mongoose": "^8.3.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
     "nodemon": "^3.1.0"
   }
 }

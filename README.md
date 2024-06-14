@@ -2,6 +2,10 @@
 
 API connecting MPCCC MongoDB database with website and a mobile app in the future.
 
+## GETTING STARTED
+
+export DEBUG=app:\*
+
 ## ROUTES
 
 /api/v1/tests
