@@ -21,6 +21,9 @@ import { startRoutes } from './startup/startRoutes.js';
 //   close(() => process.exit(1));
 // });
 
+// console.log(process.env.NODE_ENV);
+// console.log(process.env.DEBUG);
+
 /** Initialize app */
 const app = express();
 connectDB();

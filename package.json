@@ -5,9 +5,9 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "start": "DEBUG= && node server.js",
-    "dev": "DEBUG= && nodemon server.js",
-    "test": "NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest"
+    "start": "export NODE_ENV=production DEBUG= && node server.js",
+    "dev": "export DEBUG=dev\\* NODE_ENV=development && nodemon server.js",
+    "test": "export NODE_ENV=test && NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\" npx jest --watchAll --verbose"
   },
   "author": "",
   "license": "MIT",
@@ -25,6 +25,7 @@
   },
   "devDependencies": {
     "jest": "^29.7.0",
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.0",
+    "supertest": "^7.0.0"
   }
 }
