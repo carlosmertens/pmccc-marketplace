@@ -3,6 +3,7 @@ import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
 import { apiQueries } from '../utils/apiQueries.js';
 import { calcRatingAvg } from '../utils/calcRatingAvg.js';
+import mongoose from 'mongoose';
 
 /** (GET REQUEST) */
 async function getAllBooks(req, res) {

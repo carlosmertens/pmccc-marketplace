@@ -6,20 +6,20 @@ import { startMiddleware } from './startup/startMiddleware.js';
 import { startRoutes } from './startup/startRoutes.js';
 
 /** Handle Rejections and Exceptions */
-// process.on('unhandledRejection', err => {
-//   console.log('UNHANDLED REJECTION => ' + err);
-//   console.log('Server shutting down 💥');
+process.on('unhandledRejection', err => {
+  console.log('UNHANDLED REJECTION => ' + err);
+  console.log('Server shutting down 💥');
 
-//   close(() => process.exit(1));
-// });
+  close(() => process.exit(1));
+});
 
-// process.on('uncaughtException', err => {
-//   console.log('UNCAUGHT EXCEPTION => ' + err.name);
-//   console.log('UNCAUGHT EXCEPTION => ' + err.message);
-//   console.log('Server shutting down 💥');
+process.on('uncaughtException', err => {
+  console.log('UNCAUGHT EXCEPTION => ' + err.name);
+  console.log('UNCAUGHT EXCEPTION => ' + err.message);
+  console.log('Server shutting down 💥');
 
-//   close(() => process.exit(1));
-// });
+  close(() => process.exit(1));
+});
 
 // console.log(process.env.NODE_ENV);
 // console.log(process.env.DEBUG);
@@ -32,6 +32,6 @@ startRoutes(app);
 
 /** Initialize server */
 const PORT = process.env.PORT || 8001;
-const server = app.listen(PORT, () => {
+export const server = app.listen(PORT, () => {
   log.server(`Server is running on port ${PORT}`);
 });
