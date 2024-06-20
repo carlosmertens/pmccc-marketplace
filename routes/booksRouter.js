@@ -5,7 +5,7 @@ import { auth } from '../middleware/auth.js';
 import { admin } from '../middleware/admin.js';
 import { isObjectId } from '../middleware/isObjectId.js';
 
-/** Base Route: /api/v1/books */
+/** Base Route: /api/v2/books */
 
 export const booksRouter = Router();
 

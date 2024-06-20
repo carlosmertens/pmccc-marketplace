@@ -1,7 +1,7 @@
 import request from 'supertest';
-import { server } from '../../server';
-import { BookModel } from '../../models/BookModel';
-import { User } from '../../models/UserModel';
+import { server } from '../../../server.js';
+import { BookModel } from '../../../models/BookModel.js';
+import { User } from '../../../models/UserModel.js';
 
 describe('/api/v2/books', () => {
   const bookTest = {
@@ -13,9 +13,8 @@ describe('/api/v2/books', () => {
     price: 1,
   };
 
-  let token = new User().generateJWT();
-
   // beforeEach(() => server.on('connection', () => console.log('Connected')));
+
   afterEach(async () => {
     await BookModel.deleteMany({});
     server.close();
@@ -55,6 +54,8 @@ describe('/api/v2/books', () => {
   });
 
   describe('POST /', () => {
+    let token = new User().generateJWT();
+
     const executePost = async () => {
       return await request(server)
         .post('/api/v2/books')

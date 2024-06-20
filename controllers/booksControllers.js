@@ -3,7 +3,6 @@ import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
 import { apiQueries } from '../utils/apiQueries.js';
 import { calcRatingAvg } from '../utils/calcRatingAvg.js';
-import mongoose from 'mongoose';
 
 /** (GET REQUEST) */
 async function getAllBooks(req, res) {
@@ -32,7 +31,9 @@ async function createBook(req, res, next) {
   });
 }
 
-/** (GET REQUEST) */
+/** (GET REQUEST)
+ * /api/v2/books/
+ */
 async function getBook(req, res, next) {
   const book = await BookModel.findById(req.params.id);
   if (!book) return next(new CreateAppError('Given id not found', 404));
