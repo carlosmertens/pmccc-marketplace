@@ -54,35 +54,35 @@ describe('/api/v2/books', () => {
   });
 
   describe('POST /', () => {
-    let token = new User().generateJWT();
+    let user = new User({ isAdmin: true });
+    const token = user.generateJWT();
 
-    const executePost = async () => {
-      return await request(server)
+    const exec = () => {
+      return request(server)
         .post('/api/v2/books')
         .set('x-auth-token', token)
         .send(bookTest);
     };
 
-    it('should return 401 if client is not logged', async () => {
+    it('should return 401 if user is not logged', async () => {
       const res = await request(server).post('/api/v2/books').send(bookTest);
       expect(res.status).toBe(401);
     });
 
-    it('should return 403 if book is not admin', async () => {
-      const res = await executePost();
-      expect(res.status).toBe(403);
+    it('should return 403 if user is not admin', async () => {
+      const res = await exec();
+      expect(res.status).not.toBe(403);
     });
 
-    // TODO: Create isAdmin route to change from false t
-    // it('should save the book if it is valid', async () => {
-    //   const res = await executePost();
-    //   expect(res.body.book).not.toBeNull();
-    // });
+    it('should save the book if it is valid', async () => {
+      const res = await exec();
+      expect(res.body.book).not.toBeNull();
+    });
 
-    // it('should return the book if it is valid', async () => {
-    //   const res = await executePost();
-    //   expect(res.body.book).toHaveProperty('_id');
-    //   expect(res.body.book).toHaveProperty('name', 'test1');
-    // });
+    it('should return the book if it is valid', async () => {
+      const res = await exec();
+      expect(res.body.book).toHaveProperty('_id');
+      expect(res.body.book).toHaveProperty('name', 'test1');
+    });
   });
 });
