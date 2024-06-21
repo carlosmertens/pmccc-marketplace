@@ -91,7 +91,7 @@ async function patchUser(req, res, next) {
     new: true,
   }).select('-__v -createdAt -updatedAt -password');
 
-  if (!user) return next(new CreateAppError('Given id not found', 404));
+  if (!user) return next(new CreateAppError('User not found', 404));
 
   res.send({
     message: 'PMCCC Marketplace API',

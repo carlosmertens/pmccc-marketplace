@@ -142,7 +142,6 @@ function patchReview(review) {
   return schema.validate(review);
 }
 
-/** Validates user data for signup using Joi schema */
 function createUser(user) {
   const schema = Joi.object({
     firstName: Joi.string().required().min(2).max(50).trim(),
@@ -161,6 +160,15 @@ function createUser(user) {
     }),
     email: Joi.string().required().email().min(5).max(255).trim(),
     password: Joi.string().required().min(5).max(32).trim(),
+  });
+
+  return schema.validate(user);
+}
+
+function enableAdmin(user) {
+  const schema = Joi.object({
+    isAdmin: Joi.boolean().required(),
+    pin: Joi.number().required(),
   });
 
   return schema.validate(user);
@@ -239,6 +247,7 @@ export const validate = {
   createReview,
   patchReview,
   createUser,
+  enableAdmin,
   login,
   patchUser,
   createOrder,

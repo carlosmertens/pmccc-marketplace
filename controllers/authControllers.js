@@ -24,4 +24,23 @@ async function authUser(req, res, next) {
   });
 }
 
-export const controllers = { authUser };
+async function enableAdmin(req, res, next) {
+  const { error } = validate.enableAdmin(req.body);
+  if (error) return next(new CreateAppError(error.message, 400));
+
+  if (req.body.pin !== process.env.ADMIN_PIN)
+    return next(new CreateAppError('Wrong pin number', 400));
+
+  const user = await User.findByIdAndUpdate(req.user._id, req.body, {
+    new: true,
+  }).select('-password -createdAt -updatedAt -__v');
+  if (!user) return next(new CreateAppError('User not found', 404));
+
+  res.send({
+    message: 'PMCCC Marketplace API',
+    status: 'success',
+    user,
+  });
+}
+
+export const controllers = { authUser, enableAdmin };
