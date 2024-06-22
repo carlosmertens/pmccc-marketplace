@@ -7,7 +7,7 @@
   "scripts": {
     "start": "export NODE_ENV=production DEBUG= && node server.js",
     "dev": "export DEBUG=dev\\* NODE_ENV=development && nodemon server.js",
-    "test": "export NODE_ENV=test && NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\"  npx jest --watchAll --verbose --detectOpenHandles"
+    "test": "export NODE_ENV=test && NODE_OPTIONS=\"$NODE_OPTIONS --experimental-vm-modules\"  npx jest --watchAll --verbose --detectOpenHandles --coverage"
   },
   "author": "",
   "license": "MIT",
