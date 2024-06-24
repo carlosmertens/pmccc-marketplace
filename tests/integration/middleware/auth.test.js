@@ -15,7 +15,7 @@ const bookTest = {
 describe('auth middleware', () => {
   afterEach(async () => {
     await BookModel.deleteMany({});
-    server.close();
+    await server.close();
   });
 
   let xAuthToken;

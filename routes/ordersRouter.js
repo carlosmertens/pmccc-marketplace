@@ -4,7 +4,7 @@ import { asyncWrapper } from '../middleware/asyncWrapper.js';
 import { auth } from '../middleware/auth.js';
 import { admin } from '../middleware/admin.js';
 
-/** Base Route: /api/v1/orders */
+/** Base Route: /api/v2/orders */
 
 export const ordersRouter = Router();
 

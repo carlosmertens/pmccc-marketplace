@@ -3,21 +3,19 @@ import { server } from '../../../server.js';
 import { BookModel } from '../../../models/BookModel.js';
 import { User } from '../../../models/UserModel.js';
 
+const bookTest = {
+  name: 'test1',
+  author: 'test1',
+  genre: 'test1',
+  pages: 1,
+  description: 'Some test and should pass all validation tests',
+  price: 1,
+};
+
 describe('/api/v2/books', () => {
-  const bookTest = {
-    name: 'test1',
-    author: 'test1',
-    genre: 'test1',
-    pages: 1,
-    description: 'Some test and should pass all validation tests',
-    price: 1,
-  };
-
-  // beforeEach(() => server.on('connection', () => console.log('Connected')));
-
   afterEach(async () => {
     await BookModel.deleteMany({});
-    server.close();
+    await server.close();
   });
 
   describe('GET /', () => {
@@ -54,15 +52,19 @@ describe('/api/v2/books', () => {
   });
 
   describe('POST /', () => {
-    let user = new User({ isAdmin: true });
-    const token = user.generateJWT();
+    let user;
+    let token;
 
-    const exec = () => {
-      return request(server)
+    beforeEach(() => {
+      user = new User({ isAdmin: true });
+      token = user.generateJWT();
+    });
+
+    const executeRequest = () =>
+      request(server)
         .post('/api/v2/books')
         .set('x-auth-token', token)
         .send(bookTest);
-    };
 
     it('should return 401 if user is not logged', async () => {
       const res = await request(server).post('/api/v2/books').send(bookTest);
@@ -70,17 +72,17 @@ describe('/api/v2/books', () => {
     });
 
     it('should return 403 if user is not admin', async () => {
-      const res = await exec();
+      const res = await executeRequest();
       expect(res.status).not.toBe(403);
     });
 
     it('should save the book if it is valid', async () => {
-      const res = await exec();
+      const res = await executeRequest();
       expect(res.body.book).not.toBeNull();
     });
 
     it('should return the book if it is valid', async () => {
-      const res = await exec();
+      const res = await executeRequest();
       expect(res.body.book).toHaveProperty('_id');
       expect(res.body.book).toHaveProperty('name', 'test1');
     });
