@@ -85,6 +85,17 @@ describe('/api/v2/books', () => {
       const res = await executeRequest();
       expect(res.body.book).toHaveProperty('_id');
       expect(res.body.book).toHaveProperty('name', 'test1');
+
+      expect(Object.keys(res.body.book)).toEqual(
+        expect.arrayContaining([
+          '_id',
+          'name',
+          'author',
+          'genre',
+          'price',
+          'reviews',
+        ])
+      );
     });
   });
 });

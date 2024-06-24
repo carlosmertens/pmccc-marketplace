@@ -1,5 +1,4 @@
 import { BookModel } from '../models/BookModel.js';
-import { validate } from '../validators/index.js';
 import { CreateAppError } from '../utils/createAppError.js';
 import { apiQueries } from '../utils/apiQueries.js';
 import { calcRatingAvg } from '../utils/calcRatingAvg.js';
@@ -19,9 +18,6 @@ async function getAllBooks(req, res) {
 
 /** (POST REQUEST) */
 async function createBook(req, res, next) {
-  const { error } = validate.createBook(req.body);
-  if (error) return next(new CreateAppError(error.message, 400));
-
   const book = await BookModel.create(req.body);
 
   res.status(201).send({
@@ -47,9 +43,6 @@ async function getBook(req, res, next) {
 
 /** (PUT REQUEST) */
 async function updateBook(req, res, next) {
-  const { error } = validate.createBook(req.body);
-  if (error) return next(new CreateAppError(error.message, 400));
-
   const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
     new: true,
@@ -65,9 +58,6 @@ async function updateBook(req, res, next) {
 
 /** (PATCH REQUEST) */
 async function patchBook(req, res, next) {
-  const { error } = validate.patchBook(req.body);
-  if (error) return next(new CreateAppError(error.message, 400));
-
   const book = await BookModel.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   });
@@ -108,9 +98,6 @@ async function getAllReviews(req, res) {
 
 /** (POST REQUEST)  */
 async function createReview(req, res, next) {
-  const { error } = validate.createReview(req.body);
-  if (error) return next(new CreateAppError(error.message, 400));
-
   let book = await BookModel.findById(req.params.id);
   book.reviews.push(req.body);
 
