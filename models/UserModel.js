@@ -61,7 +61,7 @@ const userSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-/** Method that generates a JWT token containing user information */
+/** Instance method that generates a JWT token */
 userSchema.methods.generateJWT = function () {
   return jwt.sign(
     {

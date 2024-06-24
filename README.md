@@ -4,6 +4,16 @@ API connecting PMCCC MongoDB database with website and a mobile app in the futur
 
 Developed using modern technologies such as [MongoDB](https://www.mongodb.com/), [Express JS](https://expressjs.com/), [Mongoose](https://mongoosejs.com/), [JSON Web Token](https://jwt.io/), [Jest](https://jestjs.io/), [Joi validation](https://joi.dev/api/?v=17.13.3), etc...
 
+## TECHNIQUES
+
+- Information Expert Principal and Instance Methods
+- Error handlers
+- Async wrappers
+- Extra validation with Joi validation
+- Quering api
+- Hashing methods
+- Unit and integration tests
+
 ## GETTING STARTED
 
 - Clone, fork or download the latest version (Main or v2 branches)
