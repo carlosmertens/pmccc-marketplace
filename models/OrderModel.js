@@ -28,4 +28,8 @@ const OrderSchema = mongoose.Schema(
   { timestamps: true }
 );
 
+OrderSchema.statics.lookup = function (userId, orderId) {
+  return this.findOne({ userId, _id: orderId });
+};
+
 export const OrderModel = mongoose.model('Order', OrderSchema);
